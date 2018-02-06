@@ -1,4 +1,4 @@
-package com.chatcompany.chatclient.views;
+package com.chatcompany.chatclient.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class FXMLController implements Initializable {
+public class MainChatParentController implements Initializable {
     
     @FXML
     private Label label;
