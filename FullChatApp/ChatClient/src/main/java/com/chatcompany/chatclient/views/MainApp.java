@@ -12,11 +12,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ContactTabsLayout.fxml"));
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        
+        stage.setWidth(850);
+        stage.setHeight(500);
+        stage.setResizable(false);
         stage.setTitle("JavaFX and Maven");
         stage.setScene(scene);
         stage.show();

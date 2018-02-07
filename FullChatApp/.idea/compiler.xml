@@ -13,7 +13,7 @@
     <bytecodeTargetLevel>
       <module name="ChatClient" target="1.7" />
       <module name="ChatServer" target="1.7" />
-      <module name="FullChatApp" target="1.5" />
+      <module name="FullChatApp" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
