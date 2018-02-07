@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
         <action>
-            <actionName>CUSTOM-runJavafx</actionName>
-            <displayName>runJavafx</displayName>
+            <actionName>CUSTOM-runJavaFx</actionName>
+            <displayName>runJavaFx</displayName>
             <goals>
                 <goal>jfx:run</goal>
             </goals>
         </action>
-</actions>
+    </actions>
