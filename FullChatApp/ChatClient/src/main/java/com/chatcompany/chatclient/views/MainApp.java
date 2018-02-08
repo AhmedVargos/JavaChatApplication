@@ -6,20 +6,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ContactTabsLayout.fxml"));
-        
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ToolBarVeiw.fxml"));
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        stage.setWidth(850);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setWidth(750);
         stage.setHeight(500);
         stage.setResizable(false);
         stage.setTitle("JavaFX and Maven");
+
         stage.setScene(scene);
         stage.show();
     }
