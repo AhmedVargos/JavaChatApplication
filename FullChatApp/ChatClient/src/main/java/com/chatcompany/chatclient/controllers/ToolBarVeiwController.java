@@ -51,6 +51,7 @@ public class ToolBarVeiwController implements Initializable {
         makeProfilePic();
         close();
         minimize();
+        sign_out();
     }
 
     //profile pic......................
@@ -107,13 +108,13 @@ public class ToolBarVeiwController implements Initializable {
     }
     
 
-//    private void sign_out() {
-//        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent e) {
-//                Platform.exit();
-//            }
-//        });
-//    }
+    private void sign_out() {
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Platform.exit();
+            }
+        });
+    }
 
 }
