@@ -1,0 +1,11 @@
+.button {
+    -fx-font-weight: bold;
+}
+
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #5C868D;
+}
+.editHBox{
+    -fx-background-color:#5C868D ;
+}
