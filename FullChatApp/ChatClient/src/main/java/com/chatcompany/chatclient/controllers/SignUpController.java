@@ -59,16 +59,12 @@ public class SignUpController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
+  
     @FXML
-    private Label labelMail;
+    private Label close;
+    
     @FXML
-    private Label labelPassword;
-    @FXML
-    private Label labelComplete;
-    @FXML
-    private ImageView close;
-    @FXML
-    private ImageView minimize;
+    private Label minimize;
 
     @FXML
     private ImageView backToLogin;
