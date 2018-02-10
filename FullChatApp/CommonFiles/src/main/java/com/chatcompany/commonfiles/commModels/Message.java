@@ -1,7 +1,7 @@
-package com.chatcompany.chatclient.models;
+package com.chatcompany.commonfiles.commModels;
 
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.io.Serializable;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * ClassName : Message.java 

@@ -6,7 +6,7 @@ import com.chatcompany.commonfiles.common.LoginInterface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
-import models.User;
+import com.chatcompany.commonfiles.commModels.User;
 
 public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 

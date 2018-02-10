@@ -1,4 +1,4 @@
-package com.chatcompany.chatclient.models;
+package com.chatcompany.commonfiles.commModels;
 
 import java.io.Serializable;
 
