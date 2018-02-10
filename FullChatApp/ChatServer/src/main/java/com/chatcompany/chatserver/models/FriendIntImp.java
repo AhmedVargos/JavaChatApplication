@@ -4,7 +4,7 @@ package com.chatcompany.chatserver.models;
 import com.chatcompany.commonfiles.common.FriendInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import models.User;
+import com.chatcompany.commonfiles.commModels.User;
 
 public class FriendIntImp implements FriendInterface {
 

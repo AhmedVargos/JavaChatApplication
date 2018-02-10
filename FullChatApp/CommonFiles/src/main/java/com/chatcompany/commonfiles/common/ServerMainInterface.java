@@ -9,7 +9,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import models.User;
+import com.chatcompany.commonfiles.commModels.User;
 
 /**
  * Description ServerMainInterface is where to put all methods

@@ -3,7 +3,7 @@ package com.chatcompany.commonfiles.common;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import models.User;
+import com.chatcompany.commonfiles.commModels.User;
 
 public interface FriendInterface {
     /**

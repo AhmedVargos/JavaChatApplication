@@ -3,7 +3,7 @@ package com.chatcompany.chatserver.models;
 import com.chatcompany.commonfiles.common.ChatInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import models.Message;
+import com.chatcompany.commonfiles.commModels.Message;
 
 public class ChatIntImp implements ChatInterface {
 

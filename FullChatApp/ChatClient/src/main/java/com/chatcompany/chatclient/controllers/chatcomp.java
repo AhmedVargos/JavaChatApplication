@@ -42,16 +42,14 @@ public class chatcomp implements Initializable {
     private Button button1;
     @FXML
     private PasswordField passwordFieldPassword;
+  
     @FXML
-    private Label userErrorLabel;
+    private Button signUpbtn;
+  
     @FXML
-    private Button signUpLbtn;
+    private Label minimize;
     @FXML
-    private AnchorPane windowBar;
-    @FXML
-    private ImageView minimize;
-    @FXML
-    private ImageView close;
+    private Label close;
 
     /**
      * Initializes the controller class.
@@ -65,7 +63,7 @@ public class chatcomp implements Initializable {
     }
 
     private void signUp() {
-        signUpLbtn.setOnAction(new EventHandler<ActionEvent>() {
+        signUpbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 try {

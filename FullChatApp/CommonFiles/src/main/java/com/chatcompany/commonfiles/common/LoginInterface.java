@@ -8,7 +8,7 @@ package com.chatcompany.commonfiles.common;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
-import models.User;
+import com.chatcompany.commonfiles.commModels.User;
 
 /**
  *
