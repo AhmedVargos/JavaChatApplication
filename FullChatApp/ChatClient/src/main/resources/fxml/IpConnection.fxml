@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.IpConnectionController">
+   <children>
+       <Label fx:id="ProjectName" layoutX="315.0" layoutY="60.0" prefHeight="40.0" prefWidth="220.0" text="   Project Name" textFill="#C8D6CA">
+                  <font>
+                     <Font size="28.0" />
+                  </font>
+               </Label>
+               <Label fx:id="exit" layoutX="817.0" layoutY="6.0" prefHeight="30.0" prefWidth="19.0" text="X" textAlignment="CENTER" textFill="#C8D6CA">
+                  <font>
+                     <Font size="28.0" />
+                  </font>
+               </Label>
+               <Label fx:id="min" layoutX="785.0" layoutY="10.0" prefHeight="32.0" prefWidth="19.0" text="-" textAlignment="CENTER" textFill="#C8D6CA">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Label>
+               <Label layoutX="323.0" layoutY="146.0" prefHeight="40.0" prefWidth="204.0" text=" Enter Server Ip" textAlignment="CENTER" textFill="#C8D6CA">
+                  <font>
+                     <Font size="28.0" />
+                  </font>
+               </Label>
+      <JFXTextField focusColor="#c8d6ca" layoutX="257.0" layoutY="268.0" prefHeight="47.0" prefWidth="337.0" promptText="   Enter ip address 192.168.1.2 and press enter" unFocusColor="#c8d6ca" />
+   </children>
+</AnchorPane>
