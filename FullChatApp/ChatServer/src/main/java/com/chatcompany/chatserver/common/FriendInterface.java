@@ -21,32 +21,32 @@ public interface FriendInterface {
      * Description Func used to send friend Request
      *
      * @param idMe User id
-     * @param idMyfirend receiver id
+     * @param idMyFriend receiver id
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-    public boolean acceptFriendRequest(int idMe, int idMyfirend) throws RemoteException;
+    public boolean acceptFriendRequest(int idMe, int idMyFriend) throws RemoteException;
 
 
     /**
      * Description Func used to send friend Request
      *
      * @param idMe User id
-     * @param idMyfirend receiver id
+     * @param idMyFriend receiver id
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-    public boolean deleteFriend(int idMe, int idMyfirend) throws RemoteException;
+    public boolean deleteFriend(int idMe, int idMyFriend) throws RemoteException;
 
     /**
      * Description Func used to decline friend Request
      *
      * @param idMe User id
-     * @param idMyfirend receiver id
+     * @param idMyFriend receiver id
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-    public boolean removeFriendRequest(int idMe, int idMyfirend) throws RemoteException;
+    public boolean removeFriendRequest(int idMe, int idMyFriend) throws RemoteException;
 
     /**
      * Description Func used to logout

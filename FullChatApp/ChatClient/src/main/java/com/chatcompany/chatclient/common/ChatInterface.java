@@ -1,6 +1,7 @@
 package com.chatcompany.chatclient.common;
 
-import com.chatcompany.chatserver.models.Message;
+
+import com.chatcompany.chatclient.models.Message;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
