@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.chatcompany.chatclient.common;
-
-import com.chatcompany.chatclient.models.User;
+package com.chatcompany.commonfiles.common;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import models.User;
 
 /**
  * Description ServerMainInterface is where to put all methods

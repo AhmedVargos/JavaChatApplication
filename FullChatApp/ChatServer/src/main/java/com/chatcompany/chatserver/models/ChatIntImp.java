@@ -1,20 +1,21 @@
 package com.chatcompany.chatserver.models;
 
-import com.chatcompany.chatserver.common.ChatInterface;
-
+import com.chatcompany.commonfiles.common.ChatInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import models.Message;
 
 public class ChatIntImp implements ChatInterface {
-    //Will send message to a single user
+
     @Override
     public void sendMessage(Message msg) throws RemoteException {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //Will send message to a group of users
     @Override
     public void sendMessageToGroup(ArrayList<Message> msg) throws RemoteException {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    //Will send message to a single user
+  
 }

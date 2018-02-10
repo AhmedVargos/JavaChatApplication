@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.chatcompany.chatserver.common;
+package com.chatcompany.commonfiles.common;
 
-import com.chatcompany.chatserver.models.User;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import models.User;
 
 /**
  *
