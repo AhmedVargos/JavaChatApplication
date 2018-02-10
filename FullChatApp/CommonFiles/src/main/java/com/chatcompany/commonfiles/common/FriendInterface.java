@@ -1,9 +1,9 @@
-package com.chatcompany.chatserver.common;
+package com.chatcompany.commonfiles.common;
 
-import com.chatcompany.chatserver.models.User;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import models.User;
 
 public interface FriendInterface {
     /**

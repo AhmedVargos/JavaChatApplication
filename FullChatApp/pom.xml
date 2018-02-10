@@ -8,7 +8,8 @@
     <modules>
         <module>ChatServer</module>
         <module>ChatClient</module>
-  </modules>
+        <module>CommonFiles</module>
+    </modules>
 
     <dependencies>
         <dependency>

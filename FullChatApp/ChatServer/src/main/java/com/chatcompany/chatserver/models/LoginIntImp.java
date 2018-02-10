@@ -1,21 +1,26 @@
 package com.chatcompany.chatserver.models;
 
-import com.chatcompany.chatserver.common.LoginInterface;
 
+
+import com.chatcompany.commonfiles.common.LoginInterface;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+import models.User;
 
-public class LoginIntImp implements LoginInterface {
+public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 
-    //Check i user is on the DB and return Obj from user
-    @Override
-    public User login(String userName, String pass) throws RemoteException {
-        return null;
+    public LoginIntImp()throws RemoteException{
+
     }
 
-    //Create new user account if available
+    @Override
+    public User login(String userName, String pass) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public Boolean SignUp(User user) throws SQLException, RemoteException {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
