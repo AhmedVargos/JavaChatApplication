@@ -108,6 +108,8 @@ public class ContactTabViewController implements Initializable{
                  ab.setStyle("-fx-border-style: solid inside;"
                         + "-fx-border-width: 2;" + "-fx-border-insets:2;"
                         + "-fx-border-radius: 5;" + "-fx-border-color:#5c868D ;" + "-fx-background-color: #C8D6CA;");
+                 ab.setMaxWidth(260);
+                 ab.setMinWidth(50);
                  System.out.println(ab.getWidth());
 
                 Circle circle = new Circle(45, 30, 20);
