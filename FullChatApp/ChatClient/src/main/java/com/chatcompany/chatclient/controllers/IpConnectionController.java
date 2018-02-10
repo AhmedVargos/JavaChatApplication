@@ -79,9 +79,13 @@ public class IpConnectionController implements Initializable {
             try {
                 Parent parent=FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
                 Registry registry = LocateRegistry.getRegistry(ip,2000);
-                LoginInterface server = (LoginInterface) registry.lookup("chat");
-                System.out.print(server.login("ahmed","1234"));
-                MainApp.getMainStage().setScene(new Scene(parent));
+                //LoginInterface server = (LoginInterface) registry.lookup("chat");
+             //   System.out.print(server.login("ahmed","1234"));
+                Scene scene=new Scene(parent);
+              
+                MainApp.getMainStage().setScene(scene);
+                MainApp.getMainStage().setWidth(537);
+                MainApp.getMainStage().setHeight(437);
             }catch(Exception ex){
                 ex.printStackTrace();
             }

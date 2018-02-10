@@ -5,6 +5,7 @@
  */
 package com.chatcompany.chatclient.controllers;
 
+import com.chatcompany.chatclient.views.MainApp;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -94,11 +95,10 @@ public class SignUpController implements Initializable {
 
                     Scene scene = new Scene(root);
 
-                    Stage stage = (Stage) anchorBase.getScene().getWindow();
-                    stage.setWidth(700);
-                    stage.setHeight(500);
-                    stage.setScene(scene);
-                    stage.show();
+                    
+                    MainApp.getMainStage().setScene(scene);
+                    MainApp.getMainStage().setWidth(537);
+                    MainApp.getMainStage().setHeight(437);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

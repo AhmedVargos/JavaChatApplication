@@ -5,6 +5,7 @@
  */
 package com.chatcompany.chatclient.controllers;
 
+import com.chatcompany.chatclient.views.MainApp;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,11 +77,10 @@ public class chatcomp implements Initializable {
 
                     Scene scene = new Scene(root);
 
-                    Stage stage = (Stage) anchorBase.getScene().getWindow();
-                    stage.setWidth(700);
-                    stage.setHeight(500);
-                    stage.setScene(scene);
-                    stage.show();
+                    MainApp.getMainStage().setScene(scene);
+                    MainApp.getMainStage().setWidth(683);
+                    MainApp.getMainStage().setHeight(501);
+                
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
