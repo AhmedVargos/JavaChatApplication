@@ -5,9 +5,9 @@ package com.chatcompany.chatclient.controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.chatcompany.chatclient.common.ClientInterface;
-import com.chatcompany.chatclient.common.LoginInterface;
+
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.common.LoginInterface;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -73,7 +73,6 @@ public class IpConnectionController implements Initializable {
     private void handleConnectionAction(KeyEvent e){
        if (e.getCode().equals(KeyCode.ENTER)) { 
         String ip = ipTextfield.getText().toString();
-        //String localHost="10.245.3.238";
         Pattern IP_PATTERN = Pattern.compile("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
    
         if(IP_PATTERN.matcher(ip).matches()){
@@ -81,7 +80,7 @@ public class IpConnectionController implements Initializable {
                 Parent parent=FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
                 Registry registry = LocateRegistry.getRegistry(ip,2000);
                 LoginInterface server = (LoginInterface) registry.lookup("chat");
-                //System.out.print(server.login("ahmed","1234"));
+                System.out.print(server.login("ahmed","1234"));
                 MainApp.getMainStage().setScene(new Scene(parent));
             }catch(Exception ex){
                 ex.printStackTrace();
