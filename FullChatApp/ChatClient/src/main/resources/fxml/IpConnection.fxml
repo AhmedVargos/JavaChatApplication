@@ -31,6 +31,6 @@
                      <Font size="28.0" />
                   </font>
                </Label>
-      <JFXTextField fx:id="ipTextfield" focusColor="#c8d6ca" layoutX="257.0" layoutY="268.0" prefHeight="47.0" prefWidth="337.0" promptText="   Enter ip address 192.168.1.2 and press enter" unFocusColor="#c8d6ca" />
+      <JFXTextField fx:id="ipTextfield" focusColor="#c8d6ca" layoutX="257.0" layoutY="268.0" onKeyPressed="#handleConnectionAction" prefHeight="47.0" prefWidth="337.0" promptText="   Enter ip address 192.168.1.2 and press enter" unFocusColor="#c8d6ca" />
    </children>
 </AnchorPane>

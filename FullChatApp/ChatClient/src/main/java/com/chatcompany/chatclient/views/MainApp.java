@@ -9,11 +9,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
-
+    private static Stage mainStage;
+    
+    public static Stage getMainStage(){
+        return mainStage;
+    }
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/IpConnection.fxml"));
+        mainStage = stage;
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         stage.initStyle(StageStyle.UNDECORATED);
