@@ -1,26 +1,27 @@
 package com.chatcompany.chatclient.models;
 
-import com.chatcompany.chatclient.common.ClientInterface;
 
+import com.chatcompany.commonfiles.common.ClientInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import models.Message;
+import models.User;
 
 public class ClientIntImp implements ClientInterface {
-    //Message received from server
+
     @Override
     public void receiveMessage(Message msg) throws RemoteException {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //Friend request received from server
     @Override
     public void receiveFriendRequest(ArrayList<User> friendRequests) throws RemoteException {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    //Update the contact list
     @Override
     public void updateContactsList(ArrayList<User> friend) throws RemoteException {
-
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+   
 }

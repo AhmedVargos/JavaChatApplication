@@ -1,10 +1,10 @@
-package com.chatcompany.chatserver.common;
+package com.chatcompany.commonfiles.common;
 
-import com.chatcompany.chatserver.models.Message;
-import com.chatcompany.chatserver.models.User;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import models.Message;
+import models.User;
 
 /**
  *
