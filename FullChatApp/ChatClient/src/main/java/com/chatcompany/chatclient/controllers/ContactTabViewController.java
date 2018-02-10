@@ -40,7 +40,7 @@ public class ContactTabViewController implements Initializable{
 
     // Helper method to create image from image patch
     private static ImageView buildImage(String imgPatch) {
-        Image i = new Image(imgPatch,48,48,false,false);
+        Image i = new Image(imgPatch,44,44,false,false);
         ImageView imageView = new ImageView();
         //You can set width and height
         //imageView.setFitHeight(16);

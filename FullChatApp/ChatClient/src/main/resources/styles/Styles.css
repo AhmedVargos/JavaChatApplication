@@ -15,3 +15,20 @@ visibility: hidden;
 -fx-max-width: 0;
 -fx-padding: 0;
 }
+
+.jfx-tab-pane .tab-header-area .control-buttons-tab .jfx-rippler .container .tab-down-button{
+visibility: hidden;
+-fx-min-width: 0;
+-fx-pref-width: 0;
+-fx-max-width: 0;
+-fx-padding: 0;
+}
+
+
+.jfx-tab-pane .tab-header-area .control-buttons-tab .jfx-rippler .container{
+visibility: hidden;
+-fx-min-width: 0;
+-fx-pref-width: 0;
+-fx-max-width: 0;
+-fx-padding: 0;
+}

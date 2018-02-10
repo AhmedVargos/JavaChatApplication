@@ -9,20 +9,20 @@
 <?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="402.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
     <children>
-      <TabPane layoutX="286.0" layoutY="30.0" prefHeight="641.0" prefWidth="490.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="402.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="UNAVAILABLE">
          <tabs>
           <Tab fx:id="homeTab" style="-fx-background-color: #5C868D;" text="Home">
             <content>
-              <AnchorPane fx:id="homeAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #99BFAA;">
+              <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
                      <children>
-                        <Label layoutX="135.0" layoutY="168.0" prefHeight="55.0" prefWidth="243.0" text="  Welcome to">
+                        <Label layoutX="166.0" layoutY="64.0" prefHeight="55.0" prefWidth="243.0" text="  Welcome to">
                            <font>
                               <Font name="Calibri" size="35.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="187.0" fitWidth="168.0" layoutX="161.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="187.0" fitWidth="168.0" layoutX="192.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Logo.png" />
                            </image>
@@ -33,10 +33,10 @@
           </Tab>
             <Tab fx:id="friendTab" style="-fx-background-color: #5C868D;" text="Friend Tab">
                <content>
-                  <AnchorPane fx:id="homeAnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="484.0" style="-fx-background-color: #99BFAA;">
+                  <AnchorPane fx:id="homeAnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
                      <children>
-                        <VBox layoutX="3.0" layoutY="4.0" prefHeight="470.0" prefWidth="502.0" />
-                        <HBox fx:id="editHBox" layoutX="5.0" layoutY="474.0" prefHeight="60.0" prefWidth="474.0">
+                        <VBox layoutX="3.0" layoutY="4.0" prefHeight="235.0" prefWidth="575.0" />
+                        <HBox fx:id="editHBox" layoutX="94.0" layoutY="239.0" prefHeight="60.0" prefWidth="474.0">
                            <children>
                               <JFXComboBox fx:id="fondFamily" prefHeight="60.0" prefWidth="78.0" promptText=" Arial" />
                               <JFXComboBox fx:id="fontSize" prefHeight="58.0" prefWidth="57.0" promptText="15" />
@@ -46,14 +46,14 @@
                               <JFXToggleButton fx:id="UnderlineToggleButton" layoutX="342.0" layoutY="10.0" prefHeight="60.0" prefWidth="92.0" text="U" underline="true" />
                            </children>
                         </HBox>
-                        <TextField layoutX="7.0" layoutY="538.0" prefHeight="59.0" prefWidth="316.0" promptText="Type Text and press Enter" />
-                        <JFXButton layoutX="323.0" layoutY="543.0" prefHeight="49.0" prefWidth="62.0" text="Send" />
-                        <ImageView fx:id="saveChat" fitHeight="57.0" fitWidth="51.0" layoutX="385.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField layoutX="67.0" layoutY="299.0" prefHeight="59.0" prefWidth="316.0" promptText="Type Text and press Enter" />
+                        <JFXButton layoutX="383.0" layoutY="304.0" prefHeight="49.0" prefWidth="62.0" text="Send" />
+                        <ImageView fx:id="saveChat" fitHeight="57.0" fitWidth="51.0" layoutX="445.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/save.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="addFile" fitHeight="57.0" fitWidth="51.0" layoutX="436.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="addFile" fitHeight="57.0" fitWidth="51.0" layoutX="496.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/addFile.png" />
                            </image>
