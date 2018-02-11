@@ -22,17 +22,17 @@
    <children>
       <AnchorPane fx:id="anchor" layoutX="-9.0" prefHeight="50.0" prefWidth="949.0" style="-fx-background-color: #3D4C40;">
          <children>
-            <Label layoutX="323.0" prefHeight="64.0" prefWidth="435.0" text=" bl7a Server" textAlignment="CENTER" textFill="#b5cf74" wrapText="true">
+            <Label layoutX="323.0" prefHeight="64.0" prefWidth="435.0" text="Chat App Server" textAlignment="CENTER" textFill="#b5cf74" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="30.0" />
                </font>
             </Label>
-            <ImageView fx:id="serverViewClose" fitHeight="38.0" fitWidth="38.0" layoutX="902.0" layoutY="6.0"  pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="serverViewClose" fitHeight="38.0" fitWidth="38.0" layoutX="902.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/images/x.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="serverViewMin" fitHeight="38.0" fitWidth="50.0" layoutX="854.0" layoutY="6.0"  opacity="0.51" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="serverViewMin" fitHeight="38.0" fitWidth="50.0" layoutX="854.0" layoutY="6.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/images/Minimize.png" />
                </image>
@@ -49,7 +49,7 @@
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font></Button>
-                        <Button fx:id="serverStopBtn" layoutX="577.0" layoutY="276.0" mnemonicParsing="false"  prefHeight="57.0" prefWidth="143.0" style="-fx-background-color: #3D3C40;" text="Stop" textFill="#c6c9be">
+                        <Button fx:id="serverStopBtn" layoutX="577.0" layoutY="276.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="143.0" style="-fx-background-color: #3D3C40;" text="Stop" textFill="#c6c9be">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font></Button>
@@ -73,7 +73,7 @@
                      <children>
                         <PieChart fx:id="pc" layoutY="62.0" prefHeight="442.0" prefWidth="496.0" style="-fx-background-color: #c7ced8;" />
                         <PieChart fx:id="pc1" layoutX="458.0" layoutY="61.0" prefHeight="444.0" prefWidth="482.0" style="-fx-background-color: #c7ced8;" />
-                        <Button layoutX="342.0" layoutY="35.0" mnemonicParsing="false"   prefHeight="52.0" prefWidth="205.0" style="-fx-background-color: #3D3C40;" text="Show data Chart" textFill="#b5cf74">
+                        <Button layoutX="342.0" layoutY="35.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="205.0" style="-fx-background-color: #3D3C40;" text="Show data Chart" textFill="#b5cf74">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font></Button>
@@ -81,7 +81,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="userDataTab"  text="UserData">
+            <Tab fx:id="userDataTab" text="UserData">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="942.0" style="-fx-background-color: #c7ced8;">
                      <children>
@@ -91,17 +91,17 @@
                               <Font size="18.0" />
                            </font>
                         </TextArea>
-                        <Button layoutX="361.0" layoutY="6.0" mnemonicParsing="false"  prefHeight="44.0" prefWidth="198.0" style="-fx-background-color: #3D3C40;" text="Refresh " textFill="#b5cf74">
+                        <Button layoutX="361.0" layoutY="6.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="198.0" style="-fx-background-color: #3D3C40;" text="Refresh " textFill="#b5cf74">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="733.0" layoutY="438.0" mnemonicParsing="false"  prefHeight="54.0" prefWidth="160.0" style="-fx-background-color: #3D3C40;" text="Send Notification" textAlignment="CENTER" textFill="#b5cf74" wrapText="true">
+                        <Button layoutX="733.0" layoutY="438.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="160.0" style="-fx-background-color: #3D3C40;" text="Send Notification" textAlignment="CENTER" textFill="#b5cf74" wrapText="true">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Button>
-                        <Button layoutX="587.0" layoutY="440.0" mnemonicParsing="false"  prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #3D3C40;" text="Upload Image" textFill="#b5cf74">
+                        <Button layoutX="587.0" layoutY="440.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #3D3C40;" text="Upload Image" textFill="#b5cf74">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -113,6 +113,6 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="446.0" layoutY="-34.0" mnemonicParsing="false"  prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #5f8c96;" text="Show Users Data" textFill="WHITE" />
+      <Button layoutX="446.0" layoutY="-34.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #5f8c96;" text="Show Users Data" textFill="WHITE" />
    </children>
 </AnchorPane>

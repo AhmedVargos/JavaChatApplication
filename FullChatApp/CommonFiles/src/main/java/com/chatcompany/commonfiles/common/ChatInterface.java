@@ -2,7 +2,7 @@ package com.chatcompany.commonfiles.common;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import models.Message;
+import com.chatcompany.commonfiles.commModels.Message;
 
 public interface  ChatInterface{
 	 /**

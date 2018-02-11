@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -12,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane prefHeight="450.0" prefWidth="275.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ContactTabViewController">
+<AnchorPane prefHeight="450.0" prefWidth="275.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ContactTabViewController">
    <children>
         <JFXTabPane fx:id="contactsTabPane" maxWidth="275.0" prefHeight="500.0" prefWidth="275.0">
             <tabs>

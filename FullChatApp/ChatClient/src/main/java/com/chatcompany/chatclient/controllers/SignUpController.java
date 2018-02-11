@@ -5,17 +5,25 @@
  */
 package com.chatcompany.chatclient.controllers;
 
+import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.commModels.User;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -26,6 +34,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -44,7 +53,10 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField firstNameField;
     @FXML
-    private Button button;
+    private TextField userNameField;
+
+    @FXML
+    private Button registerBtn;
     @FXML
     private TextField countryField;
     @FXML
@@ -59,10 +71,10 @@ public class SignUpController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
-  
+
     @FXML
     private Label close;
-    
+
     @FXML
     private Label minimize;
 
@@ -78,6 +90,7 @@ public class SignUpController implements Initializable {
         backToLoginScene();
         close();
         minimize();
+        createAccount();
     }
 
     private void backToLoginScene() {
@@ -89,16 +102,19 @@ public class SignUpController implements Initializable {
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SignIn.fxml"));
                     Parent root = loader.load();
-                    chatcomp controller = loader.getController();
+                    SignInController controller = loader.getController();
                     //controller.setText(nameTxtField.getText());
 
                     Scene scene = new Scene(root);
 
-                    Stage stage = (Stage) anchorBase.getScene().getWindow();
-                    stage.setWidth(700);
-                    stage.setHeight(500);
-                    stage.setScene(scene);
-                    stage.show();
+                    //Open new scene and position it in the middle
+                    MainApp.getMainStage().setScene(scene);
+                    MainApp.getMainStage().setWidth(537);
+                    MainApp.getMainStage().setHeight(437);
+                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                    MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
+                    MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -106,7 +122,6 @@ public class SignUpController implements Initializable {
         });
     }
 
-    
     //close signup scene..........
     private void close() {
         close.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -117,7 +132,6 @@ public class SignUpController implements Initializable {
         });
     }
 
-    
     //minmize signup scene............
     private void minimize() {
         minimize.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -125,6 +139,61 @@ public class SignUpController implements Initializable {
             public void handle(MouseEvent e) {
 
                 ((Stage) minimize.getScene().getWindow()).setIconified(true);
+            }
+        });
+    }
+
+    private void createAccount() {
+        registerBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                User user = new User(userNameField.getText(),
+                         emailField.getText(),
+                         firstNameField.getText(),
+                         lastNameField.getText(),
+                         passwordField.getText(),
+                         "0",
+                         countryField.getText(),
+                         "1");
+                boolean isAccepted = false;
+                try {
+                    isAccepted = MainApp.getLoginInterface().SignUp(user);
+                } catch (SQLException ex) {
+                    Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (isAccepted) {
+                    try {
+                        MainApp.setMainUser(user);
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ParentChatView.fxml"));
+                        Parent root = loader.load();
+                        MainChatParentController controller = loader.getController();
+                        //controller.setText(nameTxtField.getText());
+
+                        Scene scene = new Scene(root);
+                        scene.getStylesheets().add("/styles/Styles.css");
+                        
+                        //Open new scene and position it in the middle
+                        MainApp.getMainStage().setScene(scene);
+                        MainApp.getMainStage().setWidth(850);
+                        MainApp.getMainStage().setHeight(500);
+                        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                        MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
+                        MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("User name used");
+                    alert.setContentText("Please change the user name enterd");
+                    alert.show();
+                }
+
             }
         });
     }

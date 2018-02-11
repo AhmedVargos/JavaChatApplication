@@ -41,10 +41,10 @@
             </Label>
             <ImageView fx:id="imageView" fitHeight="46.0" fitWidth="90.0" layoutX="507.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/images/exit.png" />
+                  <Image url="/images/close.png" />
                </image></ImageView>
             <Circle fx:id="profileCircle1" fill="#89d37ff5" layoutX="120.0" layoutY="51.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label layoutX="288.0" layoutY="2.0" prefHeight="61.0" prefWidth="215.0" text="H Chat" textAlignment="CENTER" textFill="#5c3d46">
+            <Label layoutX="288.0" layoutY="2.0" prefHeight="61.0" prefWidth="215.0" text="SE Chat" textAlignment="CENTER" textFill="#5c3d46">
                <font>
                   <Font name="Algerian" size="49.0" />
                </font>

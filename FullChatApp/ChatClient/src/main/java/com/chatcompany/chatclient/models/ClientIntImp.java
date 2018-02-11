@@ -4,8 +4,8 @@ package com.chatcompany.chatclient.models;
 import com.chatcompany.commonfiles.common.ClientInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import models.Message;
-import models.User;
+import com.chatcompany.commonfiles.commModels.Message;
+import com.chatcompany.commonfiles.commModels.User;
 
 public class ClientIntImp implements ClientInterface {
 
