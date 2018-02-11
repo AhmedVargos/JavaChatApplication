@@ -13,11 +13,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServerMainViewController implements Initializable {
 
@@ -30,7 +33,8 @@ public class ServerMainViewController implements Initializable {
     @FXML
     public Button serverStopBtn;
 
-
+    private Registry registry; 
+    private final String CHAT_TAG = "chat";
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Initialize handlers to the buttons
@@ -55,14 +59,21 @@ public class ServerMainViewController implements Initializable {
 
     //stops the server
     private void stopServer() {
-
+        try {
+            registry.unbind(CHAT_TAG);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     //starts the server
     private void startServer() {
         try {
-            Registry registry = LocateRegistry.createRegistry(2000);
-            registry.rebind("chat", new LoginIntImp());
+            registry = LocateRegistry.createRegistry(2000);
+            registry.rebind(CHAT_TAG, new LoginIntImp());
 
             System.out.println("Server is Online");
 
@@ -77,7 +88,8 @@ public class ServerMainViewController implements Initializable {
         serverViewClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                Platform.exit();
+                //Platform.exit();
+                System.exit(0);
             }
         });
     }

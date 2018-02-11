@@ -5,6 +5,7 @@ package com.chatcompany.chatclient.controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.chatcompany.chatclient.views.MainApp;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +18,11 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -27,6 +32,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -96,25 +102,45 @@ public class ToolBarVeiwController implements Initializable {
             }
         });
     }
-    
+
     private void minimize() {
         min.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                
-                ((Stage)min.getScene().getWindow()).setIconified(true);
+
+                ((Stage) min.getScene().getWindow()).setIconified(true);
             }
         });
     }
-    
 
     private void sign_out() {
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                Platform.exit();
+                moveToSignIn();
             }
         });
+    }
+
+    private void moveToSignIn() {
+        try {
+            MainApp.setMainUser(null);
+
+            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
+            Scene scene = new Scene(parent);
+            
+            //Open new scene and position it in the middle
+            MainApp.getMainStage().setScene(scene);
+            MainApp.getMainStage().setWidth(537);
+            MainApp.getMainStage().setHeight(437);
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
+            MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+
+        } catch (IOException ex) {
+            Logger.getLogger(ToolBarVeiwController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

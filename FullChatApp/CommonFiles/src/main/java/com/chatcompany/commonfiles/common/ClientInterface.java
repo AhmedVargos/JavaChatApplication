@@ -6,12 +6,7 @@ import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
 import com.chatcompany.commonfiles.commModels.User;
 
-/**
- *
- * @author shalaby
- * 
- * the interface of client business layer
- */
+
 public interface ClientInterface extends Remote {
 
     /**

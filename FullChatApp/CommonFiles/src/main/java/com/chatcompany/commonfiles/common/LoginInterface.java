@@ -10,10 +10,7 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import com.chatcompany.commonfiles.commModels.User;
 
-/**
- *
- * @author shalaby
- */
+
 public interface LoginInterface extends Remote {
 
     /**

@@ -18,7 +18,7 @@ public interface FriendInterface {
 
 
     /**
-     * Description Func used to send friend Request
+     * Description Func used to accept friend Request
      *
      * @param idMe User id
      * @param idMyFriend receiver id
@@ -29,7 +29,7 @@ public interface FriendInterface {
 
 
     /**
-     * Description Func used to send friend Request
+     * Description Func used to delete friend
      *
      * @param idMe User id
      * @param idMyFriend receiver id
@@ -49,7 +49,7 @@ public interface FriendInterface {
     public boolean removeFriendRequest(int idMe, int idMyFriend) throws RemoteException;
 
     /**
-     * Description Func used to logout
+     * Description Func used to get all friend requests
      *
      * @param id User id
      * @return ArrayList of userDtos user Friend Requests List
@@ -57,11 +57,4 @@ public interface FriendInterface {
      */
     public ArrayList<User> getFriendRequestList(int id) throws RemoteException;
 
-    /**
-     * Description Func used to get group chat id
-     *
-     * @param groupName group name
-     * @return group chat id
-     * @throws RemoteException if RMI failed
-     */
 }

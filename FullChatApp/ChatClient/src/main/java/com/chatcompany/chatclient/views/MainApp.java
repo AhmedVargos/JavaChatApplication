@@ -1,5 +1,7 @@
 package com.chatcompany.chatclient.views;
 
+import com.chatcompany.commonfiles.commModels.User;
+import com.chatcompany.commonfiles.common.LoginInterface;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,23 @@ import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
     private static Stage mainStage;
+    private static LoginInterface loginInterface;
+    private static User mainUser;
+    
+    public static void setMainUser(User user){
+        mainUser = user;
+    }
+    public static User getMainUser(){
+        return mainUser;
+    }
+    
+    public static LoginInterface getLoginInterface(){
+        return loginInterface;
+    }
+    
+    public static void setLoginInterface(LoginInterface login){
+        loginInterface = login;
+    }
     
     public static Stage getMainStage(){
         return mainStage;

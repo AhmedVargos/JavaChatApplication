@@ -11,12 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.User;
 
-/**
- * Description ServerMainInterface is where to put all methods
- *
- * @author  shalaby
- * clients may use as a service
- */
+
 public interface ServerMainInterface extends Remote {
 
 
@@ -31,7 +26,7 @@ public interface ServerMainInterface extends Remote {
     public boolean updateInfo(User user) throws SQLException, RemoteException;
 
     /**
-     * Description Func used to logout
+     * Description Func used to signOut
      *
      * @param user UserDTO
      * @return true if succeed, false if failed
@@ -41,11 +36,37 @@ public interface ServerMainInterface extends Remote {
     public boolean signOut(User user) throws SQLException, RemoteException;
 
 
+    /**
+     * Description Func used to get all users friends
+     *
+     * @param user UserDTO
+     * @return true if succeed, false if failed
+     * @throws SQLException if DB failed
+     * @throws RemoteException if RMI failed
+     */
     public ArrayList<User> getContactsList(int id) throws SQLException, RemoteException;
 
+    
+    /**
+     * Description Func used to create a friends group
+     *
+     * @param user UserDTO
+     * @return true if succeed, false if failed
+     * @throws SQLException if DB failed
+     * @throws RemoteException if RMI failed
+     */
     public boolean createGroup(String groupName, ArrayList<User> users)throws SQLException, RemoteException;
 
 
+    
+    /**
+     * Description Func used to notify user of some change
+     *
+     * @param user UserDTO
+     * @return true if succeed, false if failed
+     * @throws SQLException if DB failed
+     * @throws RemoteException if RMI failed
+     */
     public boolean notify(int id) throws SQLException, RemoteException;
 
 

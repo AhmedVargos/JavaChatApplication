@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="537.0" style="-fx-background-color: #5c868D; -fx-border-color: #a6a9ad;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.chatcomp">
+<AnchorPane fx:id="anchorBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="537.0" style="-fx-background-color: #5c868D; -fx-border-color: #a6a9ad;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.SignInController">
    <children>
       <AnchorPane layoutX="122.0" layoutY="35.0" prefHeight="389.0" prefWidth="281.0">
          <children>
