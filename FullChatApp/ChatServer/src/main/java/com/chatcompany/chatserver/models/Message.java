@@ -3,12 +3,6 @@ package com.chatcompany.chatserver.models;
 import java.io.Serializable;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-/**
- * ClassName : Message.java 
- * Description : class to represent message in chat
- * @author MotYim
- * @since 11-02-2017
- */
 public class Message implements Serializable {
 
     protected int fontsSize;
