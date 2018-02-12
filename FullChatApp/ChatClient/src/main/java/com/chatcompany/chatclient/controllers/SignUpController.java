@@ -6,7 +6,9 @@
 package com.chatcompany.chatclient.controllers;
 
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
+import com.chatcompany.commonfiles.common.LoginInterface;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -157,7 +159,8 @@ public class SignUpController implements Initializable {
                          "1");
                 boolean isAccepted = false;
                 try {
-                    isAccepted = MainApp.getLoginInterface().SignUp(user);
+                    LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
+                    isAccepted = loginInterface.SignUp(user);
                 } catch (SQLException ex) {
                     Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (RemoteException ex) {

@@ -2,6 +2,7 @@ package com.chatcompany.chatserver.controllers;
 
 
 import com.chatcompany.chatserver.models.LoginIntImp;
+import com.chatcompany.chatserver.models.ServiceLoaderIntImp;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -72,8 +73,9 @@ public class ServerMainViewController implements Initializable {
     //starts the server
     private void startServer() {
         try {
-            registry = LocateRegistry.createRegistry(2000);
-            registry.rebind(CHAT_TAG, new LoginIntImp());
+            registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+            
+            registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
 
             System.out.println("Server is Online");
 

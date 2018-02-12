@@ -6,7 +6,9 @@
 package com.chatcompany.chatclient.controllers;
 
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
+import com.chatcompany.commonfiles.common.LoginInterface;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -125,7 +127,8 @@ public class SignInController implements Initializable {
                 try {
                     if (!textFieldMail.getText().isEmpty() || !passwordFieldPassword.getText().isEmpty()) {
 
-                        User user = MainApp.getLoginInterface().login(textFieldMail.getText(), passwordFieldPassword.getText());
+                        LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
+                        User user = loginInterface.login(textFieldMail.getText(), passwordFieldPassword.getText());
                         if (user != null) {
                             MainApp.setMainUser(user);
 
