@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ChatClient" />
         <module name="ChatServer" />
+        <module name="CommonFiles" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ChatClient" target="1.8" />
       <module name="ChatServer" target="1.8" />
+      <module name="CommonFiles" target="1.8" />
       <module name="FullChatApp" target="1.5" />
     </bytecodeTargetLevel>
   </component>

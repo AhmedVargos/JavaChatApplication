@@ -7,45 +7,58 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="537.0" style="-fx-background-color: #5c868D; -fx-border-color: #a6a9ad;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.SignInController">
+<AnchorPane fx:id="anchorBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="378.0" prefWidth="366.0" style="-fx-background-color: #5c868D; -fx-border-color: #a6a9ad;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.SignInController">
    <children>
-      <AnchorPane layoutX="122.0" layoutY="35.0" prefHeight="389.0" prefWidth="281.0">
+      <AnchorPane layoutY="1.0" prefHeight="378.0" prefWidth="366.0">
          <children>
-            <TextField fx:id="textFieldMail" layoutX="55.0" layoutY="161.0" prefHeight="35.0" prefWidth="178.0" promptText="Enter Mail " style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <Button fx:id="loginbtn" layoutX="55.0" layoutY="260.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #5C3D46;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <TextField fx:id="textFieldMail" layoutX="64.0" layoutY="146.0" prefHeight="35.0" prefWidth="223.0" promptText="Enter Mail " style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <Button fx:id="loginbtn" layoutX="65.0" layoutY="252.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: #5C3D46;" text="Login" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="107.0" layoutY="99.0" prefHeight="35.0" prefWidth="68.0" text="Login" textFill="#f5dfef">
+            <Label layoutX="142.0" layoutY="98.0" prefHeight="35.0" prefWidth="68.0" text="Login" textFill="#f5dfef">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordFieldPassword" layoutX="55.0" layoutY="213.0" prefHeight="35.0" prefWidth="178.0" promptText="Enter Password" style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <Button fx:id="signUpbtn" layoutX="55.0" layoutY="308.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #5C3D46;" text="Sign Up" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="69.0" fitWidth="129.0" layoutX="106.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <PasswordField fx:id="passwordFieldPassword" layoutX="65.0" layoutY="199.0" prefHeight="35.0" prefWidth="223.0" promptText="Enter Password" style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <ImageView fitHeight="69.0" fitWidth="129.0" layoutX="141.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
+            <Label fx:id="signUp" layoutX="270.0" layoutY="306.0" prefHeight="35.0" prefWidth="68.0" text="SignUP" textFill="#5c3d46">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="minimize" layoutX="304.0" layoutY="6.0" prefHeight="20.0" prefWidth="16.0" text="-" textFill="#5c3d46">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Label fx:id="close" layoutX="331.0" layoutY="6.0" prefHeight="17.0" prefWidth="25.0" text="X" textFill="#5c3d46">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Circle fx:id="emailCircleError" fill="#e33b4600" layoutX="269.0" layoutY="162.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle fx:id="passCircleError" fill="#ebedf000" layoutX="269.0" layoutY="220.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label fx:id="emaliLabel" layoutX="296.0" layoutY="152.0" prefHeight="20.0" prefWidth="48.0" textFill="#e86363">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="passLabel" layoutX="296.0" layoutY="207.0" prefHeight="20.0" prefWidth="48.0" textFill="#e86363">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="close" layoutX="498.0" layoutY="14.0" prefHeight="17.0" prefWidth="25.0" text="X" textFill="#5c3d46">
-         <font>
-            <Font size="39.0" />
-         </font>
-      </Label>
-      <Label fx:id="minimize" layoutX="456.0" layoutY="7.0" prefHeight="17.0" prefWidth="25.0" text="-" textFill="#5c3d46">
-         <font>
-            <Font size="39.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

@@ -23,6 +23,7 @@ public interface ServerMainInterface extends Remote {
      * @throws SQLException if DB failed
      * @throws RemoteException if RMI failed
      */
+
     public boolean updateInfo(User user) throws SQLException, RemoteException;
 
     /**

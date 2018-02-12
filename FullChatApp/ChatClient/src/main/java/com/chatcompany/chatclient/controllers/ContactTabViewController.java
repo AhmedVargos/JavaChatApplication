@@ -52,10 +52,14 @@ public class ContactTabViewController implements Initializable{
 
    // List<User> myList;
 
+    private ChatAreaController chatAreaController;
     ImageView img;
     String Img = "/images/user.png";
 
-    
+    public void setChatAreaController(ChatAreaController chatAreaController) {
+        this.chatAreaController = chatAreaController;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //ObservableList<String> classes = contactsTabPane.getStyleClass();
@@ -98,7 +102,7 @@ public class ContactTabViewController implements Initializable{
               //  User user = new User();
               //  user.setUsername(addfirendtxtfield.getText());
                 Label label = new Label(addfirendtxtfield.getText());
-                label.setStyle(" -fx-padding: 10px; -fx-text-fill:#5c868D;");
+                label.setStyle(" -fx-padding: 10px; -fx-text-fill: #C8D6CA;");
                 label.setFont(Font.font("Verdana", 20));
                 label.setLayoutX(70);
                 label.setLayoutY(5);
@@ -107,11 +111,10 @@ public class ContactTabViewController implements Initializable{
 
                  ab.setStyle("-fx-border-style: solid inside;"
                         + "-fx-border-width: 2;" + "-fx-border-insets:2;"
-                        + "-fx-border-radius: 5;" + "-fx-border-color:#5c868D ;" + "-fx-background-color: #C8D6CA;");
+                        + "-fx-border-radius: 5;" + "-fx-border-color:#5c868D ;" + "-fx-background-color:  #5c868D;");
                  ab.setMaxWidth(260);
                  ab.setMinWidth(50);
-                 System.out.println(ab.getWidth());
-
+             
                 Circle circle = new Circle(45, 30, 20);
                 circle.setStroke(Color.SEAGREEN);
                 Image im = new Image("/images/user.png", false);
@@ -129,7 +132,9 @@ public class ContactTabViewController implements Initializable{
                  ab.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        System.out.println(addfirendtxtfield.getText());
+//                        System.out.println(addfirendtxtfield.getText());
+                        //TODO will send an object of the user clicked
+                        chatAreaController.openNewChatSession(label.getText());
                     }
                 });
                 

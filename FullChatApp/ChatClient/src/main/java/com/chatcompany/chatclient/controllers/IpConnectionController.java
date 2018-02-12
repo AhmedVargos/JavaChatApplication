@@ -6,8 +6,10 @@ package com.chatcompany.chatclient.controllers;
  * and open the template in the editor.
  */
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.LoginInterface;
+import com.chatcompany.commonfiles.common.ServiceLoaderInterface;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -83,22 +85,22 @@ public class IpConnectionController implements Initializable {
             if (IP_PATTERN.matcher(ip).matches()) {
                 try {
                     Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
-                    Registry registry = LocateRegistry.getRegistry(ip, 2000);
-                    LoginInterface server = (LoginInterface) registry.lookup("chat");
-                    MainApp.setLoginInterface(server);
+                    Registry registry = LocateRegistry.getRegistry(ip, Constants.REGISTRY_PORT);
+                    ServiceLoaderInterface server = (ServiceLoaderInterface) registry.lookup("chat");
+                    MainApp.setServiceLoaderInterface(server);
 
                     Scene scene = new Scene(parent);
                     
                     //Open new scene and position it in the middle
                     MainApp.getMainStage().setScene(scene);
-                    MainApp.getMainStage().setWidth(537);
-                    MainApp.getMainStage().setHeight(437);
+                    MainApp.getMainStage().setWidth(366);
+                    MainApp.getMainStage().setHeight(378);
 
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                     MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
                 } catch (Exception ex) {
-                    //ex.printStackTrace();
+                    ex.printStackTrace();
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Server Ip not found");
                     alert.setContentText("Please cheack the ip entered!");

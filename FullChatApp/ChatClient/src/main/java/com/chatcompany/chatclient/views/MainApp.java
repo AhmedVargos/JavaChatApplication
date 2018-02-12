@@ -2,6 +2,7 @@ package com.chatcompany.chatclient.views;
 
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.LoginInterface;
+import com.chatcompany.commonfiles.common.ServiceLoaderInterface;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +13,18 @@ import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
     private static Stage mainStage;
-    private static LoginInterface loginInterface;
+    //private static LoginInterface loginInterface;
+    private static ServiceLoaderInterface serviceLoaderInterface;
     private static User mainUser;
+    
+    
+    public static ServiceLoaderInterface getServiceLoaderInterface(){
+        return serviceLoaderInterface;
+    }
+    
+    public static void setServiceLoaderInterface(ServiceLoaderInterface login){
+        serviceLoaderInterface = login;
+    }
     
     public static void setMainUser(User user){
         mainUser = user;
@@ -21,21 +32,21 @@ public class MainApp extends Application {
     public static User getMainUser(){
         return mainUser;
     }
-    
+    /*
     public static LoginInterface getLoginInterface(){
         return loginInterface;
     }
     
     public static void setLoginInterface(LoginInterface login){
         loginInterface = login;
-    }
+    }*/
     
     public static Stage getMainStage(){
         return mainStage;
     }
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/IpConnection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ParentChatView.fxml"));
         mainStage = stage;
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
