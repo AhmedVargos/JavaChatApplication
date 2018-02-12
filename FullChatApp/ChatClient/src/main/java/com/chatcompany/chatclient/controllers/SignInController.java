@@ -30,8 +30,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -52,12 +55,18 @@ public class SignInController implements Initializable {
     private PasswordField passwordFieldPassword;
 
     @FXML
-    private Button signUpbtn;
+    private Label signUp;
 
     @FXML
     private Label minimize;
     @FXML
     private Label close;
+    @FXML
+    private Label emaliLabel;
+    @FXML
+    private Label passLabel;
+
+    private boolean valid = true;
 
     /**
      * Initializes the controller class.
@@ -69,12 +78,13 @@ public class SignInController implements Initializable {
         close();
         minimize();
         login();
+        textFeildListner();
     }
 
     private void signUp() {
-        signUpbtn.setOnAction(new EventHandler<ActionEvent>() {
+        signUp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent e) {
+            public void handle(MouseEvent event) {
                 try {
                     System.out.println("clicked");
 
@@ -95,6 +105,7 @@ public class SignInController implements Initializable {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+
             }
         });
     }
@@ -124,48 +135,85 @@ public class SignInController implements Initializable {
         loginbtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    if (!textFieldMail.getText().isEmpty() || !passwordFieldPassword.getText().isEmpty()) {
 
-                        LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
-                        User user = loginInterface.login(textFieldMail.getText(), passwordFieldPassword.getText());
-                        if (user != null) {
-                            MainApp.setMainUser(user);
+                if (isValidate()) {
+                    try {
 
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ParentChatView.fxml"));
-                            Parent root = loader.load();
-                            MainChatParentController controller = loader.getController();
-                            //controller.setText(nameTxtField.getText());
+                        if (!textFieldMail.getText().isEmpty() || !passwordFieldPassword.getText().isEmpty()) {
 
-                            Scene scene = new Scene(root);
-                            scene.getStylesheets().add("/styles/Styles.css");
+                            LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
+                            User user = loginInterface.login(textFieldMail.getText(), passwordFieldPassword.getText());
+                            if (user != null) {
+                                MainApp.setMainUser(user);
 
-                            MainApp.getMainStage().setScene(scene);
-                            MainApp.getMainStage().setWidth(850);
-                            MainApp.getMainStage().setHeight(500);
-                            //Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                            //MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
-                            //MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ParentChatView.fxml"));
+                                Parent root = loader.load();
+                                MainChatParentController controller = loader.getController();
+                                //controller.setText(nameTxtField.getText());
 
+                                Scene scene = new Scene(root);
+                                scene.getStylesheets().add("/styles/Styles.css");
+
+                                MainApp.getMainStage().setScene(scene);
+                                MainApp.getMainStage().setWidth(850);
+                                MainApp.getMainStage().setHeight(500);
+                                //Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                                //MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
+                                //MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Not found");
+                                alert.setContentText("User name or password is not correct!");
+                                alert.show();
+                            }
                         } else {
+
                             Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Not found");
-                            alert.setContentText("User name or password is not correct!");
+                            alert.setTitle("Empty Fields");
+                            alert.setContentText("User name and Password must be entered");
                             alert.show();
                         }
-                    } else {
-
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Empty Fields");
-                        alert.setContentText("User name and Password must be entered");
-                        alert.show();
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (RemoteException ex) {
-                    Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
+    }
+
+    private boolean isValidate() {
+
+        if (textFieldMail.getText().trim().isEmpty()) {
+           emaliLabel.setText("Invalid");
+            valid = false;
+
+        }
+        if (passwordFieldPassword.getText().trim().isEmpty()) {
+            passLabel.setText("Invalid");
+            valid = false;
+
+        }
+
+        return valid;
+    }
+
+    private void textFeildListner() {
+        textFieldMail.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                emaliLabel.setText("");
+            }
+        });
+        passwordFieldPassword.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                  passLabel.setText("");
+               
+            }
+        });
+
     }
 }

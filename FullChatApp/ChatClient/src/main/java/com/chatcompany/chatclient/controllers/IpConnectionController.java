@@ -93,8 +93,8 @@ public class IpConnectionController implements Initializable {
                     
                     //Open new scene and position it in the middle
                     MainApp.getMainStage().setScene(scene);
-                    MainApp.getMainStage().setWidth(537);
-                    MainApp.getMainStage().setHeight(437);
+                    MainApp.getMainStage().setWidth(366);
+                    MainApp.getMainStage().setHeight(378);
 
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);

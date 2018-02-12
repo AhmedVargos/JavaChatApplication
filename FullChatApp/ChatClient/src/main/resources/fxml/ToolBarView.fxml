@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="86.0" prefWidth="575.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ToolBarVeiwController">
+<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="86.0" prefWidth="575.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ToolBarViewController">
     <stylesheets>
         <URL value="@/styles/toolbarveiw.css" />
     </stylesheets>

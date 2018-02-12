@@ -27,7 +27,7 @@
                             <children>
                         <ScrollPane prefHeight="359.0" prefWidth="275.0">
                            <content>
-                              <VBox fx:id="vbox" prefHeight="357.0" prefWidth="273.0" />
+                              <VBox fx:id="vbox" prefHeight="357.0" prefWidth="274.0" style="-fx-background-color: #C8D6CA;" />
                            </content>
                         </ScrollPane>
                                 <Line endX="100.0" layoutX="125.0" layoutY="360.0" startX="-100.0" style="-fx-opacity: 0.4;" />
