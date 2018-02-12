@@ -23,10 +23,10 @@ public class FriendIntImp implements FriendInterface {
     private String query;
     private ServerMainViewController controller ;
 
-   public FriendIntImp (ServerMainViewController controller)throws RemoteException  {
-      this.controller= this.controller;
-    }
-     LoginIntImp  logim = new LoginIntImp();
+//   public FriendIntImp (ServerMainViewController controller)throws RemoteException  {
+//      this.controller= this.controller;
+//    }
+//     LoginIntImp  logim = new LoginIntImp();
     private void connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:" + property + "\\chatDatabase.db";
