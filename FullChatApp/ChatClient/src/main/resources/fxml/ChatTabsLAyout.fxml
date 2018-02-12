@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="402.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
     <children>
-      <TabPane prefHeight="402.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="chatTabPane" prefHeight="402.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="UNAVAILABLE">
          <tabs>
           <Tab fx:id="homeTab" style="-fx-background-color: #5C868D;" text="Home">
             <content>

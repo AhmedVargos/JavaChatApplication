@@ -3,6 +3,7 @@ package com.chatcompany.chatserver.controllers;
 
 import com.chatcompany.chatserver.models.LoginIntImp;
 import com.chatcompany.chatserver.models.ServiceLoaderIntImp;
+import static com.chatcompany.commonfiles.commModels.Constants.REGISTRY_PORT;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -73,7 +74,7 @@ public class ServerMainViewController implements Initializable {
     //starts the server
     private void startServer() {
         try {
-            registry = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+            registry = LocateRegistry.createRegistry(REGISTRY_PORT);
             
             registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
 
