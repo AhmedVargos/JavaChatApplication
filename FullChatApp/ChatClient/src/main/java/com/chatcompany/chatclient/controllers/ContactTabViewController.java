@@ -29,7 +29,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class ContactTabViewController implements Initializable{
+public class ContactTabViewController implements Initializable {
+
     @FXML
     private Tab chatGroupTab;
     @FXML
@@ -44,7 +45,7 @@ public class ContactTabViewController implements Initializable{
     private ListView requestsList;
     @FXML
     private Tab friendTab;
-   
+
     @FXML
     private Button addfriend;
 
@@ -53,12 +54,11 @@ public class ContactTabViewController implements Initializable{
 
     @FXML
     VBox vbox;
- 
-   // HBox lView;
-   // Text text;
 
-   // List<User> myList;
-
+    // HBox lView;
+    // Text text;
+    // List<User> myList;
+    ObservableList<User> uList;
     private ChatAreaController chatAreaController;
     ImageView img;
     String Img = "/images/user.png";
@@ -89,11 +89,11 @@ public class ContactTabViewController implements Initializable{
 
     private void initListViews() {
         ArrayList<User> usersTemp = new ArrayList<>();
-        usersTemp.add(new User("ahmed","asd@sda.com","asd","adsd","qasd","dasd","qqasd","sad"));
-        usersTemp.add(new User("ahmed","asd@sda.com","asd","adsd","qasd","dasd","qqasd","sad"));
-        usersTemp.add(new User("ahmed","asd@sda.com","asd","adsd","qasd","dasd","qqasd","asd"));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "sad"));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "sad"));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "asd"));
 
-        ObservableList<User> uList = FXCollections.observableList(usersTemp);
+        uList = FXCollections.observableList(usersTemp);
 
         requestsList.setItems(uList);
         requestsList.setCellFactory(new RequestListViewFactory());
@@ -105,7 +105,7 @@ public class ContactTabViewController implements Initializable{
 
     // Helper method to create image from image patch
     private static ImageView buildImage(String imgPatch) {
-        Image i = new Image(imgPatch,44,44,false,false);
+        Image i = new Image(imgPatch, 44, 44, false, false);
         ImageView imageView = new ImageView();
         //You can set width and height
         //imageView.setFitHeight(16);
@@ -113,18 +113,15 @@ public class ContactTabViewController implements Initializable{
         imageView.setImage(i);
         return imageView;
     }
-    
-    
-    
-    
-      //add new freind to contact list
-         private void addFriends() {
+
+    //add new freind to contact list
+    private void addFriends() {
 
         addfriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-              //  User user = new User();
-              //  user.setUsername(addfirendtxtfield.getText());
+                //  User user = new User();
+                //  user.setUsername(addfirendtxtfield.getText());
 //                Label label = new Label(addfirendtxtfield.getText());
 //                label.setStyle(" -fx-padding: 10px; -fx-text-fill: #C8D6CA;");
 //                label.setFont(Font.font("Verdana", 20));
@@ -166,6 +163,12 @@ public class ContactTabViewController implements Initializable{
 
             }
         });
-
+    }
+    
+    public void addNewRequest(ArrayList<User> request){
+        //uList = FXCollections.observableList(request);
+        uList.clear();
+        uList.addAll(request);
+        //requestsList.setItems(uList);
     }
 }

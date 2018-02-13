@@ -79,9 +79,7 @@ public class SignUpController implements Initializable {
     private RadioButton femaleRadioButton;
     @FXML
     private PasswordField passwordField;
-    @FXML
-    private PasswordField confirmPasswordField;
-
+   
     @FXML
     private Label close;
 
@@ -287,11 +285,7 @@ public class SignUpController implements Initializable {
             passwordLabel.setText("at least 3 letter");
             valid = false;
         }
-        //confirm password
-         if (!confirmPasswordField.getText().equals(passwordField.getText())) {
-            confirmLabel.setText("confirm error");
-            valid = false;
-        }
+    
 
         //country field
         if (countryField.getText().trim().isEmpty()) {

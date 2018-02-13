@@ -5,6 +5,7 @@ package com.chatcompany.chatclient.controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.chatcompany.chatclient.models.ClientIntImp;
 import com.chatcompany.chatclient.views.MainApp;
 import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
@@ -88,7 +89,7 @@ public class IpConnectionController implements Initializable {
                     Registry registry = LocateRegistry.getRegistry(ip, Constants.REGISTRY_PORT);
                     ServiceLoaderInterface server = (ServiceLoaderInterface) registry.lookup("chat");
                     MainApp.setServiceLoaderInterface(server);
-
+                    MainApp.setClientIntImp(new ClientIntImp());
                     Scene scene = new Scene(parent);
                     
                     //Open new scene and position it in the middle

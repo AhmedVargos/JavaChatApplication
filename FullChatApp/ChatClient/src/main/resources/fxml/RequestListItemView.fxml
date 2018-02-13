@@ -18,12 +18,12 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <ImageView fx:id="acceptRequestImage" fitHeight="40.0" fitWidth="40.0" layoutX="199.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="acceptRequestImage" onMouseClicked="#acceptRequest" fitHeight="40.0" fitWidth="40.0" layoutX="199.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/images/check_mark.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cancelRequestImage" fitHeight="40.0" fitWidth="40.0" layoutX="199.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cancelRequestImage" onMouseClicked="#cancelRequest" fitHeight="40.0" fitWidth="40.0" layoutX="199.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/images/x.png" />
          </image>
