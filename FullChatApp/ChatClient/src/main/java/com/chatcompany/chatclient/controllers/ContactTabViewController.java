@@ -170,7 +170,11 @@ public class ContactTabViewController implements Initializable {
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
                 }
-                isWorking = friendInterface.sendFriendRequest(MainApp.getMainUser().getId(),addfirendtxtfield.getText());
+                try {
+                    isWorking = friendInterface.sendFriendRequest(MainApp.getMainUser().getUsername(),addfirendtxtfield.getText());
+                } catch (RemoteException e1) {
+                    e1.printStackTrace();
+                }
                 if(isWorking){
                     System.out.println("Request Sent");
                 }else {
