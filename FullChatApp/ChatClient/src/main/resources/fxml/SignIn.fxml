@@ -15,7 +15,7 @@
       <AnchorPane layoutY="1.0" prefHeight="378.0" prefWidth="366.0">
          <children>
             <TextField fx:id="textFieldMail" layoutX="64.0" layoutY="146.0" prefHeight="35.0" prefWidth="223.0" promptText="Enter Mail " style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <Button fx:id="loginbtn" layoutX="65.0" layoutY="252.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="223.0" style="-fx-background-color: #5C3D46;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginbtn" layoutX="65.0" layoutY="247.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" style="-fx-background-color: #5C3D46;" text="Login" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -31,9 +31,9 @@
                   <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
-            <Label fx:id="signUp" layoutX="270.0" layoutY="306.0" prefHeight="35.0" prefWidth="68.0" text="SignUP" textFill="#5c3d46">
+            <Label fx:id="signUp" layoutX="278.0" layoutY="320.0" prefHeight="35.0" prefWidth="68.0" text="SignUp" textFill="#5c3d46">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Label fx:id="minimize" layoutX="304.0" layoutY="6.0" prefHeight="20.0" prefWidth="16.0" text="-" textFill="#5c3d46">
