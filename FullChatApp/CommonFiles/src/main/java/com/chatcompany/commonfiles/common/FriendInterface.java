@@ -15,7 +15,7 @@ public interface FriendInterface {
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-    public boolean sendFriendRequest(int idMe, int idMyfirend) throws RemoteException;
+    public boolean sendFriendRequest(String sender, String receiver) throws RemoteException;
 
 
     /**
@@ -26,7 +26,7 @@ public interface FriendInterface {
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-    public boolean acceptFriendRequest(int idMe, int idMyFriend) throws RemoteException;
+    public boolean acceptFriendRequest(int idMe, int idMyFriend ) throws RemoteException;
 
 
     /**
