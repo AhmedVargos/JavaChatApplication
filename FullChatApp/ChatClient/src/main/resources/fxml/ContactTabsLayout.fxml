@@ -18,18 +18,14 @@
 <?import javafx.scene.shape.Line?>
 
 <AnchorPane prefHeight="450.0" prefWidth="275.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ContactTabViewController">
-   <children>
+    <children>
         <JFXTabPane fx:id="contactsTabPane" maxWidth="275.0" prefHeight="500.0" prefWidth="275.0">
             <tabs>
                 <Tab fx:id="friendTab" style="-fx-background-color: #5C868D;" text="Friends">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #C8D6CA;">
                             <children>
-                        <ScrollPane prefHeight="359.0" prefWidth="275.0">
-                           <content>
-                              <VBox fx:id="vbox" prefHeight="357.0" prefWidth="274.0" style="-fx-background-color: #C8D6CA;" />
-                           </content>
-                        </ScrollPane>
+                                <ListView fx:id="friendsList" prefHeight="359.0" prefWidth="275.0" style="-fx-background-color: #C8D6CA;" />
                                 <Line endX="100.0" layoutX="125.0" layoutY="360.0" startX="-100.0" style="-fx-opacity: 0.4;" />
                                 <JFXTextField fx:id="addfirendtxtfield" focusColor="#99bfaa" labelFloat="true" layoutX="8.0" layoutY="377.0" maxWidth="199.0" minWidth="183.0" opacity="0.68" prefHeight="31.0" prefWidth="183.0" promptText="Add new friend by user name" unFocusColor="#867c7c" />
                                 <JFXButton fx:id="addfriend" layoutX="200.0" layoutY="380.0" style="-fx-background-color: #99BFAA;" text="Add" />
@@ -57,7 +53,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color:#C8D6CA">
                             <children>
-                                <ListView prefHeight="450.0" prefWidth="250.0" style="-fx-background-color: #C8D6CA;" />
+                                <ListView fx:id="requestsList" prefHeight="466.0" prefWidth="275.0" style="-fx-background-color: #C8D6CA;" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -71,12 +67,12 @@
                                 <Line endX="100.0" layoutX="125.0" layoutY="75.0" startX="-100.0" style="-fx-opacity: 0.4;" />
                                 <ListView layoutY="77.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: #C8D6CA;" />
 
-                                  </children>
+                            </children>
                         </AnchorPane>
 
-                          </content>
+                    </content>
                 </Tab>
             </tabs>
         </JFXTabPane>
-   </children>
+    </children>
 </AnchorPane>

@@ -6,7 +6,7 @@ package com.chatcompany.chatclient.controllers;
  * and open the template in the editor.
  */
 import com.chatcompany.chatclient.views.MainApp;
-import static com.chatcompany.commonfiles.commModels.Constants.REGISTRY_PORT;
+import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.LoginInterface;
 import com.chatcompany.commonfiles.common.ServiceLoaderInterface;
@@ -85,7 +85,7 @@ public class IpConnectionController implements Initializable {
             if (IP_PATTERN.matcher(ip).matches()) {
                 try {
                     Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
-                    Registry registry = LocateRegistry.getRegistry(ip, REGISTRY_PORT);
+                    Registry registry = LocateRegistry.getRegistry(ip, Constants.REGISTRY_PORT);
                     ServiceLoaderInterface server = (ServiceLoaderInterface) registry.lookup("chat");
                     MainApp.setServiceLoaderInterface(server);
 

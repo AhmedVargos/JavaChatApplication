@@ -4,6 +4,7 @@ package com.chatcompany.commonfiles.common;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.User;
+import java.sql.SQLException;
 
 public interface FriendInterface {
     /**
@@ -36,13 +37,14 @@ public interface FriendInterface {
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-    public boolean deleteFriend(int idMe, int idMyFriend) throws RemoteException;
+     public boolean deleteRequest(int idSender, int idReciever) throws RemoteException;
 
+     
     /**
      * Description Func used to decline friend Request
      *
-     * @param idMe User id
-     * @param idMyFriend receiver id
+     * @param idSender User id
+     * @param idReceiver receiver id
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
@@ -56,5 +58,6 @@ public interface FriendInterface {
      * @throws RemoteException if RMI failed
      */
     public ArrayList<User> getFriendRequestList(int id) throws RemoteException;
+    
 
 }

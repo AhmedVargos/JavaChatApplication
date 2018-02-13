@@ -23,5 +23,6 @@ public class MainChatParentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        embeddedContactTabViewController.setChatAreaController(embeddedChatTabsViewController);
     }    
 }
