@@ -61,56 +61,76 @@ public class FriendIntImp implements FriendInterface {
    
 
     @Override
-    public boolean sendFriendRequest(int idMe, int idMyfirend) throws RemoteException{
-             if (idMe == idMyfirend) {
-            return false; // nfs el idme = idmefriend
+    public boolean sendFriendRequest(String sender, String receiver) throws RemoteException{
+        
+
+ if (sender.equals(receiver)) {
+            return true;
         }
         try {
             connect();
-            query = "select * from User where user_id='" + idMyfirend + "'";
+            query = "select * from  where userername='" + receiver + "'";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             if (!(resultSet.next())) {
 
-                return false; // el friend m4 mawgod
+                return false; //el friend m4 mawgod
             }
 
-            query = "select * from friend_request where (user_id='" + idMe + "' and friend='" + idMyfirend + "') or "
-                    + "(user='" + idMyfirend + "' and friend='" + idMe + "')";
+            query = "select * from friend where (user='" + sender + "' and friend='" + receiver + "') or "
+                    + "(user='" + receiver + "' and friend='" + sender + "')";
             resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
 
-                return false;// el friend mogoooood aslan
+                return true; //el friend mogoooood aslan
             }
 
-            query = "select * from friend_requests where (user_id='" + idMe + "' and friend_id='" + idMyfirend + "')or"
-                    + "(sender='" + idMyfirend + "' and receiver='" + idMe + "')";
+            query = "select * from request_friend where (sender='" + sender + "' and receiver='" + receiver + "')or"
+                    + "(sender='" + receiver + "' and receiver='" + sender + "')";
             resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
 
-                return false;//Constant.REQUEST_ALREADY_EXIST;
+                return false; // el requst mawgoood
             }
 
-            query = "insert into Requests (sender_id,receiver_id)values ('" + idMe + "','" + idMyfirend + "' )";
+            query = "insert into Request_friend (sender,receiver)values ('" + sender + "','" + receiver + "')";
             statement.executeUpdate(query);
 
-            
-            
-         
-
-            return  true;  //  Constant.SENDED;
+            return true;
 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false; // Constant.EXCEPTION;
+            return true;
         } finally {
             closeResourcesOpened();
         }
 
     }
-    @Override
+
+
+/////////////
+           
+
+
+              @Override
     public boolean acceptFriendRequest(int idMe, int idMyFriend) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+           connect();
+            query = "insert into friend (user,friend)values ('" + idMe + "','" + idMyFriend + "')";
+            statement.executeUpdate(query);
+            query = "delete from request_friend where sender_id='" + idMe + "' and receiver_id='" + idMyFriend + "'";
+            statement.executeUpdate(query);
+
+           
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            closeResourcesOpened();
+        }
+
+    
     }
 
     @Override
@@ -126,14 +146,14 @@ public class FriendIntImp implements FriendInterface {
             query = "delete from friend_Requests where user_id='" + idMe + "' and friend_id='" + idMyFriend + "'";
             statement = connection.createStatement();
             statement.executeUpdate(query);
-            
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         closeResourcesOpened();
          return false;
     
-    
+     
     
     }
 
