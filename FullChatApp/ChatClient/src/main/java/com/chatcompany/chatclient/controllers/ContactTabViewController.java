@@ -85,20 +85,20 @@ public class ContactTabViewController implements Initializable {
 
     private void initListViews() {
         ArrayList<User> usersTemp = new ArrayList<>();
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "sad"));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "sad"));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
 
         userRequestsList = FXCollections.observableList(usersTemp);
 
         requestsList.setItems(userRequestsList);
         requestsList.setCellFactory(new RequestListViewFactory());
 
-        ArrayList<User> usersTemp = new ArrayList<>();
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "sad"));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "sad"));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", "dasd", "qqasd", "asd"));
+        ArrayList<User> usersFriendTemp = new ArrayList<>();
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
 
-        userFriendsList = FXCollections.observableList(usersTemp);
+        userFriendsList = FXCollections.observableList(usersFriendTemp);
 
         friendsList.setItems(userFriendsList);
         friendsList.setCellFactory(new FriendListViewFactory());

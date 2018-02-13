@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 public class ServerMainIntImp implements ServerMainInterface {
 
     private String property = System.getProperty("user.dir");
@@ -19,7 +18,7 @@ public class ServerMainIntImp implements ServerMainInterface {
     private boolean isResourceClosed;
     private String query;
 
-    //coonection database
+    //connection database
     private void connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:" + property + "\\chatDatabase.db";
@@ -54,13 +53,13 @@ public class ServerMainIntImp implements ServerMainInterface {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
 
-            resultSet.updateString(1, user.getId());
+            resultSet.updateInt(1, user.getId());
             resultSet.updateString(2, user.getFname());
             resultSet.updateString(3, user.getLname());
             resultSet.updateString(4, user.getUsername());
             resultSet.updateString(5, user.getEmail());
             resultSet.updateString(6, user.getPassword());
-            resultSet.updateString(7, user.getGender());
+            resultSet.updateInt(7, user.getGender());
             resultSet.updateString(9, user.getCountry());
 
             resultSet.rowUpdated();
@@ -106,17 +105,54 @@ public class ServerMainIntImp implements ServerMainInterface {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                String id_friend = resultSet.getString("id");
+                int id_friend = resultSet.getInt("id");
                 String fname = resultSet.getString("fname");
                 String lname = resultSet.getString("lname");
                 String name = resultSet.getString("user_name");
                 String email = resultSet.getString("mail");
                 String pass = resultSet.getString("password");
-                String gender = resultSet.getString("gender");
+                int gender = resultSet.getInt("gender");
                 String country = resultSet.getString("country");
-                String status = resultSet.getString("status");
+                int connStatus = resultSet.getInt("connecting_status");
+                int appStatus = resultSet.getInt("appearance_status");
 
-                User user = new User(id_friend, name, email, fname, lname, pass, gender, country, status);
+                User user = new User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
+
+            }
+
+            resultSet.rowUpdated();
+            closeResourcesOpened();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userFriendList;
+
+    }
+
+    @Override
+    public ArrayList<User> getRequestsList(int id) throws SQLException, RemoteException {
+        ArrayList<User> userFriendList = new ArrayList<>();
+        try {
+            connect();
+            query = "select * from USER "
+                    + "where id in (select sender_id from FRIEND_REQUEST where receiver_id = '" + id + "'" + ")";
+
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int id_friend = resultSet.getInt("id");
+                String fname = resultSet.getString("fname");
+                String lname = resultSet.getString("lname");
+                String name = resultSet.getString("user_name");
+                String email = resultSet.getString("mail");
+                String pass = resultSet.getString("password");
+                int gender = resultSet.getInt("gender");
+                String country = resultSet.getString("country");
+                int connStatus = resultSet.getInt("connecting_status");
+                int appStatus = resultSet.getInt("appearance_status");
+
+                User user = new User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
 
                 userFriendList.add(user);
             }
