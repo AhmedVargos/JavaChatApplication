@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
 import com.chatcompany.commonfiles.commModels.User;
+import com.chatcompany.commonfiles.common.ClientInterface;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -55,7 +56,7 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 
 
     @Override
-    public User login(String userName, String pass) throws RemoteException {
+    public User login(String userName, String pass,ClientInterface clientInterface) throws RemoteException {
         User user = null;
 
         try {
@@ -69,16 +70,19 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
             
             System.out.println("Is in signin");
             if (resultSet.next()) {
-            System.out.println("SIGNIN AND CREATEING OBJ");
-                //TODO fix the return obj
-                String name = resultSet.getString("user_name");
-                String email = resultSet.getString("mail");
+             int id = resultSet.getInt("id");
                 String fname = resultSet.getString("fname");
                 String lname = resultSet.getString("lname");
-               
+                String name = resultSet.getString("user_name");
+                String email = resultSet.getString("mail");
+                String password = resultSet.getString("password");
                 int gender = resultSet.getInt("gender");
                 String country = resultSet.getString("country");
-                user = new User(name, fname, lname, String.valueOf(gender), country);
+                int connStatus = resultSet.getInt("connecting_status");
+                int appStatus = resultSet.getInt("appearance_status");
+                
+          user = new User(id, name, email, fname, lname, password, gender, country, connStatus, appStatus);
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -90,7 +94,9 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
     }
 
     @Override
-    public synchronized Boolean SignUp(User user) throws SQLException, RemoteException {
+    public synchronized User SignUp(User user,ClientInterface clientInterface) throws SQLException, RemoteException {
+        User newUser= new User();
+        
         try {
             System.out.println("Is in signup");
             connect();
@@ -99,24 +105,42 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
             resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 closeResourcesOpened();
-                return false;
+                return newUser;
             } else {
                 
             System.out.println("Is inserting row");
                 //,connecting_status,appearance_status
                 query = "insert into USER (fname,lname,user_name,mail,password,gender,country) values('" + user.getFname()
                         + "','" +user.getLname() + "','" + user.getUsername() + "','" + user.getEmail() + "','" + user.getPassword() + "','"
-                        + Integer.valueOf(user.getGender()) + "','" + user.getCountry() + "')";
+                        + user.getGender() + "','" + user.getCountry() + "')";
                 statement.executeUpdate(query);
                 //add in table
+                
+                
+             //select user to get there id 
+               query = "select * from USER where user_name = '" + user.getUsername() + "'";
+               statement = connection.createStatement();
+               resultSet = statement.executeQuery(query);
+                int id = resultSet.getInt("id");
+                String fname = resultSet.getString("fname");
+                String lname = resultSet.getString("lname");
+                String name = resultSet.getString("user_name");
+                String email = resultSet.getString("mail");
+                String pass = resultSet.getString("password");
+                int gender = resultSet.getInt("gender");
+                String country = resultSet.getString("country");
+                int connStatus = resultSet.getInt("connecting_status");
+                int appStatus = resultSet.getInt("appearance_status");
+                
+                newUser =new  User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
             
 
                 closeResourcesOpened();
-                return true;
+                return newUser;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return newUser;
     }
 }

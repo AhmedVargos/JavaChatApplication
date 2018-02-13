@@ -46,6 +46,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import static com.chatcompany.commonfiles.commModels.Constants.LOGIN_SERVICE;
+import static com.chatcompany.commonfiles.commModels.Constants.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Toggle;
 
 /**
  * FXML Controller class
@@ -81,6 +85,7 @@ public class SignUpController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private PasswordField confirmPasswordField;
+  
 
     @FXML
     private Label close;
@@ -184,21 +189,26 @@ public class SignUpController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
+                int gender=0;
+                if (maleRadioButton.isSelected()) {
+                    gender =MALE;
+                }
+                if (femaleRadioButton.isSelected()) {
+                    gender = FEMALE;
+                }
                 if (isValidate()) {
-                    User user = new User(userNameField.getText(),
-                            emailField.getText(),
-                            firstNameField.getText(),
-                            lastNameField.getText(),
-                            passwordField.getText(),
-                            "0",
-                            countryField.getText(),
-                            "1");
+                    User user = new User(userNameField.getText(), emailField.getText()
+                    ,firstNameField.getText()
+                    ,lastNameField.getText()
+                    ,passwordField.getText()
+                    ,gender,countryField.getText(),ONLINE,AVAILABLE);
                     boolean isAccepted = false;
                     System.out.println("data inserted succsefuly");
 
                     try {
                         LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
-                        isAccepted = loginInterface.SignUp(user);
+                        //TODO signup
+                        user=loginInterface.SignUp(user);
                     } catch (SQLException ex) {
                         Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (RemoteException ex) {
@@ -242,7 +252,7 @@ public class SignUpController implements Initializable {
     }
 
     private boolean isValidate() {
-       //frist name field
+        //frist name field
         if (firstNameField.getText().trim().isEmpty()) {
             fnameLabel.setText("can not be empty!");
             valid = false;
@@ -254,8 +264,7 @@ public class SignUpController implements Initializable {
         if (lastNameField.getText().trim().isEmpty()) {
             lnameLabel.setText("can not be empty!");
             valid = false;
-        }
-      else  if (lastNameField.getText().length() < 3) {
+        } else if (lastNameField.getText().length() < 3) {
             lnameLabel.setText("at least 3 letter");
             valid = false;
         }
@@ -263,8 +272,7 @@ public class SignUpController implements Initializable {
         if (emailField.getText().trim().isEmpty()) {
             emaliLabel.setText("enter your email");
             valid = false;
-        }
-       else  if (!validateEmail(emailField.getText())) {
+        } else if (!validateEmail(emailField.getText())) {
             emaliLabel.setText("invalid Email");
             valid = false;
         }
@@ -272,23 +280,21 @@ public class SignUpController implements Initializable {
         if (userNameField.getText().trim().isEmpty()) {
             userNameLabel.setText("can not be empty!");
             valid = false;
-        }
-        else if (userNameField.getText().length()<3) {
+        } else if (userNameField.getText().length() < 3) {
             userNameLabel.setText("at least 3 letter");
             valid = false;
         }
-        
+
         //password field
         if (passwordField.getText().trim().isEmpty()) {
             passwordLabel.setText("can not be empty!");
             valid = false;
-        }
-       else  if (passwordField.getText().length() < 3) {
+        } else if (passwordField.getText().length() < 3) {
             passwordLabel.setText("at least 3 letter");
             valid = false;
         }
         //confirm password
-         if (!confirmPasswordField.getText().equals(passwordField.getText())) {
+        if (!confirmPasswordField.getText().equals(passwordField.getText())) {
             confirmLabel.setText("confirm error");
             valid = false;
         }
@@ -360,14 +366,14 @@ public class SignUpController implements Initializable {
 
             }
         });
-        
+
         birthDatePicker.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-               birthDateLabel.setText("");
+                birthDateLabel.setText("");
             }
         });
-         
+
     }
 
 }

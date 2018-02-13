@@ -47,6 +47,16 @@ public interface ServerMainInterface extends Remote {
      */
     public ArrayList<User> getContactsList(int id) throws SQLException, RemoteException;
 
+        /**
+     * Description Func used to get all users friends
+     *
+     * @param user UserDTO
+     * @return true if succeed, false if failed
+     * @throws SQLException if DB failed
+     * @throws RemoteException if RMI failed
+     */
+    public ArrayList<User> getRequestsList(int id) throws SQLException, RemoteException;
+
     
     /**
      * Description Func used to create a friends group

@@ -22,7 +22,7 @@ public interface LoginInterface extends Remote {
      * @throws exceptions.WrongPasswordException if wrong password
      * @throws RemoteException if RMI failed
      */
-    public User login(String userName, String pass) throws RemoteException;
+    public User login(String userName, String pass,ClientInterface clientInterface) throws RemoteException;
 
      /**
      * used to sign up
@@ -33,6 +33,6 @@ public interface LoginInterface extends Remote {
      * @throws RemoteException if RMI failed
      *
      */
-    public Boolean SignUp(User user) throws SQLException, RemoteException;
+    public User SignUp(User user,ClientInterface clientInterface) throws SQLException, RemoteException;
 
 }

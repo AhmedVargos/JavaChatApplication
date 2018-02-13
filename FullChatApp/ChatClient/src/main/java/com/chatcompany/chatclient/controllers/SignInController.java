@@ -142,6 +142,7 @@ public class SignInController implements Initializable {
                         if (!textFieldMail.getText().isEmpty() || !passwordFieldPassword.getText().isEmpty()) {
 
                             LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
+                            //TODO login
                             User user = loginInterface.login(textFieldMail.getText(), passwordFieldPassword.getText());
                             if (user != null) {
                                 MainApp.setMainUser(user);
