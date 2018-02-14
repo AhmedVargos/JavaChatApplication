@@ -292,7 +292,8 @@ public class ServerMainViewController implements Initializable {
         }
         fillTabel();
     }
-    //minimize the screen
+    //minimize the screen      
+      // new line
     private void minimize() {
         serverViewMin.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
