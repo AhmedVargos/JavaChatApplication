@@ -284,7 +284,7 @@ public class ServerMainViewController implements Initializable {
             }
         });
     }
-
+  // to refresh table
       public void refreshTable() {
         for (int i = 0; i < table.getItems().size(); i++) {
             table.getItems().clear();
