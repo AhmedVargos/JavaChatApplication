@@ -1,5 +1,6 @@
 package com.chatcompany.chatclient.controllers;
 
+import com.chatcompany.chatclient.views.MainApp;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,5 +25,6 @@ public class MainChatParentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         embeddedContactTabViewController.setChatAreaController(embeddedChatTabsViewController);
+        MainApp.getClientIntImp().setmContactTabViewController(embeddedContactTabViewController);
     }    
 }

@@ -3,6 +3,8 @@ package com.chatcompany.chatclient.controllers;
 import com.chatcompany.chatclient.utilities.FriendListViewFactory;
 import com.chatcompany.chatclient.utilities.RequestListViewFactory;
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.commModels.Constants;
+import static com.chatcompany.commonfiles.commModels.Constants.CHAT_SERVICE;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.FriendInterface;
 import com.jfoenix.controls.JFXTabPane;
@@ -23,6 +25,9 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.VBox;
 
 import static com.chatcompany.commonfiles.commModels.Constants.REQUESTS_SERVICE;
+import com.chatcompany.commonfiles.common.ChatInterface;
+import com.chatcompany.commonfiles.common.LoginInterface;
+import javafx.application.Platform;
 
 public class ContactTabViewController implements Initializable {
 
@@ -58,6 +63,7 @@ public class ContactTabViewController implements Initializable {
     ImageView img;
     String Img = "/images/user.png";
     private ObservableList<User> userFriendsList;
+    private ArrayList<User> usersTemp;
 
     public void setChatAreaController(ChatAreaController chatAreaController) {
         this.chatAreaController = chatAreaController;
@@ -84,9 +90,9 @@ public class ContactTabViewController implements Initializable {
     }
 
     private void initListViews() {
-        ArrayList<User> usersTemp = new ArrayList<>();
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
+        usersTemp = new ArrayList<>();
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 
         userRequestsList = FXCollections.observableList(usersTemp);
 
@@ -94,9 +100,9 @@ public class ContactTabViewController implements Initializable {
         requestsList.setCellFactory(new RequestListViewFactory());
 
         ArrayList<User> usersFriendTemp = new ArrayList<>();
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0,1));
+        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 
         userFriendsList = FXCollections.observableList(usersFriendTemp);
 
@@ -166,33 +172,45 @@ public class ContactTabViewController implements Initializable {
                 FriendInterface friendInterface = null;
                 boolean isWorking = false;
                 try {
-                    friendInterface = (FriendInterface) MainApp.getServiceLoaderInterface().getServiceInstance(REQUESTS_SERVICE);
+                    //LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
+                    //System.out.println(" obj is: " + MainApp.getServiceLoaderInterface().getServiceInstance(CHAT_SERVICE));
+                    friendInterface = (FriendInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.REQUESTS_SERVICE);
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
+                } catch (ClassCastException ex) {
+                    ex.printStackTrace();
                 }
                 try {
-                    isWorking = friendInterface.sendFriendRequest(MainApp.getMainUser().getUsername(),addfirendtxtfield.getText());
+                    isWorking = friendInterface.sendFriendRequest(MainApp.getMainUser().getId(), addfirendtxtfield.getText());
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
                 }
-                if(isWorking){
+                if (isWorking) {
                     System.out.println("Request Sent");
-                }else {
+                } else {
                     System.out.println("Request Not Sent");
 
                 }
             }
         });
     }
-    
-    public void addNewRequest(ArrayList<User> request){
+
+    public void addNewRequest(ArrayList<User> request) {
         //userRequestsList = FXCollections.observableList(request);
-        userRequestsList.clear();
-        userRequestsList.addAll(request);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                userRequestsList.clear();
+                userRequestsList.addAll(request);
+
+            }
+        });
+//        usersTemp.clear();
+//        usersTemp.addAll(request);
         //requestsList.setItems(userRequestsList);
     }
 
-    public void addNewFriend(ArrayList<User> friends){
+    public void addNewFriend(ArrayList<User> friends) {
         //userRequestsList = FXCollections.observableList(request);
         userFriendsList.clear();
         userFriendsList.addAll(friends);

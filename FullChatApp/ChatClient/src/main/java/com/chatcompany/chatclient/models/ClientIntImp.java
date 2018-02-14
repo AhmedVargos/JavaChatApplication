@@ -4,12 +4,16 @@ package com.chatcompany.chatclient.models;
 import com.chatcompany.chatclient.controllers.ContactTabViewController;
 import com.chatcompany.commonfiles.common.ClientInterface;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
 import com.chatcompany.commonfiles.commModels.User;
 
-public class ClientIntImp implements ClientInterface {
+public class ClientIntImp extends UnicastRemoteObject implements ClientInterface {
     private ContactTabViewController mContactTabViewController;
+
+    public ClientIntImp() throws RemoteException {
+    }
 
     public void setmContactTabViewController(ContactTabViewController mContactTabViewController) {
         this.mContactTabViewController = mContactTabViewController;

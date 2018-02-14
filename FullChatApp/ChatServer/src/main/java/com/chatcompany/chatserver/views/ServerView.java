@@ -8,6 +8,9 @@ package com.chatcompany.chatserver.views;
 
 import java.io.IOException;
 import java.util.HashMap;
+
+import com.chatcompany.commonfiles.commModels.User;
+import com.chatcompany.commonfiles.common.ClientInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +29,8 @@ public class ServerView extends Application {
     private static Stage myStage;
     private static ServerView server;
 
+    private static HashMap<Integer,ClientInterface> clientsOnline;
+
     public static ServerView getServer() {
         return server;
     }
@@ -34,6 +39,24 @@ public class ServerView extends Application {
         return myStage;
     }
 
+    public static HashMap<Integer, ClientInterface> getClientsOnline() {
+        return clientsOnline;
+    }
+//    public static void removeClientFromMap(User user){
+//        clientsOnline.remove(user.getId());
+//    }
+//
+//    public static void removeAllClientsFromMap(){
+//        clientsOnline.clear();
+//    }
+//
+//    public static void addClientToMap(){
+//
+//    }
+
+    public ServerView(){
+        clientsOnline = new HashMap<>();
+    }
     /**
      *
      *

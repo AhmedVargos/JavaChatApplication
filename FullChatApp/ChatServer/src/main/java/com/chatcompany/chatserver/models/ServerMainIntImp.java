@@ -1,15 +1,20 @@
 package com.chatcompany.chatserver.models;
 
+import com.chatcompany.chatserver.views.ServerView;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ServerMainInterface;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-public class ServerMainIntImp implements ServerMainInterface {
+public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainInterface {
+
+    public ServerMainIntImp() throws RemoteException {
+    }
 
     private String property = System.getProperty("user.dir");
     private Connection connection;
@@ -85,6 +90,7 @@ public class ServerMainIntImp implements ServerMainInterface {
 
             resultSet.rowUpdated();
             closeResourcesOpened();
+            ServerView.getClientsOnline().remove(user.getId());
             return true;
 
         } catch (SQLException ex) {
@@ -116,7 +122,7 @@ public class ServerMainIntImp implements ServerMainInterface {
                 int connStatus = resultSet.getInt("connecting_status");
                 int appStatus = resultSet.getInt("appearance_status");
 
-                User user = new User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
+                User user = new User(id_friend, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
 
             }
 

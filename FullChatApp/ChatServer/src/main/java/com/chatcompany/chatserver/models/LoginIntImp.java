@@ -1,11 +1,15 @@
 package com.chatcompany.chatserver.models;
 
-import com.chatcompany.commonfiles.common.LoginInterface;
+import com.chatcompany.chatserver.views.ServerView;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
+
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ClientInterface;
+import com.chatcompany.commonfiles.common.LoginInterface;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,7 +31,7 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
     private void connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:" + property + "\\chatDatabase.db";
-        
+
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(url, "", "");
@@ -36,8 +40,8 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
             System.out.println(e.getMessage());
         }
     }
-    
-    
+
+
     /**
      * close connection to database
      */
@@ -56,21 +60,21 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 
 
     @Override
-    public User login(String userName, String pass,ClientInterface clientInterface) throws RemoteException {
+    public User login(String userName, String pass, ClientInterface clientInterface) throws RemoteException {
         User user = null;
 
         try {
             System.out.println("Is in signin");
-           
+
             connect();
             //+ "'and password='" + pass
-            query = "select * from USER where user_name = '" + userName + "'"+ " and password='" + pass + "'";
+            query = "select * from USER where user_name = '" + userName + "'" + " and password='" + pass + "'";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
-            
+
             System.out.println("Is in signin");
             if (resultSet.next()) {
-             int id = resultSet.getInt("id");
+                int id = resultSet.getInt("id");
                 String fname = resultSet.getString("fname");
                 String lname = resultSet.getString("lname");
                 String name = resultSet.getString("user_name");
@@ -80,8 +84,9 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
                 String country = resultSet.getString("country");
                 int connStatus = resultSet.getInt("connecting_status");
                 int appStatus = resultSet.getInt("appearance_status");
-                
-          user = new User(id, name, email, fname, lname, password, gender, country, connStatus, appStatus);
+
+                user = new User(id, name, email, fname, lname, password, gender, country, connStatus, appStatus);
+                ServerView.getClientsOnline().put(user.getId(), clientInterface);
 
             }
         } catch (SQLException ex) {
@@ -94,9 +99,9 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
     }
 
     @Override
-    public synchronized User SignUp(User user,ClientInterface clientInterface) throws SQLException, RemoteException {
-        User newUser= new User();
-        
+    public synchronized User SignUp(User user, ClientInterface clientInterface) throws SQLException, RemoteException {
+        User newUser = new User();
+
         try {
             System.out.println("Is in signup");
             connect();
@@ -107,20 +112,20 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
                 closeResourcesOpened();
                 return newUser;
             } else {
-                
-            System.out.println("Is inserting row");
+
+                System.out.println("Is inserting row");
                 //,connecting_status,appearance_status
                 query = "insert into USER (fname,lname,user_name,mail,password,gender,country) values('" + user.getFname()
-                        + "','" +user.getLname() + "','" + user.getUsername() + "','" + user.getEmail() + "','" + user.getPassword() + "','"
+                        + "','" + user.getLname() + "','" + user.getUsername() + "','" + user.getEmail() + "','" + user.getPassword() + "','"
                         + user.getGender() + "','" + user.getCountry() + "')";
                 statement.executeUpdate(query);
                 //add in table
-                
-                
-             //select user to get there id 
-               query = "select * from USER where user_name = '" + user.getUsername() + "'";
-               statement = connection.createStatement();
-               resultSet = statement.executeQuery(query);
+
+
+                //select user to get there id
+                query = "select * from USER where user_name = '" + user.getUsername() + "'";
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(query);
                 int id = resultSet.getInt("id");
                 String fname = resultSet.getString("fname");
                 String lname = resultSet.getString("lname");
@@ -131,9 +136,9 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
                 String country = resultSet.getString("country");
                 int connStatus = resultSet.getInt("connecting_status");
                 int appStatus = resultSet.getInt("appearance_status");
-                
-                newUser =new  User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
-            
+
+                newUser = new User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
+                ServerView.getClientsOnline().put(user.getId(), clientInterface);
 
                 closeResourcesOpened();
                 return newUser;
