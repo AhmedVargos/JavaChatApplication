@@ -46,7 +46,7 @@ public class MainApp extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ParentChatView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChatBox.fxml"));
         mainStage = stage;
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
