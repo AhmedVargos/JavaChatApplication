@@ -172,8 +172,9 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
                 }
                 for (Integer idaI : idsArrayList) {
                     ///  requestsUsers.add(getUserById(id));
-                    query = "select friend_id from FRIEND where id = '" + idaI + "'";
-
+                    //query = "select friend_id from FRIEND where id = '" + idaI + "'";
+                     query = "select * from USER where id = '" + idaI + "'";
+           
                     statement = connection.createStatement();
                     resultSet = statement.executeQuery(query);
                     while (resultSet.next()) {
