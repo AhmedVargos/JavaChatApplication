@@ -12,47 +12,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="538.0" style="-fx-background-color: #5c868D; -fx-background-color: ; -fx-border-color: #a6a9ad;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.SignUpController">
+<AnchorPane fx:id="anchorBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="629.0" style="-fx-background-color: #5c868D; -fx-background-color: ; -fx-border-color: #a6a9ad;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.SignUpController">
    <children>
-      <AnchorPane layoutX="58.0" layoutY="9.0" prefHeight="483.0" prefWidth="428.0" style="-fx-background-color: #5c868D; -fx-background-color: ;">
+      <AnchorPane layoutX="118.0" layoutY="14.0" prefHeight="464.0" prefWidth="410.0" style="-fx-background-color: #5c868D; -fx-background-color: ;">
          <children>
-            <TextField fx:id="emailField" focusTraversable="false" layoutX="57.0" layoutY="178.0" prefHeight="35.0" prefWidth="224.0" promptText="Enter your e-mail" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="lastNameField" focusTraversable="false" layoutX="57.0" layoutY="97.0" prefHeight="35.0" prefWidth="224.0" promptText="Last Name" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="firstNameField" focusTraversable="false" layoutX="57.0" layoutY="55.0" prefHeight="35.0" prefWidth="224.0" promptText="First Name" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="userNameField" focusTraversable="false" layoutX="57.0" layoutY="138.0" prefHeight="35.0" prefWidth="224.0" promptText="User Name" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="emailField" focusTraversable="false" layoutX="57.0" layoutY="220.0" prefHeight="35.0" prefWidth="224.0" promptText="Enter your e-mail" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="lastNameField" focusTraversable="false" layoutX="57.0" layoutY="140.0" prefHeight="35.0" prefWidth="224.0" promptText="Last Name" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="firstNameField" focusTraversable="false" layoutX="57.0" layoutY="100.0" prefHeight="35.0" prefWidth="224.0" promptText="First Name" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="userNameField" focusTraversable="false" layoutX="57.0" layoutY="180.0" prefHeight="35.0" prefWidth="224.0" promptText="User Name" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
             <Label focusTraversable="false" layoutX="124.0" layoutY="-2.0" prefHeight="51.0" prefWidth="117.0" text="Sign Up" textFill="#e7f5de">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="registerBtn" focusTraversable="false" layoutX="85.0" layoutY="425.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #5C3D46;" text="Register" textAlignment="CENTER" textFill="#e7f5de">
+            <Button fx:id="registerBtn" focusTraversable="false" layoutX="80.0" layoutY="420.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #5C3D46;" text="Register" textAlignment="CENTER" textFill="#e7f5de">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="countryField" focusTraversable="false" layoutX="57.0" layoutY="296.0" prefHeight="35.0" prefWidth="224.0" promptText="Country" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <DatePicker fx:id="birthDatePicker" focusTraversable="false" layoutX="57.0" layoutY="337.0" prefHeight="35.0" prefWidth="224.0" promptText="Birth Date" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <RadioButton fx:id="maleRadioButton" focusTraversable="false" layoutX="73.0" layoutY="385.0" mnemonicParsing="false" selected="true" text="Male" textFill="#e7f5de">
-               <font>
-                  <Font size="17.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="gender" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="femaleRadioButton" focusTraversable="false" layoutX="175.0" layoutY="385.0" mnemonicParsing="false" text="Female" textFill="#e7f5de" toggleGroup="$gender">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </RadioButton>
-            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="57.0" layoutY="216.0" prefHeight="35.0" prefWidth="224.0" promptText="Enter Password" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <PasswordField fx:id="confirmPasswordField" focusTraversable="false" layoutX="57.0" layoutY="255.0" prefHeight="35.0" prefWidth="224.0" promptText="Confirm Password" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="countryField" focusTraversable="false" layoutX="57.0" layoutY="300.0" prefHeight="35.0" prefWidth="224.0" promptText="Country" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <DatePicker fx:id="birthDatePicker" focusTraversable="false" layoutX="57.0" layoutY="340.0" prefHeight="35.0" prefWidth="224.0" promptText="Birth Date" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="57.0" layoutY="260.0" prefHeight="35.0" prefWidth="224.0" promptText="Enter Password" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
             <Label fx:id="fnameLabel" layoutX="285.0" layoutY="64.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lnameLabel" layoutX="285.0" layoutY="105.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
+            <Label fx:id="lnameLabel" layoutX="285.0" layoutY="108.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -72,21 +58,37 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="countryLabel" layoutX="285.0" layoutY="304.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
+            <Label fx:id="countryLabel" layoutX="285.0" layoutY="308.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="birthDateLabel" layoutX="285.0" layoutY="345.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
+            <Label fx:id="birthDateLabel" layoutX="285.0" layoutY="348.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="confirmLabel" layoutX="285.0" layoutY="263.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
+            <Label fx:id="confirmLabel" layoutX="285.0" layoutY="268.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <RadioButton fx:id="femaleRadioButton" focusTraversable="false" layoutX="193.0" layoutY="382.0" mnemonicParsing="false" text="Female" textFill="#e7f5de">
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="maleRadioButton" focusTraversable="false" layoutX="61.0" layoutY="382.0" mnemonicParsing="false" selected="true" text="Male" textFill="#e7f5de">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup>
+            </RadioButton>
          </children>
       </AnchorPane>
       <ImageView fx:id="backToLogin" fitHeight="51.0" fitWidth="70.0" layoutX="7.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
@@ -94,12 +96,12 @@
             <Image url="@../images/backArrow.png" />
          </image>
       </ImageView>
-      <Label fx:id="close" layoutX="507.0" layoutY="6.0" prefHeight="17.0" prefWidth="25.0" text="X" textFill="#5c3d46">
+      <Label fx:id="close" layoutX="590.0" prefHeight="17.0" prefWidth="25.0" text="X" textFill="#5c3d46">
          <font>
             <Font size="39.0" />
          </font>
       </Label>
-      <Label fx:id="minimize" layoutX="482.0" layoutY="6.0" prefHeight="17.0" prefWidth="25.0" text="-" textFill="#5c3d46">
+      <Label fx:id="minimize" layoutX="554.0" prefHeight="17.0" prefWidth="25.0" text="-" textFill="#5c3d46">
          <font>
             <Font size="39.0" />
          </font>

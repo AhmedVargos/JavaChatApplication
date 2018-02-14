@@ -1,5 +1,6 @@
 package com.chatcompany.chatclient.views;
 
+import com.chatcompany.chatclient.models.ClientIntImp;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.LoginInterface;
 import com.chatcompany.commonfiles.common.ServiceLoaderInterface;
@@ -16,7 +17,15 @@ public class MainApp extends Application {
     //private static LoginInterface loginInterface;
     private static ServiceLoaderInterface serviceLoaderInterface;
     private static User mainUser;
-    
+    private static ClientIntImp clientIntImp;
+
+    public static ClientIntImp getClientIntImp() {
+        return clientIntImp;
+    }
+
+    public static void setClientIntImp(ClientIntImp clientIntImp) {
+        MainApp.clientIntImp = clientIntImp;
+    }
     
     public static ServiceLoaderInterface getServiceLoaderInterface(){
         return serviceLoaderInterface;
@@ -46,7 +55,7 @@ public class MainApp extends Application {
     }
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChatBox.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/IpConnection.fxml"));
         mainStage = stage;
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");

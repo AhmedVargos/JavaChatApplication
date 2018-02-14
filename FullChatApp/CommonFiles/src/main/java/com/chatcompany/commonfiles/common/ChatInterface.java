@@ -3,8 +3,9 @@ package com.chatcompany.commonfiles.common;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
+import java.rmi.Remote;
 
-public interface  ChatInterface{
+public interface  ChatInterface extends Remote{
 	 /**
      * send a message from server and pass it to the controller
      *
