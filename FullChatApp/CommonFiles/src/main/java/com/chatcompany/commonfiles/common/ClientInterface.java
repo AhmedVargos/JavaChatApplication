@@ -32,5 +32,6 @@ public interface ClientInterface extends Remote {
      * @throws RemoteException
      */
     public abstract void updateContactsList(ArrayList<User> friend) throws RemoteException;
+    
 
 }

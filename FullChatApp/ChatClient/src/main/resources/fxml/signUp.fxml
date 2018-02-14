@@ -32,19 +32,6 @@
             </Button>
             <TextField fx:id="countryField" focusTraversable="false" layoutX="57.0" layoutY="300.0" prefHeight="35.0" prefWidth="224.0" promptText="Country" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
             <DatePicker fx:id="birthDatePicker" focusTraversable="false" layoutX="57.0" layoutY="340.0" prefHeight="35.0" prefWidth="224.0" promptText="Birth Date" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
-            <RadioButton fx:id="maleRadioButton" focusTraversable="false" layoutX="57.0" layoutY="380.0" mnemonicParsing="false" selected="true" text="Male" textFill="#e7f5de">
-               <font>
-                  <Font size="17.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="gender" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="femaleRadioButton" focusTraversable="false" layoutX="199.0" layoutY="380.0" mnemonicParsing="false" text="Female" textFill="#e7f5de" toggleGroup="$gender">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </RadioButton>
             <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="57.0" layoutY="260.0" prefHeight="35.0" prefWidth="224.0" promptText="Enter Password" style="-fx-border-color: #5c3D46; -fx-border-width: 2; -fx-border-radius: 5; -fx-background-radius: 5;" />
             <Label fx:id="fnameLabel" layoutX="285.0" layoutY="64.0" prefHeight="17.0" prefWidth="124.0" textFill="#e86363">
                <font>
@@ -86,6 +73,22 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <RadioButton fx:id="femaleRadioButton" focusTraversable="false" layoutX="193.0" layoutY="382.0" mnemonicParsing="false" text="Female" textFill="#e7f5de">
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="maleRadioButton" focusTraversable="false" layoutX="61.0" layoutY="382.0" mnemonicParsing="false" selected="true" text="Male" textFill="#e7f5de">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="gender" />
+               </toggleGroup>
+            </RadioButton>
          </children>
       </AnchorPane>
       <ImageView fx:id="backToLogin" fitHeight="51.0" fitWidth="70.0" layoutX="7.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
