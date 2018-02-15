@@ -12,6 +12,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.input.MouseEvent;
 
 public class FriendListViewFactory implements Callback<ListView<User>,ListCell<User>> {
     @Override
@@ -39,6 +40,7 @@ public class FriendListViewFactory implements Callback<ListView<User>,ListCell<U
                 FriendItemViewController listItemController=loader.getController();
                 listItemController.setUserImage("/images/user.png");
                 listItemController.setUserName(item.getUsername());
+                listItemController.setmUser(item);
 
             }catch (IOException ex) {
                 Logger.getLogger(FriendListViewFactory.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,4 +48,6 @@ public class FriendListViewFactory implements Callback<ListView<User>,ListCell<U
             return root;
         }
     }
+    
+    
 }

@@ -2,6 +2,7 @@ package com.chatcompany.chatclient.models;
 
 
 import com.chatcompany.chatclient.controllers.ContactTabViewController;
+import com.chatcompany.commonfiles.commModels.ChatSession;
 import com.chatcompany.commonfiles.common.ClientInterface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -20,7 +21,7 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
     }
 
     @Override
-    public void receiveMessage(Message msg) throws RemoteException {
+    public void receiveMessage(Message msg, ChatSession chat) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

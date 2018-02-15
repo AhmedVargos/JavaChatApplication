@@ -42,6 +42,7 @@ public class RequestListViewFactory implements Callback<ListView<User>,ListCell<
                 RequestListItemController listItemController=loader.getController();
                 listItemController.setUserImage("/images/user.png");
                 listItemController.setUserName(item.getUsername());
+                listItemController.setmUser(item);
 
             }catch (IOException ex) {
                 Logger.getLogger(RequestListViewFactory.class.getName()).log(Level.SEVERE, null, ex);

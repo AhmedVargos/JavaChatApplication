@@ -1,5 +1,6 @@
 package com.chatcompany.chatclient.views;
 
+import com.chatcompany.chatclient.controllers.MainChatParentController;
 import com.chatcompany.chatclient.models.ClientIntImp;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.LoginInterface;
@@ -18,9 +19,17 @@ public class MainApp extends Application {
     private static ServiceLoaderInterface serviceLoaderInterface;
     private static User mainUser;
     private static ClientIntImp clientIntImp;
-
+    private static MainChatParentController mainChatParentController;
     public static ClientIntImp getClientIntImp() {
         return clientIntImp;
+    }
+
+    public static MainChatParentController getMainChatParentController() {
+        return mainChatParentController;
+    }
+
+    public static void setMainChatParentController(MainChatParentController mainChatParentController) {
+        MainApp.mainChatParentController = mainChatParentController;
     }
 
     public static void setClientIntImp(ClientIntImp clientIntImp) {
@@ -60,8 +69,8 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setWidth(850);
-        stage.setHeight(500);
+        //stage.setWidth(850);
+        //stage.setHeight(500);
         stage.setResizable(false);
         stage.setTitle("JavaFX and Maven");
 

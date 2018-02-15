@@ -106,7 +106,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
         try {
             connect();
             query = "select * from USER "
-                    + "where id in (select friend_id from FRIEND where id = '" + id + "'" + ")";
+                    + "where id in (select friend_id from FRIEND where user_id = '" + id + "'" + ")";
 
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
@@ -123,7 +123,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
                 int appStatus = resultSet.getInt("appearance_status");
 
                 User user = new User(id_friend, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
-
+                userFriendList.add(user);
             }
 
             resultSet.rowUpdated();

@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="80.0" prefWidth="250.0" style="-fx-background-color: #99BFAA; -fx-border-color: #8F8F8F; -fx-border-radius: 2 2 2 2;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.FriendItemViewController">
+<AnchorPane fx:id="cellPane" maxHeight="70.0" prefHeight="70.0" prefWidth="255.0" style="-fx-background-color: #99BFAA; -fx-border-color: #8F8F8F; -fx-border-radius: 2 2 2 2;;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.FriendItemViewController">
    <children>
-      <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="65.0" layoutY="40.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fx:id="userConnState" fill="#1fff4e" layoutX="14.0" layoutY="44.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fx:id="userName" fill="#574747" layoutX="109.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
+      <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="57.0" layoutY="35.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="userConnState" fill="#1fff4e" layoutX="16.0" layoutY="35.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="userName" fill="#574747" layoutX="94.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
          <font>
             <Font size="13.0" />
          </font>
       </Text>
-      <ImageView fx:id="cancelRequestImage" fitHeight="40.0" fitWidth="40.0" layoutX="203.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cancelRequestImage" fitHeight="40.0" fitWidth="26.0" layoutX="213.0" layoutY="16.0" onMouseClicked="#unfriendUser" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/images/x.png" />
          </image>

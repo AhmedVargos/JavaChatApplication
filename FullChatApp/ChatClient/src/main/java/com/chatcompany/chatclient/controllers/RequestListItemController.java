@@ -61,6 +61,8 @@ public class RequestListItemController implements Initializable{
             boolean isWorking = friendInterface.acceptFriendRequest(MainApp.getMainUser().getId(),mUser.getId());
             if(isWorking){
                 System.out.println("Request Is Accepted");
+                MainApp.getMainChatParentController().getEmbeddedContactTabViewController().removeRequestFromList(mUser);
+                
             }else {
                 System.out.println("Request is not accepted");
             }
@@ -76,6 +78,7 @@ public class RequestListItemController implements Initializable{
             boolean isWorking = friendInterface.removeFriendRequest(MainApp.getMainUser().getId(),mUser.getId());
             if(isWorking){
                 System.out.println("Request Is Canceled");
+                MainApp.getMainChatParentController().getEmbeddedContactTabViewController().removeRequestFromList(mUser);   
             }else{
                 System.out.println("Error in request");
             }
