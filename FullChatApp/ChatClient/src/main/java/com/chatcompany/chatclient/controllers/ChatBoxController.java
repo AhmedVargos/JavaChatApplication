@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -143,6 +144,8 @@ public class ChatBoxController implements Initializable {
                    outText.setStyle("-fx-font-size:"+size+";-fx-font-family:"+fontf+";-fx-text-inner-color:" + hex2 + ";-fx-font-style:" + style + ";-fx-font-weight:" + weight + ";");
                    Message message=new Message(size,"String from","String to",null,hex2, fontf,style,text, weight,false);
                ///send message to reciever
+                    HBox myHBox=new HBox();
+                    myHBox.getChildren().add(outText);
                    chatVBox.getChildren().add(outText);
                }
     }});
