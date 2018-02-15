@@ -1,6 +1,5 @@
 package com.chatcompany.chatclient.models;
 
-
 import com.chatcompany.chatclient.controllers.ContactTabViewController;
 import com.chatcompany.commonfiles.common.ClientInterface;
 import java.rmi.RemoteException;
@@ -8,8 +7,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
 import com.chatcompany.commonfiles.commModels.User;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 public class ClientIntImp extends UnicastRemoteObject implements ClientInterface {
+
     private ContactTabViewController mContactTabViewController;
 
     public ClientIntImp() throws RemoteException {
@@ -33,5 +37,23 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
     public void updateContactsList(ArrayList<User> friend) throws RemoteException {
         mContactTabViewController.addNewFriend(friend);
     }
-   
+
+    @Override
+    public void makeNotification(String title, String message) throws RemoteException {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Notifications notification = Notifications.create()
+                        .darkStyle()
+                        .hideAfter(Duration.seconds(5))
+                        .position(Pos.BOTTOM_RIGHT)
+                        .text(message)
+                        .title(title);
+
+                notification.show();
+            }
+        });
+
+    }
+
 }

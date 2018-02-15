@@ -124,6 +124,8 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
 
                 User user = new User(id_friend, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
                 userFriendList.add(user);
+                ServerView.getClientsOnline().get(id).makeNotification("Friend List", "Friend list updated.");
+                    
             }
 
             resultSet.rowUpdated();

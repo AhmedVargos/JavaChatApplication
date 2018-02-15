@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>FullChatApp</artifactId>
-    <groupId>com.chatcompany</groupId>
-    <version>0.1</version>
-  </parent>
+        <artifactId>FullChatApp</artifactId>
+        <groupId>com.chatcompany</groupId>
+        <version>0.1</version>
+    </parent>
 
     <groupId>com.chatcompany</groupId>
     <artifactId>ChatClient</artifactId>
@@ -30,6 +30,12 @@
             <groupId>com.chatcompany</groupId>
             <artifactId>CommonFiles</artifactId>
             <version>0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.40.14</version>
         </dependency>
     </dependencies>
 

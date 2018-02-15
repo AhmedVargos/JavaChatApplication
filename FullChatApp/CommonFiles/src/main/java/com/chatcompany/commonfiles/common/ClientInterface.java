@@ -33,5 +33,14 @@ public interface ClientInterface extends Remote {
      */
     public abstract void updateContactsList(ArrayList<User> friend) throws RemoteException;
     
-
+    /**
+     * called to make a notification
+     *
+     * @param title
+     * @param message
+     * @throws RemoteException
+     */
+    public abstract void makeNotification(String title, String message) throws RemoteException;
+    
+    
 }
