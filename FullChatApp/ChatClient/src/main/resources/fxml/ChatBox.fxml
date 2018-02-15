@@ -10,39 +10,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="chatBox" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatBoxController">
+<VBox id="chatBox" prefHeight="380.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatBoxController">
     <children>
                  
         <AnchorPane fx:id="homeAnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="600.0" style="-fx-background-color: #99BFAA;">
             
             <children>
-                <ScrollPane prefHeight="295.0" prefWidth="600.0">
+                <ScrollPane prefHeight="290.0" prefWidth="575.0">
                     <content>
-                        <VBox fx:id="chatVBox" prefHeight="289.0" prefWidth="583.0" />
+                        <VBox fx:id="chatVBox" prefHeight="284.0" prefWidth="570.0" />
                     </content>
                 </ScrollPane>
-                <AnchorPane fx:id="editHBox" layoutX="31.0" layoutY="301.0" prefHeight="27.0" prefWidth="539.0">
+                <AnchorPane fx:id="editHBox" layoutX="18.0" layoutY="295.0" prefHeight="27.0" prefWidth="539.0">
                     <children>
-                        <ComboBox fx:id="fontFamily" prefHeight="36.0" prefWidth="108.0" promptText=" Arial" />
-                        <ComboBox fx:id="fontSize" layoutX="121.0" prefHeight="38.0" prefWidth="96.0" promptText="15" />
-                        <ColorPicker fx:id="colorPicker" layoutX="233.0" prefHeight="36.0" prefWidth="134.0" />
-                        <ToggleButton fx:id="BoldToggleButton" layoutX="378.0" layoutY="-2.0" prefHeight="40.0" prefWidth="37.0" text="B" textAlignment="CENTER" />
-                        <ToggleButton fx:id="ItalicToggleButton" layoutX="426.0" layoutY="-1.0" prefHeight="38.0" prefWidth="38.0" text="I" textAlignment="CENTER" />
-                        <ToggleButton fx:id="UnderlineToggleButton" layoutX="479.0" layoutY="-2.0" prefHeight="40.0" prefWidth="35.0" text="U" underline="true" />
+                        <ComboBox fx:id="fontFamily" layoutY="2.0" prefHeight="35.0" prefWidth="96.0" promptText=" Arial" />
+                        <ComboBox fx:id="fontSize" layoutX="111.0" layoutY="2.0" prefHeight="35.0" prefWidth="96.0" promptText="15" />
+                        <ColorPicker fx:id="colorPicker" layoutX="219.0" layoutY="2.0" prefHeight="35.0" prefWidth="134.0" />
+                        <ToggleButton fx:id="BoldToggleButton" layoutX="370.0" layoutY="2.0" prefHeight="35.0" prefWidth="37.0" text="B" textAlignment="CENTER" />
+                        <ToggleButton fx:id="ItalicToggleButton" layoutX="422.0" layoutY="2.0" prefHeight="35.0" prefWidth="38.0" text="I" textAlignment="CENTER" />
+                        <ToggleButton fx:id="UnderlineToggleButton" layoutX="476.0" layoutY="2.0" prefHeight="35.0" prefWidth="35.0" text="U" underline="true" />
                     </children>
                 </AnchorPane>
-                <TextField fx:id="sendTextFiled" layoutX="32.0" layoutY="348.0" prefHeight="43.0" prefWidth="365.0" promptText="Type Text and press Enter" />
-                <ImageView fx:id="saveChat" fitHeight="38.0" fitWidth="50.0" layoutX="463.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+                <TextField fx:id="sendTextFiled" layoutX="18.0" layoutY="335.0" prefHeight="36.0" prefWidth="365.0" promptText="Type Text and press Enter" />
+                <ImageView fx:id="saveChat" fitHeight="35.0" fitWidth="35.0" layoutX="443.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/save.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="addFile" fitHeight="42.0" fitWidth="44.0" layoutX="508.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="addFile" fitHeight="36.0" fitWidth="36.0" layoutX="496.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/addFile.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="sendButton" fitHeight="36.0" fitWidth="42.0" layoutX="414.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="sendButton" fitHeight="35.0" fitWidth="38.0" layoutX="392.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../images/button.png" />
                     </image>
