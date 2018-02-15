@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #99BFAA; -fx-border-color: #8F8F8F; -fx-border-radius: 2 2 2 2;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.RequestListItemController">
+<AnchorPane prefHeight="81.0" prefWidth="250.0" style="-fx-background-color: #99BFAA; -fx-border-color: #8F8F8F; -fx-border-radius: 2 2 2 2;;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.RequestListItemController">
    <children>
-      <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="49.0" layoutY="47.0" radius="41.0" stroke="BLACK" strokeType="INSIDE" />
-      <Text fx:id="userName" fill="#574747" layoutX="100.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
+      <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="42.0" layoutY="40.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="userName" fill="#574747" layoutX="82.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Text>
-      <ImageView fx:id="acceptRequestImage" onMouseClicked="#acceptRequest" fitHeight="40.0" fitWidth="40.0" layoutX="199.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="acceptRequestImage" fitHeight="40.0" fitWidth="26.0" layoutX="211.0" layoutY="6.0" onMouseClicked="#acceptRequest" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/images/check_mark.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="cancelRequestImage" onMouseClicked="#cancelRequest" fitHeight="40.0" fitWidth="40.0" layoutX="199.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="cancelRequestImage" fitHeight="40.0" fitWidth="26.0" layoutX="210.0" layoutY="44.0" onMouseClicked="#cancelRequest" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/images/x.png" />
          </image>

@@ -96,8 +96,8 @@ public class SignInController implements Initializable {
                     Scene scene = new Scene(root);
 
                     MainApp.getMainStage().setScene(scene);
-                    MainApp.getMainStage().setWidth(683);
-                    MainApp.getMainStage().setHeight(501);
+                    /*MainApp.getMainStage().setWidth(683);
+                    MainApp.getMainStage().setHeight(501);*/
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                     MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
@@ -153,14 +153,14 @@ public class SignInController implements Initializable {
                                 //controller.setText(nameTxtField.getText());
 
                                 Scene scene = new Scene(root);
-                                scene.getStylesheets().add("/styles/Styles.css");
-
+                                scene.getStylesheets().addAll("/styles/Styles.css","/styles/list_view_cell_gap.css");
+                                
                                 MainApp.getMainStage().setScene(scene);
-                                MainApp.getMainStage().setWidth(850);
-                                MainApp.getMainStage().setHeight(500);
-                                //Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                                //MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
-                                //MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+                                //MainApp.getMainStage().setWidth(850);
+                                //MainApp.getMainStage().setHeight(500);
+                                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                                MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
+                                MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
 
                             } else {
                                 Alert alert = new Alert(Alert.AlertType.ERROR);

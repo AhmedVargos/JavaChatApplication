@@ -38,7 +38,7 @@ public interface FriendInterface extends Remote{
      * @return true if send false otherwise;
      * @throws RemoteException if RMI failed
      */
-     public boolean deleteRequest(int idSender, int idReciever) throws RemoteException;
+     public boolean removeFriend(int idSender, int idReciever) throws RemoteException;
 
      
     /**

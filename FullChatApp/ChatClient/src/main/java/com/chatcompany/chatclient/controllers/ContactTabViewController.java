@@ -28,6 +28,8 @@ import static com.chatcompany.commonfiles.commModels.Constants.REQUESTS_SERVICE;
 import com.chatcompany.commonfiles.common.ChatInterface;
 import com.chatcompany.commonfiles.common.LoginInterface;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.layout.AnchorPane;
 
 public class ContactTabViewController implements Initializable {
 
@@ -74,37 +76,45 @@ public class ContactTabViewController implements Initializable {
         //ObservableList<String> classes = contactsTabPane.getStyleClass();
 
         friendTab.setText(null);
-        friendTab.setGraphic(buildImage("/images/ic_person_white_24dp_2x.png"));
+        AnchorPane mPane = new AnchorPane(buildImage("/images/ic_person_white_24dp_2x.png"));
+        mPane.setPadding(new Insets(6,6,6,6));
+        friendTab.setGraphic(mPane);
 
         requestsTab.setText(null);
-        requestsTab.setGraphic(buildImage("/images/ic_send_white_24dp_2x.png"));
+        mPane = new AnchorPane(buildImage("/images/ic_send_white_24dp_2x.png"));
+        mPane.setPadding(new Insets(6,6,6,6));
+        requestsTab.setGraphic(mPane);
 
         groupTab.setText(null);
-        groupTab.setGraphic(buildImage("/images/ic_group_white_24dp_2x.png"));
+        mPane = new AnchorPane(buildImage("/images/ic_group_white_24dp_2x.png"));
+        mPane.setPadding(new Insets(6,6,6,6));
+        groupTab.setGraphic(mPane);
 
         chatGroupTab.setText(null);
-        chatGroupTab.setGraphic(buildImage("/images/ic_group_add_white_24dp_2x.png"));
+        mPane = new AnchorPane(buildImage("/images/ic_group_add_white_24dp_2x.png"));
+        mPane.setPadding(new Insets(6,6,6,6));
+        chatGroupTab.setGraphic(mPane);
 
         initListViews();
         addFriends();
     }
 
     private void initListViews() {
-        usersTemp = new ArrayList<>();
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+//        usersTemp = new ArrayList<>();
+//        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+//        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 
-        userRequestsList = FXCollections.observableList(usersTemp);
+        userRequestsList = FXCollections.observableArrayList();
 
         requestsList.setItems(userRequestsList);
         requestsList.setCellFactory(new RequestListViewFactory());
 
-        ArrayList<User> usersFriendTemp = new ArrayList<>();
-        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+//        ArrayList<User> usersFriendTemp = new ArrayList<>();
+//        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+//        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
+//        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 
-        userFriendsList = FXCollections.observableList(usersFriendTemp);
+        userFriendsList = FXCollections.observableArrayList();
 
         friendsList.setItems(userFriendsList);
         friendsList.setCellFactory(new FriendListViewFactory());
@@ -113,7 +123,7 @@ public class ContactTabViewController implements Initializable {
 
     // Helper method to create image from image patch
     private static ImageView buildImage(String imgPatch) {
-        Image i = new Image(imgPatch, 44, 44, false, false);
+        Image i = new Image(imgPatch, 32, 32, false, false);
         ImageView imageView = new ImageView();
         //You can set width and height
         //imageView.setFitHeight(16);
@@ -172,9 +182,7 @@ public class ContactTabViewController implements Initializable {
                 FriendInterface friendInterface = null;
                 boolean isWorking = false;
                 try {
-                    //LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
-                    //System.out.println(" obj is: " + MainApp.getServiceLoaderInterface().getServiceInstance(CHAT_SERVICE));
-                    friendInterface = (FriendInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.REQUESTS_SERVICE);
+                     friendInterface = (FriendInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.REQUESTS_SERVICE);
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
                 } catch (ClassCastException ex) {
@@ -186,9 +194,18 @@ public class ContactTabViewController implements Initializable {
                     e1.printStackTrace();
                 }
                 if (isWorking) {
+                    addfirendtxtfield.clear();
                     System.out.println("Request Sent");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Request Sent");
+                    alert.setContentText("The request has been sent");
+                    alert.show();
                 } else {
-                    System.out.println("Request Not Sent");
+                    System.out.println("Request Not Sent");   
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Failed");
+                    alert.setContentText("The request failed to be sent");
+                    alert.show();
 
                 }
             }
@@ -205,6 +222,8 @@ public class ContactTabViewController implements Initializable {
 
             }
         });
+        //userRequestsList.clear();
+        //userRequestsList.addAll(request);
 //        usersTemp.clear();
 //        usersTemp.addAll(request);
         //requestsList.setItems(userRequestsList);
@@ -212,8 +231,34 @@ public class ContactTabViewController implements Initializable {
 
     public void addNewFriend(ArrayList<User> friends) {
         //userRequestsList = FXCollections.observableList(request);
-        userFriendsList.clear();
-        userFriendsList.addAll(friends);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                userFriendsList.clear();
+                userFriendsList.addAll(friends);
+
+            }
+        });
+
         //requestsList.setItems(userRequestsList);
+    }
+
+    public void removeRequestFromList(User mUser) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                userRequestsList.remove(mUser);
+
+            }
+        });
+    }
+
+    public void removeFriendFromList(User mUser) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                userFriendsList.remove(mUser);
+            }
+        });
     }
 }

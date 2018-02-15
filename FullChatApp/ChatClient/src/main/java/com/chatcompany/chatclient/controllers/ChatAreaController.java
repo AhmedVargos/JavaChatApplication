@@ -5,6 +5,8 @@
  */
 package com.chatcompany.chatclient.controllers;
 
+import com.chatcompany.commonfiles.commModels.User;
+import com.jfoenix.controls.JFXTabPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,7 +23,7 @@ import javafx.scene.control.TabPane;
 public class ChatAreaController implements Initializable {
 
     @FXML
-    private TabPane chatTabPane;
+    private JFXTabPane chatTabPane;
 
 
     @Override
@@ -29,7 +31,9 @@ public class ChatAreaController implements Initializable {
         // TODO
     }
 
-    public void openNewChatSession(String text) {
-        chatTabPane.getTabs().add(new Tab(text));
+    public void openNewChatSession(User user) {
+        //TODO add the chat FXML box and pass the chat session obj to the chat tab controller 
+        //and when send each time send message and a chat session obj
+        chatTabPane.getTabs().add(new Tab(user.getUsername()));
     }
 }
