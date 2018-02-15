@@ -73,7 +73,7 @@
                      <children>
                         <PieChart fx:id="pc" layoutY="62.0" prefHeight="442.0" prefWidth="496.0" style="-fx-background-color: #c7ced8;" />
                         <PieChart fx:id="pc1" layoutX="458.0" layoutY="61.0" prefHeight="444.0" prefWidth="482.0" style="-fx-background-color: #c7ced8;" />
-                        <Button layoutX="342.0" layoutY="35.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="205.0" style="-fx-background-color: #3D3C40;" text="Show data Chart" textFill="#b5cf74">
+                        <Button layoutX="342.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="205.0" style="-fx-background-color: #3D3C40;" text="Refresh" textFill="#b5cf74">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font></Button>
@@ -113,6 +113,5 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="446.0" layoutY="-34.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #5f8c96;" text="Show Users Data" textFill="WHITE" />
    </children>
 </AnchorPane>
