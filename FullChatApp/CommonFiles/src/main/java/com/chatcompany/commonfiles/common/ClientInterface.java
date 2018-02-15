@@ -1,5 +1,6 @@
 package com.chatcompany.commonfiles.common;
 
+import com.chatcompany.commonfiles.commModels.ChatSession;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public interface ClientInterface extends Remote {
      * @param msg massage 
      * @throws RemoteException if RMI failed
      */
-    public abstract void receiveMessage(Message msg) throws RemoteException;
+    public abstract void receiveMessage(Message msg,ChatSession chat) throws RemoteException;
 
     /**
      * receive sent friend requests

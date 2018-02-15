@@ -32,7 +32,7 @@ public class ChatAreaController implements Initializable {
     }
 
     public void openNewChatSession(User user) {
-        //TODO add the chat FXML box and pass the chat session obj to the chat tab controller 
+        //add the chat FXML box and pass the chat session obj to the chat tab controller 
         //and when send each time send message and a chat session obj
         chatTabPane.getTabs().add(new Tab(user.getUsername()));
     }
