@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ClientInterface;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.Map;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +33,8 @@ public class ServerView extends Application {
     private static ServerView server;
 
     private static HashMap<Integer,ClientInterface> clientsOnline;
+    
+
 
     public static ServerView getServer() {
         return server;
@@ -42,6 +47,10 @@ public class ServerView extends Application {
     public static HashMap<Integer, ClientInterface> getClientsOnline() {
         return clientsOnline;
     }
+    
+     
+     
+    
 //    public static void removeClientFromMap(User user){
 //        clientsOnline.remove(user.getId());
 //    }
@@ -56,6 +65,9 @@ public class ServerView extends Application {
 
     public ServerView(){
         clientsOnline = new HashMap<>();
+      //  onlineUsersRefsMap=<=new Hashtable<Integer, ClientInterface>();
+      // mo4kela hena
+    
     }
     /**
      *

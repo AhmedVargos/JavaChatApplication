@@ -1,11 +1,13 @@
 package com.chatcompany.chatserver.models;
 
+import com.chatcompany.chatserver.views.ServerView;
 import com.chatcompany.commonfiles.commModels.ChatSession;
 import com.chatcompany.commonfiles.common.ChatInterface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
+import com.chatcompany.commonfiles.commModels.User;
 
 public class ChatIntImp extends UnicastRemoteObject implements ChatInterface  {
 
@@ -15,9 +17,12 @@ public class ChatIntImp extends UnicastRemoteObject implements ChatInterface  {
    
     //////////////////////////////////////////
     @Override
-    public void sendMessage(Message msg,ChatSession chat) throws RemoteException {
-        //To change body of generated methods, choose Tools | Templates.
-        
+    public void sendMessage(Message msg,ChatSession chatSession) throws RemoteException {
+        ArrayList<User> userList= chatSession.getChatUsers();
+        for (int i = 0 ; i < userList.size();i++){
+         User user=userList.get(i);
+            ServerView.getClientsOnline().get(user.getId()).receiveMessage(msg, chatSession);
+        }
     }
 
    
