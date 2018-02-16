@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,21 +48,20 @@ public class ChatAreaController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChatBox.fxml"));
             Tab tab = new Tab(user.getUsername());
             tab.setContent(root);
-            Image imag=new Image("/images/x.png");
-            ImageView imgView=new ImageView(imag);
+            Image imag = new Image("/images/x.png");
+            ImageView imgView = new ImageView(imag);
             imgView.setFitHeight(20);
             imgView.setFitWidth(20);
-          //  tab.setGraphic(imgView);
-            chatTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+           // imgView.setOnMouseClicked
+            tab.setGraphic(imgView);
+            // chatTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
             chatTabPane.getTabs().add(tab);
         } catch (IOException ex) {
             Logger.getLogger(ChatAreaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 // Parent root = (Parent) fXMLLoader.load(this.getClass().getResource();
         //          newValue.setContent(root);
-      
-       // chatBox
-       
-        
+
+        // chatBox
     }
 }

@@ -89,8 +89,6 @@ public class ServerMainViewController implements Initializable {
     @FXML
     private TableView<ObservableList> table;
     
-    @FXML
-    private TableView<ObservableList> tableView;
 
     @FXML
     Tab mainTab;
@@ -284,7 +282,7 @@ public class ServerMainViewController implements Initializable {
     
      public void fillTabel() {
        
-         tableView.setEditable(true);
+         //table.setEditable(true);
         for (int i = 0; i < table.getItems().size(); i++) {
             table.getItems().clear();
             table.getColumns().clear();
@@ -292,7 +290,7 @@ public class ServerMainViewController implements Initializable {
 
         String SQL = "SELECT * from user";
         data = FXCollections.observableArrayList();
-        tableView.setEditable(true);
+        //table.setEditable(true);
         try  {
             connect();
 

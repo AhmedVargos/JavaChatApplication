@@ -147,6 +147,7 @@ public class ChatBoxController implements Initializable {
                     HBox myHBox=new HBox();
                     myHBox.getChildren().add(outText);
                    chatVBox.getChildren().add(outText);
+                   
                }
     }});
     }
