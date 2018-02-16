@@ -8,6 +8,7 @@ import com.chatcompany.commonfiles.commModels.Constants;
 import static com.chatcompany.commonfiles.commModels.Constants.REGISTRY_PORT;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ClientInterface;
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -45,13 +46,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 public class ServerMainViewController implements Initializable {
-
-    private double xOffset, yOffset;
 
     @FXML
     public ImageView serverViewClose;
@@ -59,30 +58,20 @@ public class ServerMainViewController implements Initializable {
     @FXML
     private TextArea annoucementTextArea;
     @FXML
-    private Button sendAnnouncementBtn;
+    private JFXButton sendAnnouncementBtn;
 
     @FXML
     public ImageView serverViewMin;
     @FXML
     private PieChart pc;
 
-    @FXML
-    private Label label;
-
-    @FXML
-    private AnchorPane anchor;
-
-    @FXML
-    private AnchorPane main;
 
     @FXML
     private PieChart pc1;
 
-    @FXML
-    private Label onoff;
 
     @FXML
-    public Button serverStartBtn;
+    public ToggleButton serverStartBtn;
     @FXML
     public Button serverStopBtn;
 
@@ -100,15 +89,12 @@ public class ServerMainViewController implements Initializable {
     Tab statisticsTab;
     @FXML
     Tab userDataTab;
-    private static Stage primaryStage;
     Scene s;
 
     private Registry registry;
     private final String CHAT_TAG = "chat";
     boolean firstTable = true;
-    ServerView server;
-    @FXML
-    private TextArea textarea;
+    boolean firstTimeRegistery = true;
 
     public void setScene(Scene scene) {
         this.s = scene;
@@ -125,9 +111,7 @@ public class ServerMainViewController implements Initializable {
     private boolean isResourceClosed;
     private String query;
 
-//    public LoginIntImp() throws RemoteException {
-//
-//    }
+
     private void connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:" + property + "\\chatDatabase.db";
@@ -160,53 +144,22 @@ public class ServerMainViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Initialize handlers to the buttons
-        close();
-        minimize();
         sendAnnouncement();
 
-        server = ServerView.getServer();
-        mainTab.getStyleClass().add("tab");
-        anchor.addEventHandler(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                if (me.getButton() != MouseButton.MIDDLE) {
-                    anchor.getScene().getWindow().setX(me.getScreenX() + xOffset);
-                    anchor.getScene().getWindow().setY(me.getScreenY() + yOffset);
-                }
-            }
-        });
-
-        anchor.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = anchor.getScene().getWindow().getX() - event.getScreenX();
-                yOffset = anchor.getScene().getWindow().getY() - event.getScreenY();
-            }
-        });
-        anchor.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = anchor.getScene().getWindow().getX() - event.getScreenX();
-                yOffset = anchor.getScene().getWindow().getY() - event.getScreenY();
-            }
-        });
-
-        primaryStage = ServerView.getMyStage();
-
-        close();
-        minimize();
-
-        serverStartBtn.setOnAction((ActionEvent event) -> {
-            startServer();
-        });
-
-        serverStopBtn.setOnAction(new EventHandler<ActionEvent>() {
+        serverStartBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                stopServer();
+                if (serverStartBtn.isSelected()) {
+                    startServer();
+                    serverStartBtn.setText("Stop");
+                } else {
+                    stopServer();
+                    serverStartBtn.setText("Start");
+                }
+
             }
         });
+
         pie();
         fillTabel();
 
@@ -275,8 +228,16 @@ public class ServerMainViewController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-
         pie();
+    }
+
+    @FXML
+    private void handleButtonTableRefeshAction(ActionEvent event) {
+        for (int i = 0; i < table.getItems().size(); i++) {
+            table.getItems().clear();
+            table.getColumns().clear();
+        }
+        fillTabel();
     }
 
     public void fillTabel() {
@@ -296,7 +257,7 @@ public class ServerMainViewController implements Initializable {
             ResultSet rs = statement.executeQuery(SQL);
 
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                if (i == 8) {
+                if (i == 0 || i == 5 || i == 7 ||i == 9) {
                     continue;
                 }
                 final int j = i;
@@ -346,11 +307,22 @@ public class ServerMainViewController implements Initializable {
     //starts the server
     private void startServer() {
         try {
-            registry = LocateRegistry.createRegistry(REGISTRY_PORT);
 
-            registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
+            if (!firstTimeRegistery) {
+                registry = LocateRegistry.getRegistry(REGISTRY_PORT);
 
-            System.out.println("Server is Online");
+                registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
+                System.out.println("Server is Online");
+                System.out.println("Already created");
+
+            } else {
+                firstTimeRegistery = false;
+                registry = LocateRegistry.createRegistry(REGISTRY_PORT);
+                registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
+                System.out.println("Server is Online");
+                System.out.println("New created");
+
+            }
 
         } catch (RemoteException ex) {
             //Logger.getLogger(ServerChat.class.getName()).log(Level.SEVERE, null, ex);
@@ -358,38 +330,7 @@ public class ServerMainViewController implements Initializable {
         }
     }
 
-    //close window will close all connections
-    private void close() {
-        serverViewClose.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                //Platform.exit();
-                System.exit(0);
-            }
-        });
-    }
-    // to refresh table
-
-    public void refreshTable() {
-        for (int i = 0; i < table.getItems().size(); i++) {
-            table.getItems().clear();
-            table.getColumns().clear();
-        }
-        fillTabel();
-    }
-    //minimize the screen      
-    // new line
-
-    private void minimize() {
-        serverViewMin.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-
-                ((Stage) serverViewMin.getScene().getWindow()).setIconified(true);
-            }
-        });
-    }
-
+    
     private void sendAnnouncement() {
         sendAnnouncementBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

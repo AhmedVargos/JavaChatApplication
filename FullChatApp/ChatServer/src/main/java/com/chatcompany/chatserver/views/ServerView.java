@@ -81,16 +81,16 @@ public class ServerView extends Application {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader();
-            root = FXMLLoader.load(getClass().getResource("/fxml/ServerUI.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/fxml/ServerView.fxml"));
             myStage = stage;
             Scene scene = new Scene(root);
             //ServerMainViewController = controller.setScene(scene);
             //PieChart PC = controller.getPc();
             stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
+            //stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
             //scene.getStylesheets().add(getClass().getResource(pathCSS).toExternalForm());
-            scene.getStylesheets().add("/styles/tabPane.css");
+            //scene.getStylesheets().add("/styles/tabPane.css");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
