@@ -34,17 +34,17 @@
                 <TextField fx:id="sendTextFiled" layoutX="18.0" layoutY="335.0" prefHeight="36.0" prefWidth="365.0" promptText="Type Text and press Enter" />
                 <ImageView fx:id="saveChat" fitHeight="35.0" fitWidth="35.0" layoutX="443.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/save.png" />
+                        <Image url="/images/save.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="addFile" fitHeight="36.0" fitWidth="36.0" layoutX="496.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/addFile.png" />
+                        <Image url="/images/addFile.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="sendButton" fitHeight="35.0" fitWidth="38.0" layoutX="392.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/button.png" />
+                        <Image url="/images/button.png" />
                     </image>
                 </ImageView>
             </children>
