@@ -21,5 +21,10 @@
             <Image url="/images/x.png" />
          </image>
       </ImageView>
+      <Text fx:id="appearanceStatusText" fill="#37704f" layoutX="88.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

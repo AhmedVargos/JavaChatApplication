@@ -1,6 +1,7 @@
 package com.chatcompany.chatclient.models;
 
 import com.chatcompany.chatclient.controllers.ContactTabViewController;
+import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.common.ClientInterface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -40,19 +41,37 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
 
     @Override
     public void makeNotification(String title, String message) throws RemoteException {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Notifications notification = Notifications.create()
-                        .darkStyle()
-                        .hideAfter(Duration.seconds(5))
-                        .position(Pos.BOTTOM_RIGHT)
-                        .text(message)
-                        .title(title);
 
-                notification.show();
-            }
-        });
+        if (title.equals(Constants.ANNOUNCEMENT)) {
+            //TODO go to the fixed welcome tab and add the message to it.
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Notifications notification = Notifications.create()
+                            .darkStyle()
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.BOTTOM_RIGHT)
+                            .text(message)
+                            .title(title);
+
+                    notification.show();
+                }
+            });
+        } else {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Notifications notification = Notifications.create()
+                            .darkStyle()
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.BOTTOM_RIGHT)
+                            .text(message)
+                            .title(title);
+
+                    notification.show();
+                }
+            });
+        }
 
     }
 

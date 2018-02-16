@@ -6,16 +6,27 @@ package com.chatcompany.chatclient.controllers;
  * and open the template in the editor.
  */
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.commonfiles.commModels.Constants;
+import com.chatcompany.commonfiles.common.ServerMainInterface;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXNodesList;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+import com.sun.corba.se.spi.activation.Server;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,14 +61,20 @@ public class ToolBarViewController implements Initializable {
     private Label exit;
     @FXML
     private Label min;
+    @FXML
+    private JFXComboBox statusComboBox;
+    @FXML
+    private Label userName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        userName.setText(MainApp.getMainUser().getUsername());
         makeProfilePic();
         close();
         minimize();
         sign_out();
+        makeStateButtons();
     }
 
     //profile pic......................
@@ -98,7 +115,7 @@ public class ToolBarViewController implements Initializable {
         exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                Platform.exit();
+                System.exit(0);
             }
         });
     }
@@ -124,22 +141,80 @@ public class ToolBarViewController implements Initializable {
 
     private void moveToSignIn() {
         try {
+
+            MainApp.getMainUser().setConnStatus(Constants.OFFLINE);
+            ServerMainInterface serverMainInterface = (ServerMainInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.SERVER_MAIN_SERVICE);
+            serverMainInterface.updateInfo(MainApp.getMainUser());
+            
             MainApp.setMainUser(null);
 
             Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
             Scene scene = new Scene(parent);
-            
+
             //Open new scene and position it in the middle
             MainApp.getMainStage().setScene(scene);
-            MainApp.getMainStage().setWidth(537);
-            MainApp.getMainStage().setHeight(437);
+            /*MainApp.getMainStage().setWidth(537);
+            MainApp.getMainStage().setHeight(437);*/
             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
             MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
             MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
 
         } catch (IOException ex) {
             Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
+    private void makeStateButtons() {
+        statusComboBox.getItems().add("Available");
+        statusComboBox.getItems().add("Busy");
+        statusComboBox.getItems().add("Away");
+
+        switch (MainApp.getMainUser().getAppearanceStatus()) {
+            case Constants.AVAILABLE:
+                statusComboBox.getSelectionModel().select(0);
+                break;
+            case Constants.BUSY:
+                statusComboBox.getSelectionModel().select(1);
+                break;
+            case Constants.NOT_AVAILABLE:
+                statusComboBox.getSelectionModel().select(2);
+                break;
+            default:
+                statusComboBox.getSelectionModel().select(0);
+        }
+        statusComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                try {
+                    int state = 0;
+                    switch (t1) {
+                        case "Available":
+                            state = Constants.AVAILABLE;
+                            break;
+                        case "Busy":
+                            state = Constants.BUSY;
+                            break;
+                        case "Away":
+                            state = Constants.NOT_AVAILABLE;
+                            break;
+                        default:
+                            state = Constants.AVAILABLE;
+
+                    }
+                    MainApp.getMainUser().setAppearanceStatus(state);
+                    ServerMainInterface serverMainInterface = (ServerMainInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.SERVER_MAIN_SERVICE);
+                    serverMainInterface.updateInfo(MainApp.getMainUser());
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        );
 
     }
 

@@ -19,4 +19,6 @@ public class Constants {
     public static final int BUSY = 2;
    
 
+    
+    public static final String ANNOUNCEMENT = "Announcement received";
 }

@@ -86,7 +86,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="580.0" prefWidth="942.0" style="-fx-background-color: #c7ced8;">
                      <children>
                         <TableView fx:id="table" layoutX="15.0" layoutY="59.0" prefHeight="356.0" prefWidth="912.0" />
-                        <TextArea fx:id="textarea" layoutX="14.0" layoutY="430.0" prefHeight="70.0" prefWidth="450.0">
+                        <TextArea fx:id="annoucementTextArea" layoutX="14.0" layoutY="430.0" prefHeight="70.0" prefWidth="450.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -96,7 +96,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="733.0" layoutY="438.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="160.0" style="-fx-background-color: #3D3C40;" text="Send Notification" textAlignment="CENTER" textFill="#b5cf74" wrapText="true">
+                        <Button fx:id="sendAnnouncementBtn" layoutX="733.0" layoutY="438.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="160.0" style="-fx-background-color: #3D3C40;" text="Send Notification" textAlignment="CENTER" textFill="#b5cf74" wrapText="true">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>

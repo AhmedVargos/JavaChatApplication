@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainInterface {
 
     public ServerMainIntImp() throws RemoteException {
@@ -54,11 +55,12 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
     public boolean updateInfo(User user) throws SQLException, RemoteException {
         try {
             connect();
-            query = "select * from USER where id = '" + user.getId() + "'";
+            query = "UPDATE USER SET connecting_status =" + user.getConnStatus() + ", appearance_status=" + user.getAppearanceStatus() + " WHERE id =" + user.getId();
+            //query = "select * from USER where id = '" + user.getId() + "'";
             statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
+            statement.executeUpdate(query);
 
-            resultSet.updateInt(1, user.getId());
+            /*resultSet.updateInt(1, user.getId());
             resultSet.updateString(2, user.getFname());
             resultSet.updateString(3, user.getLname());
             resultSet.updateString(4, user.getUsername());
@@ -67,9 +69,17 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
             resultSet.updateInt(7, user.getGender());
             resultSet.updateString(9, user.getCountry());
 
-            resultSet.rowUpdated();
-            closeResourcesOpened();
-            return true;
+            resultSet.rowUpdated();*/
+                closeResourcesOpened();
+                ArrayList<User> mFriends = getContactsList(user.getId());
+                for (User friend : mFriends) {
+                    if (ServerView.getClientsOnline().get(friend.getId()) != null) {
+                        ServerView.getClientsOnline().get(friend.getId()).updateContactsList(new ServerMainIntImp().getContactsList(friend.getId()));
+                        ServerView.getClientsOnline().get(friend.getId()).makeNotification("Friend States Changed", "A friend has changed his status.");
+                    }
+                }
+                return true;
+             
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -124,8 +134,8 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
 
                 User user = new User(id_friend, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
                 userFriendList.add(user);
-                ServerView.getClientsOnline().get(id).makeNotification("Friend List", "Friend list updated.");
-                    
+                //ServerView.getClientsOnline().get(id).makeNotification("Friend List", "Friend list updated.");
+
             }
 
             resultSet.rowUpdated();

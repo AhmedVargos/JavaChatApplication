@@ -2,8 +2,13 @@ package com.chatcompany.chatserver.controllers;
 
 
 import com.chatcompany.chatserver.models.LoginIntImp;
+import com.chatcompany.chatserver.models.ServerMainIntImp;
 import com.chatcompany.chatserver.models.ServiceLoaderIntImp;
+import com.chatcompany.chatserver.views.ServerView;
+import com.chatcompany.commonfiles.commModels.Constants;
 import static com.chatcompany.commonfiles.commModels.Constants.REGISTRY_PORT;
+import com.chatcompany.commonfiles.commModels.User;
+import com.chatcompany.commonfiles.common.ClientInterface;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,9 +28,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.TextArea;
 
 public class ServerMainViewController implements Initializable {
-
+    @FXML
+    private TextArea annoucementTextArea;
+    @FXML
+    private Button sendAnnouncementBtn;
     @FXML
     public ImageView serverViewMin;
     @FXML
@@ -42,7 +51,8 @@ public class ServerMainViewController implements Initializable {
         //Initialize handlers to the buttons
         close();
         minimize();
-
+        sendAnnouncement();
+        
         serverStartBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -104,6 +114,23 @@ public class ServerMainViewController implements Initializable {
             public void handle(MouseEvent e) {
 
                 ((Stage)serverViewMin.getScene().getWindow()).setIconified(true);
+            }
+        });
+    }
+
+    private void sendAnnouncement() {
+        sendAnnouncementBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if(!annoucementTextArea.getText().isEmpty()){
+                    for (ClientInterface clientInterface : ServerView.getClientsOnline().values()) {
+                        try {
+                            clientInterface.makeNotification(Constants.ANNOUNCEMENT, annoucementTextArea.getText());
+                        } catch (RemoteException ex) {
+                            Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                }
+                }
             }
         });
     }

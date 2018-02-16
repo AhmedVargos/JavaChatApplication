@@ -165,7 +165,7 @@ public class SignUpController implements Initializable {
         close.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                Platform.exit();
+                System.exit(0);
             }
         });
     }
