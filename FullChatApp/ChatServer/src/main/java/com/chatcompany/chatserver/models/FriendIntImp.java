@@ -128,7 +128,8 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
 
             ServerView.getClientsOnline().get(idMe).updateContactsList(new ServerMainIntImp().getContactsList(idMe));
             ServerView.getClientsOnline().get(idMyFriend).updateContactsList(new ServerMainIntImp().getContactsList(idMyFriend));
-
+            ServerView.getClientsOnline().get(idMyFriend).makeNotification("Request accepted", "Friend request has been accepted.");
+                    
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -202,6 +203,7 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
 
                         User user = new User(id_friend, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
                         requestsUsers.add(user);
+                        ServerView.getClientsOnline().get(id).makeNotification("Friend Request", "Received a new friend request.");
                     }
                 }
                 return requestsUsers;
@@ -228,6 +230,8 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
             statement.executeUpdate(query);
            
             ServerView.getClientsOnline().get(idFriend).updateContactsList(new ServerMainIntImp().getContactsList(idFriend));
+            ServerView.getClientsOnline().get(idFriend).makeNotification("Friend Removed", "A person has removed you from friends list.");
+                    
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

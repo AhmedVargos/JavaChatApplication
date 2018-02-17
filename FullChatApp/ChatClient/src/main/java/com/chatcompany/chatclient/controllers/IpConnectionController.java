@@ -71,7 +71,7 @@ public class IpConnectionController implements Initializable {
         exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                Platform.exit();
+                System.exit(0);
             }
         });
         min.setOnMouseClicked(new EventHandler<MouseEvent>() {
