@@ -45,13 +45,14 @@ public class ChatAreaController implements Initializable {
     private JFXTabPane chatTabPane;
     private static HashMap<String, ChatBoxController> chatBoxConrollers = new HashMap<>();
     private ArrayList<Integer> peopleInChatWith = new ArrayList<>();
-    private HashMap<Integer, Tab> tabsOpened = new HashMap<>();
+    private HashMap<String, Tab> tabsOpened = new HashMap<>();
     /*public JFXTabPane getChatTabPane() {
         return chatTabPane;
     }*/
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        chatTabPane.tabClosingPolicyProperty().set(TabPane.TabClosingPolicy.SELECTED_TAB);
 
     }
 
@@ -64,18 +65,19 @@ public class ChatAreaController implements Initializable {
             tabs.get(0).setContent(root);
             
             HBox tabHead = new HBox();
-            tabHead.getChildren().add(new Label(ch.getChatUsers().get(0).getUsername()));
+            tabHead.getChildren().add(new Label(ch.getChatName()));
             Image imag = new Image("/images/x.png");
             ImageView imgView = new ImageView(imag);
             imgView.setFitHeight(20);
             imgView.setFitWidth(20);
+            imgView.setId(String.valueOf(ch.getChatUsers().get(0).getId()));
             // imgView.setOnMouseClicked
             imgView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    tabs.remove(this);
-                    chatTabPane.getTabs().remove(this);
-                    tabsOpened.remove(tabs.get(0).getId());
+                    //tabs.remove();
+                    chatTabPane.getTabs().remove(tabsOpened.get(imgView.getId()));
+                    tabsOpened.remove(imgView.getId());
                     peopleInChatWith.remove(ch.getChatUsers().get(0));
                 }
             });
@@ -88,7 +90,7 @@ public class ChatAreaController implements Initializable {
             boxController.setChatSession(ch);
             tabs.get(0).setId(ch.getId());
             chatBoxConrollers.put(tabs.get(0).getId(), boxController);
-            tabsOpened.put(ch.getChatUsers().get(0).getId(), tabs.get(0));
+            tabsOpened.put(String.valueOf(ch.getChatUsers().get(0).getId()), tabs.get(0));
             
             peopleInChatWith.add(ch.getChatUsers().get(0).getId());
         } catch (IOException ex) {
@@ -117,7 +119,7 @@ public class ChatAreaController implements Initializable {
             }
             if(alreadyChating){
                 System.out.println("Already speaking with him");
-                chatTabPane.getSelectionModel().select(tabsOpened.get(user.getId()));
+                chatTabPane.getSelectionModel().select(tabsOpened.get(String.valueOf(user.getId())));
             }else{
                 peopleInChatWith.add(user.getId());
                 openNewChatSession(user);
@@ -133,6 +135,8 @@ public class ChatAreaController implements Initializable {
             FXMLLoader fXMLLoader = new FXMLLoader();
             Parent root = fXMLLoader.load(getClass().getResource("/fxml/ChatBox.fxml").openStream());
             Tab tab = new Tab(user.getUsername());
+            tab.closableProperty().set(true);
+            tab.closableProperty().setValue(Boolean.TRUE);
             tab.setContent(root);
             /*Image imag = new Image("/images/x.png");
             ImageView imgView = new ImageView(imag);
@@ -147,18 +151,55 @@ public class ChatAreaController implements Initializable {
             arrayList.add(myUser);
             arrayList.add(user);
 
-            ChatSession chatSession = new ChatSession(myUser.getId() + "" + user.getId(), arrayList);
+            ChatSession chatSession = new ChatSession(myUser.getId() + "" + user.getId(), arrayList,myUser.getUsername());
             ChatBoxController boxController = fXMLLoader.getController();
             boxController.setChatSession(chatSession);
             String temp = tab.getId();
-            tab.setId(chatSession.getId().toString());
+            tab.setId(chatSession.getId());
             String temp2 = tab.getId();
             chatBoxConrollers.put(tab.getId(), boxController);
             chatTabPane.getTabs().add(tab);   
             chatTabPane.getSelectionModel().select(tab);
-            tabsOpened.put(user.getId(), tab);
+            tabsOpened.put(String.valueOf(user.getId()), tab);
            
             peopleInChatWith.add(user.getId());
+        } catch (IOException ex) {
+            //Logger.getLogger(ChatAreaController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+// Parent root = (Parent) fXMLLoader.load(this.getClass().getResource();
+        //          newValue.setContent(root);
+
+        // chatBox
+    }
+    
+    
+    public void openNewGroupChatSession(ArrayList<User> users, String chatName) {
+        //add the chat FXML box and pass the chat session obj to the chat tab controller 
+        //and when send each time send message and a chat session obj
+;
+        try {
+            FXMLLoader fXMLLoader = new FXMLLoader();
+            Parent root = fXMLLoader.load(getClass().getResource("/fxml/ChatBox.fxml").openStream());
+            Tab tab = new Tab(chatName);
+            tab.setContent(root);
+            /*Image imag = new Image("/images/x.png");
+            ImageView imgView = new ImageView(imag);
+            imgView.setFitHeight(20);
+            imgView.setFitWidth(20);
+            // imgView.setOnMouseClicked
+            tab.setGraphic(imgView);*/
+            // chatTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+            
+            
+            ChatSession chatSession = new ChatSession(MainApp.getMainUser().getUsername() + new java.util.Date(), users,chatName);
+            ChatBoxController boxController = fXMLLoader.getController();
+            boxController.setChatSession(chatSession);
+            tab.setId(chatSession.getId());
+            chatBoxConrollers.put(tab.getId(), boxController);
+            chatTabPane.getTabs().add(tab);   
+            chatTabPane.getSelectionModel().select(tab);
+            tabsOpened.put(chatSession.getId(), tab);
         } catch (IOException ex) {
             //Logger.getLogger(ChatAreaController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();

@@ -62,10 +62,10 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color:#C8D6CA">
                             <children>
-                                <JFXTextField focusColor="#99bfaa" labelFloat="true" layoutX="34.0" layoutY="25.0" maxWidth="199.0" minWidth="134.0" opacity="0.68" prefHeight="31.0" prefWidth="134.0" promptText="New chat group" unFocusColor="#867c7c" />
-                                <JFXButton layoutX="175.0" layoutY="28.0" style="-fx-background-color: #99BFAA;" text="Create" />
+                                <JFXTextField fx:id="groupNameTextField" focusColor="#99bfaa" labelFloat="true" layoutX="34.0" layoutY="25.0" maxWidth="199.0" minWidth="134.0" opacity="0.68" prefHeight="31.0" prefWidth="134.0" promptText="New chat group" unFocusColor="#867c7c" />
+                                <JFXButton fx:id="createGroupBtn" layoutX="175.0" layoutY="28.0" style="-fx-background-color: #99BFAA;" text="Create" />
                                 <Line endX="100.0" layoutX="125.0" layoutY="75.0" startX="-100.0" style="-fx-opacity: 0.4;" />
-                                <ListView layoutY="77.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: #C8D6CA;" />
+                                <ListView fx:id="friendsInGroupList" layoutX="13.0" layoutY="76.0" prefHeight="340.0" prefWidth="250.0" style="-fx-background-color: #C8D6CA;" />
 
                             </children>
                         </AnchorPane>

@@ -1,5 +1,6 @@
 package com.chatcompany.chatclient.controllers;
 
+import com.chatcompany.chatclient.utilities.FriendGroupListViewFactory;
 import com.chatcompany.chatclient.utilities.FriendListViewFactory;
 import com.chatcompany.chatclient.utilities.RequestListViewFactory;
 import com.chatcompany.chatclient.views.MainApp;
@@ -27,6 +28,7 @@ import javafx.scene.layout.VBox;
 import static com.chatcompany.commonfiles.commModels.Constants.REQUESTS_SERVICE;
 import com.chatcompany.commonfiles.common.ChatInterface;
 import com.chatcompany.commonfiles.common.LoginInterface;
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
@@ -50,13 +52,18 @@ public class ContactTabViewController implements Initializable {
 
     @FXML
     private Button addfriend;
+    @FXML
+    private Button createGroupBtn;
 
     @FXML
     private TextField addfirendtxtfield;
+    @FXML
+    private ListView friendsInGroupList;
 
     @FXML
     VBox vbox;
-
+    @FXML
+    private JFXTextField groupNameTextField;
     // HBox lView;
     // Text text;
     // List<User> myList;
@@ -66,6 +73,8 @@ public class ContactTabViewController implements Initializable {
     String Img = "/images/user.png";
     private ObservableList<User> userFriendsList;
     private ArrayList<User> usersTemp;
+    public ArrayList<User> listOfUsersInGroup = new ArrayList<>();
+
 
     public void setChatAreaController(ChatAreaController chatAreaController) {
         this.chatAreaController = chatAreaController;
@@ -77,28 +86,34 @@ public class ContactTabViewController implements Initializable {
 
         friendTab.setText(null);
         AnchorPane mPane = new AnchorPane(buildImage("/images/ic_person_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6,6,6,6));
+        mPane.setPadding(new Insets(6, 6, 6, 6));
         friendTab.setGraphic(mPane);
 
         requestsTab.setText(null);
         mPane = new AnchorPane(buildImage("/images/ic_send_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6,6,6,6));
+        mPane.setPadding(new Insets(6, 6, 6, 6));
         requestsTab.setGraphic(mPane);
 
         groupTab.setText(null);
         mPane = new AnchorPane(buildImage("/images/ic_group_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6,6,6,6));
+        mPane.setPadding(new Insets(6, 6, 6, 6));
         groupTab.setGraphic(mPane);
 
         chatGroupTab.setText(null);
         mPane = new AnchorPane(buildImage("/images/ic_group_add_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6,6,6,6));
+        mPane.setPadding(new Insets(6, 6, 6, 6));
         chatGroupTab.setGraphic(mPane);
 
         initListViews();
         addFriends();
+        createGoup();
+        
     }
 
+    public ArrayList<User> getListOfUsersInGroup() {
+        return listOfUsersInGroup;
+    }
+    
     private void initListViews() {
 //        usersTemp = new ArrayList<>();
 //        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
@@ -113,12 +128,13 @@ public class ContactTabViewController implements Initializable {
 //        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 //        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 //        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-
         userFriendsList = FXCollections.observableArrayList();
 
         friendsList.setItems(userFriendsList);
         friendsList.setCellFactory(new FriendListViewFactory());
-
+        
+        friendsInGroupList.setItems(userFriendsList);
+        friendsInGroupList.setCellFactory(new FriendGroupListViewFactory());
     }
 
     // Helper method to create image from image patch
@@ -182,7 +198,7 @@ public class ContactTabViewController implements Initializable {
                 FriendInterface friendInterface = null;
                 boolean isWorking = false;
                 try {
-                     friendInterface = (FriendInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.REQUESTS_SERVICE);
+                    friendInterface = (FriendInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.REQUESTS_SERVICE);
                 } catch (RemoteException e1) {
                     e1.printStackTrace();
                 } catch (ClassCastException ex) {
@@ -201,7 +217,7 @@ public class ContactTabViewController implements Initializable {
                     alert.setContentText("The request has been sent");
                     alert.show();
                 } else {
-                    System.out.println("Request Not Sent");   
+                    System.out.println("Request Not Sent");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Failed");
                     alert.setContentText("The request failed to be sent");
@@ -258,6 +274,22 @@ public class ContactTabViewController implements Initializable {
             @Override
             public void run() {
                 userFriendsList.remove(mUser);
+            }
+        });
+    }
+
+    private void createGoup() {
+        createGroupBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup().size());
+                if((!groupNameTextField.getText().trim().isEmpty()) 
+                        && MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup().size() > 0){
+                    ArrayList<User> listInGroup = new ArrayList<>();
+                    listInGroup.add(MainApp.getMainUser());
+                    listInGroup.addAll(MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup());
+                    MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().openNewGroupChatSession(listInGroup, groupNameTextField.getText().trim());
+                }
             }
         });
     }

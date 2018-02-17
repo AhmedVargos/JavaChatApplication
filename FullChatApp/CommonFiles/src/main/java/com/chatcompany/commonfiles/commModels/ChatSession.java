@@ -15,10 +15,12 @@ import java.util.ArrayList;
 public class ChatSession implements Serializable{
     String id;
     ArrayList<User> chatUsers;
+    String chatName;
 
-    public ChatSession(String id, ArrayList<User> chatUsers) {
+    public ChatSession(String id, ArrayList<User> chatUsers,String chatName) {
         this.id = id;
         this.chatUsers = chatUsers;
+        this.chatName = chatName;
     }
 
     public ChatSession() {
@@ -39,6 +41,14 @@ public class ChatSession implements Serializable{
 
     public void setChatUsers(ArrayList<User> chatUsers) {
         this.chatUsers = chatUsers;
+    }
+
+    public String getChatName() {
+        return chatName;
+    }
+
+    public void setChatName(String chatName) {
+        this.chatName = chatName;
     }
     
     
