@@ -1,6 +1,7 @@
 package com.chatcompany.chatserver.models;
 
 import com.chatcompany.chatserver.views.ServerView;
+import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ServerMainInterface;
 import java.rmi.RemoteException;
@@ -70,16 +71,19 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
             resultSet.updateString(9, user.getCountry());
 
             resultSet.rowUpdated();*/
-                closeResourcesOpened();
-                ArrayList<User> mFriends = getContactsList(user.getId());
-                for (User friend : mFriends) {
-                    if (ServerView.getClientsOnline().get(friend.getId()) != null) {
-                        ServerView.getClientsOnline().get(friend.getId()).updateContactsList(new ServerMainIntImp().getContactsList(friend.getId()));
-                        ServerView.getClientsOnline().get(friend.getId()).makeNotification("Friend States Changed", "A friend has changed his status.");
-                    }
+            if (user.getConnStatus() == Constants.OFFLINE) {
+
+                ServerView.getClientsOnline().remove(user.getId());
+            }
+            closeResourcesOpened();
+            ArrayList<User> mFriends = getContactsList(user.getId());
+            for (User friend : mFriends) {
+                if (ServerView.getClientsOnline().get(friend.getId()) != null) {
+                    ServerView.getClientsOnline().get(friend.getId()).updateContactsList(new ServerMainIntImp().getContactsList(friend.getId()));
+                    ServerView.getClientsOnline().get(friend.getId()).makeNotification("Friend States Changed", "A friend has changed his status.");
                 }
-                return true;
-             
+            }
+            return true;
 
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -115,6 +115,7 @@ public class ToolBarViewController implements Initializable {
         exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
+                changeConnectionToOffile();
                 System.exit(0);
             }
         });
@@ -134,9 +135,27 @@ public class ToolBarViewController implements Initializable {
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
+                changeConnectionToOffile();
                 moveToSignIn();
             }
         });
+    }
+
+    private void changeConnectionToOffile() {
+        ServerMainInterface serverMainInterface = null;
+        try {
+            serverMainInterface = (ServerMainInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.SERVER_MAIN_SERVICE);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        MainApp.getMainUser().setConnStatus(Constants.OFFLINE);
+        try {
+            serverMainInterface.updateInfo(MainApp.getMainUser());
+        } catch (SQLException ex) {
+            Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ToolBarViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void moveToSignIn() {
@@ -145,7 +164,7 @@ public class ToolBarViewController implements Initializable {
             MainApp.getMainUser().setConnStatus(Constants.OFFLINE);
             ServerMainInterface serverMainInterface = (ServerMainInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.SERVER_MAIN_SERVICE);
             serverMainInterface.updateInfo(MainApp.getMainUser());
-            
+
             MainApp.setMainUser(null);
 
             Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));

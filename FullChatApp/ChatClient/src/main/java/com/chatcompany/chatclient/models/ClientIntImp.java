@@ -32,19 +32,23 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
 
     @Override
     public void receiveMessage(Message msg, ChatSession chat) throws RemoteException {
-
+        boolean isFound = false;
         String id;
 
         ObservableList<Tab> tabs = (ObservableList<Tab>) MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().getChatTabPane().getTabs();
+
         for (int i = 0; i < tabs.size(); i++) {
+            id = tabs.get(i).getId();
             if (tabs.get(i).getId().equals(chat.getId())) {
+                isFound = true;
                 ChatAreaController.append(msg, tabs.get(i).getId());
-            } else {
-                //create tab session 
-                MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().openNewChatTabReciver(chat);
-                ChatAreaController.append(msg, tabs.get(i).getId());
-                
             }
+        }
+        if (!isFound) {
+            //create tab session 
+            MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().openNewChatTabReciver(chat, msg);
+            //ChatAreaController.append(msg, tabs.get(i).getId());
+
         }
     }
 
@@ -57,7 +61,7 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
     public void updateContactsList(ArrayList<User> friend) throws RemoteException {
         mContactTabViewController.addNewFriend(friend);
     }
-    
+
     @Override
     public void makeNotification(String title, String message) throws RemoteException {
 
@@ -93,6 +97,5 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
         }
 
     }
-
 
 }

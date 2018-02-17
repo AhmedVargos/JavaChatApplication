@@ -296,6 +296,7 @@ public class ServerMainViewController implements Initializable {
     private void stopServer() {
         try {
             registry.unbind(CHAT_TAG);
+            ServerView.getClientsOnline().clear();
         } catch (RemoteException ex) {
             Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {

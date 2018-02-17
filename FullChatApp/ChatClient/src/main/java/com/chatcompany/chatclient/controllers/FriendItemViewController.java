@@ -46,7 +46,7 @@ public class FriendItemViewController implements Initializable {
         cellPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().openNewChatSession(mUser);
+                MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().checkUserForChat(mUser);
             }
         });
     }
@@ -86,9 +86,9 @@ public class FriendItemViewController implements Initializable {
                 userConnState.setFill(Color.YELLOW);
                 break;
             case Constants.OFFLINE:
-                userConnState.setFill(Color.DARKCYAN);
+                userConnState.setFill(Color.GRAY);
             default:
-                userConnState.setFill(Color.YELLOW);
+                userConnState.setFill(Color.GRAY);
 
         }
 
