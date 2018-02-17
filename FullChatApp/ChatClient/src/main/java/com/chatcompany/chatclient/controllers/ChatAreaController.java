@@ -10,7 +10,6 @@ import com.chatcompany.commonfiles.commModels.ChatSession;
 import com.chatcompany.commonfiles.commModels.Message;
 import com.chatcompany.commonfiles.commModels.User;
 import com.jfoenix.controls.JFXTabPane;
-import com.sun.org.apache.bcel.internal.generic.F2D;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

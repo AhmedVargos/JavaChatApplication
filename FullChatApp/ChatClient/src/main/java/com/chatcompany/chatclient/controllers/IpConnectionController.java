@@ -12,6 +12,7 @@ import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.FriendInterface;
 import com.chatcompany.commonfiles.common.LoginInterface;
 import com.chatcompany.commonfiles.common.ServiceLoaderInterface;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.NotBoundException;
@@ -23,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -55,7 +57,11 @@ public class IpConnectionController implements Initializable {
     @FXML
     private Label min;
     @FXML
+    private Label invalidIp;
+    @FXML
     private TextField ipTextfield;
+    @FXML
+    private JFXButton enter;
 
     //private boolean toggleTemp = false;
     @Override
@@ -75,41 +81,50 @@ public class IpConnectionController implements Initializable {
                 ((Stage) min.getScene().getWindow()).setIconified(true);
             }
         });
-
+        enter.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                validIp();
+            }
+        });
     }
 
     @FXML
     private void handleConnectionAction(KeyEvent e) {
         if (e.getCode().equals(KeyCode.ENTER)) {
-            String ip = ipTextfield.getText().toString();
-            Pattern IP_PATTERN = Pattern.compile("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
+            validIp();
+        }
+    }
 
-            if (IP_PATTERN.matcher(ip).matches()) {
-                try {
-                    Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
-                    Registry registry = LocateRegistry.getRegistry(ip, Constants.REGISTRY_PORT);
-                    ServiceLoaderInterface server = (ServiceLoaderInterface) registry.lookup("chat");
-                    MainApp.setServiceLoaderInterface(server);
-                    MainApp.setClientIntImp(new ClientIntImp());
-                    Scene scene = new Scene(parent);
+    private void validIp() {
+        String ip = ipTextfield.getText().toString();
+        Pattern IP_PATTERN = Pattern.compile("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
 
-                    //Open new scene and position it in the middle
-                    MainApp.getMainStage().setScene(scene);
-                    /*MainApp.getMainStage().setWidth(366);
+        if (IP_PATTERN.matcher(ip).matches()) {
+            try {
+                Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
+                Registry registry = LocateRegistry.getRegistry(ip, Constants.REGISTRY_PORT);
+                ServiceLoaderInterface server = (ServiceLoaderInterface) registry.lookup("chat");
+                MainApp.setServiceLoaderInterface(server);
+                MainApp.setClientIntImp(new ClientIntImp());
+                Scene scene = new Scene(parent);
+
+                //Open new scene and position it in the middle
+                MainApp.getMainStage().setScene(scene);
+                /*MainApp.getMainStage().setWidth(366);
                     MainApp.getMainStage().setHeight(378);
-*/
-                    Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-                    MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
-                    MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
-                     
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Server Ip not found");
-                    alert.setContentText("Please cheack the ip entered!");
-                    alert.show();
-                }
+                 */
+                Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+                MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
+                MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                invalidIp.setText("Server is Offline");
             }
+        } else {
+            invalidIp.setText("Invalid Ip");
+
         }
 
     }

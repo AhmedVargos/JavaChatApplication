@@ -9,6 +9,9 @@ import com.chatcompany.chatclient.views.MainApp;
 import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.LoginInterface;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -45,17 +48,17 @@ import javafx.stage.Stage;
  */
 public class SignInController implements Initializable {
 
+    /*@FXML
+    private AnchorPane anchorBase;*/
     @FXML
-    private AnchorPane anchorBase;
+    private JFXTextField textFieldMail;
     @FXML
-    private TextField textFieldMail;
+    private JFXButton loginbtn;
     @FXML
-    private Button loginbtn;
-    @FXML
-    private PasswordField passwordFieldPassword;
+    private JFXPasswordField passwordFieldPassword;
 
     @FXML
-    private Label signUp;
+    private JFXButton signUp;
 
     @FXML
     private Label minimize;

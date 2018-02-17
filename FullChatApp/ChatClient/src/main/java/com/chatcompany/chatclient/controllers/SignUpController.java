@@ -47,6 +47,9 @@ import javafx.stage.Stage;
 
 import static com.chatcompany.commonfiles.commModels.Constants.LOGIN_SERVICE;
 import static com.chatcompany.commonfiles.commModels.Constants.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Toggle;
@@ -61,20 +64,19 @@ public class SignUpController implements Initializable {
     @FXML
     private AnchorPane anchorBase;
     @FXML
-    private TextField emailField;
+    private JFXTextField emailField;
     @FXML
-    private TextField lastNameField;
+    private JFXTextField lastNameField;
     @FXML
-    private TextField firstNameField;
+    private JFXTextField firstNameField;
     @FXML
-    private TextField userNameField;
+    private JFXTextField userNameField;
 
     @FXML
-    private Button registerBtn;
+    private JFXButton registerBtn;
     @FXML
-    private TextField countryField;
-    @FXML
-    private DatePicker birthDatePicker;
+    private JFXTextField countryField;
+
     @FXML
     private RadioButton maleRadioButton;
     @FXML
@@ -82,7 +84,9 @@ public class SignUpController implements Initializable {
     @FXML
     private RadioButton femaleRadioButton;
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
+    @FXML
+    private JFXPasswordField ConfirmPassword;
 
     @FXML
     private Label close;
@@ -106,8 +110,6 @@ public class SignUpController implements Initializable {
     private Label passwordLabel;
     @FXML
     private Label countryLabel;
-    @FXML
-    private Label birthDateLabel;
     @FXML
     private Label confirmLabel;
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
@@ -152,7 +154,7 @@ public class SignUpController implements Initializable {
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                     MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
-*/
+                     */
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -186,26 +188,22 @@ public class SignUpController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
 
-                int gender=0;
+                int gender = 0;
                 if (maleRadioButton.isSelected()) {
-                    gender =MALE;
+                    gender = MALE;
                 }
                 if (femaleRadioButton.isSelected()) {
                     gender = FEMALE;
                 }
                 if (isValidate()) {
-                    User user = new User(userNameField.getText(), emailField.getText()
-                    ,firstNameField.getText()
-                    ,lastNameField.getText()
-                    ,passwordField.getText()
-                    ,gender,countryField.getText(),ONLINE,AVAILABLE);
+                    User user = new User(userNameField.getText(), emailField.getText(), firstNameField.getText(), lastNameField.getText(), passwordField.getText(), gender, countryField.getText(), ONLINE, AVAILABLE);
 
                     System.out.println("data inserted succsefuly");
 
                     try {
                         LoginInterface loginInterface = (LoginInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.LOGIN_SERVICE);
 
-                        user=loginInterface.SignUp(user,MainApp.getClientIntImp());
+                        user = loginInterface.SignUp(user, MainApp.getClientIntImp());
                     } catch (SQLException ex) {
                         Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (RemoteException ex) {
@@ -230,7 +228,7 @@ public class SignUpController implements Initializable {
                             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                             MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                             MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
-*/
+                             */
                         } catch (IOException ex) {
                             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -251,7 +249,7 @@ public class SignUpController implements Initializable {
     private boolean isValidate() {
         //frist name field
         if (firstNameField.getText().trim().isEmpty()) {
-            fnameLabel.setText("can not be empty!");
+            fnameLabel.setText("empty!");
             valid = false;
         } else if (firstNameField.getText().length() < 3) {
             fnameLabel.setText("at least 3 letter");
@@ -259,7 +257,7 @@ public class SignUpController implements Initializable {
         }
         //last name field
         if (lastNameField.getText().trim().isEmpty()) {
-            lnameLabel.setText("can not be empty!");
+            lnameLabel.setText("empty!");
             valid = false;
         } else if (lastNameField.getText().length() < 3) {
             lnameLabel.setText("at least 3 letter");
@@ -267,7 +265,7 @@ public class SignUpController implements Initializable {
         }
         //email field
         if (emailField.getText().trim().isEmpty()) {
-            emaliLabel.setText("enter your email");
+            emaliLabel.setText("empty!");
             valid = false;
         } else if (!validateEmail(emailField.getText())) {
             emaliLabel.setText("invalid Email");
@@ -275,7 +273,7 @@ public class SignUpController implements Initializable {
         }
         //user name field
         if (userNameField.getText().trim().isEmpty()) {
-            userNameLabel.setText("can not be empty!");
+            userNameLabel.setText("empty!");
             valid = false;
         } else if (userNameField.getText().length() < 3) {
             userNameLabel.setText("at least 3 letter");
@@ -284,21 +282,24 @@ public class SignUpController implements Initializable {
 
         //password field
         if (passwordField.getText().trim().isEmpty()) {
-            passwordLabel.setText("can not be empty!");
+            passwordLabel.setText("empty!");
             valid = false;
         } else if (passwordField.getText().length() < 3) {
             passwordLabel.setText("at least 3 letter");
             valid = false;
         }
+        //password field
+        if (ConfirmPassword.getText().trim().isEmpty()) {
+            confirmLabel.setText("empty!");
+            valid = false;
+        } else if (ConfirmPassword.getText().equals(passwordField.getText())) {
+            confirmLabel.setText("not confirm");
+            valid = false;
+        }
 
         //country field
         if (countryField.getText().trim().isEmpty()) {
-            countryLabel.setText("enter country");
-            valid = false;
-        }
-        //birthDate field
-        if (birthDatePicker.getValue() == null) {
-            birthDateLabel.setText("choose birthDate");
+            countryLabel.setText("empty!");
             valid = false;
         }
 
@@ -356,13 +357,6 @@ public class SignUpController implements Initializable {
                 emaliLabel.setText("");
                 confirmLabel.setText("");
 
-            }
-        });
-
-        birthDatePicker.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                birthDateLabel.setText("");
             }
         });
 
