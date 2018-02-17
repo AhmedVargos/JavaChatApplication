@@ -10,7 +10,7 @@ and open the template in the editor.
 
 .list-view {
     -fx-padding: 3px ;
-    -fx-background-color: transparent ;
+    -fx-background-color: darkred ;
 }
 
 .list-cell {

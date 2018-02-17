@@ -17,7 +17,7 @@
          <children>
             <Label focusTraversable="false" layoutX="141.0" layoutY="27.0" prefHeight="51.0" prefWidth="117.0" text="Sign Up" textFill="#e7f5de">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font name="Bell MT Bold" size="30.0" />
                </font>
             </Label>
             <Label fx:id="fnameLabel" layoutX="71.0" layoutY="135.0" prefHeight="20.0" prefWidth="68.0" textAlignment="CENTER" textFill="#e86363">

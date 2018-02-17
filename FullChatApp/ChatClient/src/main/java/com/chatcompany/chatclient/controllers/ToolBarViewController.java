@@ -39,6 +39,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -65,6 +66,8 @@ public class ToolBarViewController implements Initializable {
     private JFXComboBox statusComboBox;
     @FXML
     private Label userName;
+    @FXML
+    private AnchorPane mainBar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,6 +78,7 @@ public class ToolBarViewController implements Initializable {
         minimize();
         sign_out();
         makeStateButtons();
+        dragChat();
     }
 
     //profile pic......................
@@ -234,6 +238,17 @@ public class ToolBarViewController implements Initializable {
             }
         }
         );
+
+    }
+
+    private void dragChat() {
+        mainBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainBar.getScene().getWindow().setX(event.getScreenX() - mainBar.getWidth() / 2);
+                mainBar.getScene().getWindow().setY(event.getScreenY() - mainBar.getHeight() / 2);
+            }
+        });
 
     }
 

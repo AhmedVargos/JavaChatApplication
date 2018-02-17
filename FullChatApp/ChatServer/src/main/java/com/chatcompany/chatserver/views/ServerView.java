@@ -5,7 +5,6 @@ package com.chatcompany.chatserver.views;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -28,13 +27,10 @@ import javafx.stage.StageStyle;
  */
 public class ServerView extends Application {
 
-
     private static Stage myStage;
     private static ServerView server;
 
-    private static HashMap<Integer,ClientInterface> clientsOnline;
-    
-
+    private static HashMap<Integer, ClientInterface> clientsOnline;
 
     public static ServerView getServer() {
         return server;
@@ -47,10 +43,7 @@ public class ServerView extends Application {
     public static HashMap<Integer, ClientInterface> getClientsOnline() {
         return clientsOnline;
     }
-    
-     
-     
-    
+
 //    public static void removeClientFromMap(User user){
 //        clientsOnline.remove(user.getId());
 //    }
@@ -62,13 +55,13 @@ public class ServerView extends Application {
 //    public static void addClientToMap(){
 //
 //    }
-
-    public ServerView(){
+    public ServerView() {
         clientsOnline = new HashMap<>();
-      //  onlineUsersRefsMap=<=new Hashtable<Integer, ClientInterface>();
-      // mo4kela hena
-    
+        //  onlineUsersRefsMap=<=new Hashtable<Integer, ClientInterface>();
+        // mo4kela hena
+
     }
+
     /**
      *
      *
@@ -84,6 +77,8 @@ public class ServerView extends Application {
             root = FXMLLoader.load(getClass().getResource("/fxml/ServerView.fxml"));
             myStage = stage;
             Scene scene = new Scene(root);
+            stage.setWidth(750);
+            stage.setHeight(500);
             //ServerMainViewController = controller.setScene(scene);
             //PieChart PC = controller.getPc();
             stage.setResizable(false);
@@ -105,7 +100,7 @@ public class ServerView extends Application {
      * @param args of string
      */
     public static void main(String[] args) {
-        server=new ServerView();
+        server = new ServerView();
         launch(args);
     }
 
