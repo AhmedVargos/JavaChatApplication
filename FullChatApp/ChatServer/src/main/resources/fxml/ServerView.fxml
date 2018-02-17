@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main" maxHeight="485.0" maxWidth="750.0" minHeight="485.0" minWidth="750.0" prefHeight="485.0" prefWidth="750.0" style="-fx-background-color: #5c868D;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatserver.controllers.ServerMainViewController">
+<AnchorPane fx:id="main" maxHeight="485.0" maxWidth="750.0" minHeight="485.0" minWidth="750.0" prefHeight="485.0" prefWidth="750.0" style="-fx-background-color: #5c868D;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatserver.controllers.ServerMainViewController">
    <children>
       <JFXTabPane>
          <tabs>
-            <Tab fx:id="mainTab" text="Main">
+            <Tab fx:id="mainTab" style="-fx-background-color: 5C3D46;" text="Main">
                <content>
-                  <AnchorPane maxHeight="475.0" maxWidth="750.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #E7f5de;">
+                  <AnchorPane maxHeight="500.0" maxWidth="750.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="750.0" style="-fx-background-color: #E7f5de;">
                      <children>
                         <ImageView fitHeight="98.0" fitWidth="122.0" layoutX="335.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -39,22 +33,22 @@
                         </Label>
                         <ToggleButton fx:id="serverStartBtn" layoutX="324.0" layoutY="201.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" style="-fx-background-color: #99bfaa;" text="Start" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="22.0" />
+                              <Font name="Bell MT Bold" size="22.0" />
                            </font>
                         </ToggleButton>
-                        <Label fx:id="onoff1" layoutX="26.0" layoutY="318.0" text="Send an Announcemnt to all online users: " textAlignment="CENTER" textFill="#5f8c96">
+                        <Label fx:id="onoff1" layoutX="196.0" layoutY="282.0" text="Send an Announcemnt to all online users: " textAlignment="CENTER" textFill="#5f8c96">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="annoucementTextArea" layoutX="26.0" layoutY="352.0" prefHeight="81.0" prefWidth="427.0">
+                        <TextArea fx:id="annoucementTextArea" layoutX="150.0" layoutY="318.0" prefHeight="81.0" prefWidth="427.0" style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5;">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextArea>
-                        <JFXButton fx:id="sendAnnouncementBtn" layoutX="579.0" layoutY="368.0" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #5c3d;" text="Send" textFill="WHITE">
+                        <JFXButton fx:id="sendAnnouncementBtn" layoutX="598.0" layoutY="337.0" prefHeight="44.0" prefWidth="87.0" style="-fx-background-color: #5c3d;" text="Send" textFill="WHITE">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Bell MT Bold" size="22.0" />
                            </font>
                         </JFXButton>
                      </children>
