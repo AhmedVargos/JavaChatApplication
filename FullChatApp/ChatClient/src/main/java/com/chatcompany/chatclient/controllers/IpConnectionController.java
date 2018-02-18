@@ -15,6 +15,7 @@ import com.chatcompany.commonfiles.common.ServiceLoaderInterface;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -105,6 +106,8 @@ public class IpConnectionController implements Initializable {
                 Parent parent = FXMLLoader.load(getClass().getResource("/fxml/SignIn.fxml"));
                 Registry registry = LocateRegistry.getRegistry(ip, Constants.REGISTRY_PORT);
                 ServiceLoaderInterface server = (ServiceLoaderInterface) registry.lookup("chat");
+                //ServiceLoaderInterface server = (ServiceLoaderInterface) Naming.lookup("//192.168.1.6/chat");
+                
                 MainApp.setServiceLoaderInterface(server);
                 MainApp.setClientIntImp(new ClientIntImp());
                 Scene scene = new Scene(parent);

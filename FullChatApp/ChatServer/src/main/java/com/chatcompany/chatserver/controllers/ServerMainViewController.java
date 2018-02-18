@@ -9,6 +9,7 @@ import static com.chatcompany.commonfiles.commModels.Constants.REGISTRY_PORT;
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ClientInterface;
 import com.jfoenix.controls.JFXButton;
+import java.net.MalformedURLException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 import java.net.URL;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -311,15 +313,18 @@ public class ServerMainViewController implements Initializable {
 
             if (!firstTimeRegistery) {
                 registry = LocateRegistry.getRegistry(REGISTRY_PORT);
-
+                System.setProperty("java.rmi.server.hostname","192.168.1.6");
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
+                //Naming.rebind("//192.168.1.6/chat", new ServerMainIntImp());               
                 System.out.println("Server is Online");
                 System.out.println("Already created");
 
             } else {
                 firstTimeRegistery = false;
                 registry = LocateRegistry.createRegistry(REGISTRY_PORT);
+                System.setProperty("java.rmi.server.hostname","192.168.1.6");
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
+                //Naming.rebind("//192.168.1.6/chat", new ServerMainIntImp());
                 System.out.println("Server is Online");
                 System.out.println("New created");
 
