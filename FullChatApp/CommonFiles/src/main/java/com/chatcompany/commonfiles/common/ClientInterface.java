@@ -17,7 +17,8 @@ public interface ClientInterface extends Remote {
      * @throws RemoteException if RMI failed
      */
     public abstract void receiveMessage(Message msg,ChatSession chat) throws RemoteException;
-
+    public void reciveFile( String filename, byte[] data, int dataLength,ChatSession chat)throws RemoteException;
+    public abstract int acceptReceiveFile(ChatSession chatSession)throws RemoteException;
     /**
      * receive sent friend requests
      *
@@ -25,7 +26,7 @@ public interface ClientInterface extends Remote {
      * @throws RemoteException
      */
     public abstract void receiveFriendRequest(ArrayList<User> friendRequests) throws RemoteException;
-
+    
     /**
      * called to update friends lest
      *

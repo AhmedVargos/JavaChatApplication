@@ -48,6 +48,11 @@ import java.util.ArrayList;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javax.xml.bind.JAXBException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import javafx.scene.paint.Paint;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -80,6 +85,8 @@ public class ChatBoxController implements Initializable {
     ImageView sendButton;
     @FXML
     ImageView saveChat;
+    @FXML
+    ImageView addFile;
     int size = 14;
     String fontf = "Arial";
     String hex2 = "#000000";
@@ -206,6 +213,43 @@ public class ChatBoxController implements Initializable {
                 }
             }
         });
+
+        ///////////send file
+        addFile.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                ChatInterface chatInterface = null;
+                File file = null;
+
+                FileChooser chooser = new FileChooser();
+                chooser.setTitle("Open File");
+                file = chooser.showOpenDialog(new Stage());
+
+                if (file != null) {
+
+                    //you need functon on the server to check if the user accept to download in the client
+                    //askClientReceiveFile
+                    try {
+                        chatInterface = (ChatInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.CHAT_SERVICE);
+                        if (chatInterface.askClientReceiveFile(chatSession) == 1) {
+                            FileInputStream in = new FileInputStream(file);
+                            byte[] mydata = new byte[1024 * 1024];
+                            int mylen = in.read(mydata);
+                            while (mylen > 0) {
+                                chatInterface.sendFile(file.getName(), mydata, mylen, chatSession);
+                                mylen = in.read(mydata);
+                            }
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            }
+
+        });
+
     }
 
     public void setChatSession(ChatSession chatSession) {

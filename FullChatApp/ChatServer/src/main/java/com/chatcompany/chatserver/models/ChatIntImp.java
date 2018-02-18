@@ -8,6 +8,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
 import com.chatcompany.commonfiles.commModels.User;
+import java.io.File;
+import java.io.FileInputStream;
 
 public class ChatIntImp extends UnicastRemoteObject implements ChatInterface {
 
@@ -33,5 +35,42 @@ public class ChatIntImp extends UnicastRemoteObject implements ChatInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     //Will send message to a single user
+
+    @Override
+    public void sendFile(String filename, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
+        try {
+            ArrayList<User> userList = chatSession.getChatUsers();
+            for (int i = 0; i < userList.size(); i++) {
+                User user = userList.get(i);
+                if (ServerView.getClientsOnline().get(user.getId()) != null) {
+
+                    ServerView.getClientsOnline().get(user.getId()).reciveFile(filename,data,dataLength, chatSession);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    @Override
+    public int askClientReceiveFile(ChatSession chatSession) throws RemoteException {
+     int r=0;
+        try {
+            ArrayList<User> userList = chatSession.getChatUsers();
+            for (int i = 0; i < userList.size(); i++) {
+                User user = userList.get(i);
+                if (ServerView.getClientsOnline().get(user.getId()) != null) {
+
+                 r= ServerView.getClientsOnline().get(user.getId()).acceptReceiveFile( chatSession);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+    
+    }
+    return r;
+    }
 
 }

@@ -173,10 +173,10 @@ public class ServerMainViewController implements Initializable {
 
             try {
                 connect();
-                String SQL = "SELECT * from user where gender = 0 ";
-                String sql = "SELECT * from user where gender = 1 ";
-                String SQL1 = "SELECT * from user where connecting_status = 1 ";
-                String sql1 = "SELECT * from user where connecting_status = 0 ";
+                String SQL = "SELECT * from user where gender = " + Constants.MALE;
+                String sql = "SELECT * from user where gender = " + Constants.FEMALE;
+                String SQL1 = "SELECT * from user where connecting_status = 1" ;
+                String sql1 = "SELECT * from user where connecting_status = 0" ;                                                       
                 ResultSet rs = statement.executeQuery(SQL);
                 ResultSet rs1 = statement.executeQuery(sql);
                 ResultSet rs2 = statement.executeQuery(SQL1);
@@ -199,19 +199,19 @@ public class ServerMainViewController implements Initializable {
 //                int toff = 100 - ton;
                 ObservableList<PieChart.Data> MFDATA
                         = FXCollections.observableArrayList(
-                                new PieChart.Data("MALE", 23),
-                                new PieChart.Data("FEMALE", 32)
+                                new PieChart.Data("MALE", m/(m+f)),
+                                new PieChart.Data("FEMALE", f/(m+f))
                         );
                 pc.setData(MFDATA);
-                pc.setTitle("gender");
+                pc.setTitle("Gender");
 
                 ObservableList<PieChart.Data> ONOFF
                         = FXCollections.observableArrayList(
-                                new PieChart.Data("OFFLINE", 33),
-                                new PieChart.Data("ONLINE", 72)
+                                new PieChart.Data("OFFLINE", on/(on+off)),
+                                new PieChart.Data("ONLINE", off/(on+off))
                         );
                 pc1.setData(ONOFF);
-                pc1.setTitle("status");
+                pc1.setTitle("Status");
             } catch (Exception e) {
                 Platform.runLater(() -> {
 
