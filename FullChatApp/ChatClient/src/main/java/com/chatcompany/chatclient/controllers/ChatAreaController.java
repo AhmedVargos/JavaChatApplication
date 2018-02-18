@@ -48,6 +48,8 @@ public class ChatAreaController implements Initializable {
     private HashMap<String, Tab> tabsOpened = new HashMap<>();
     private HashMap<String, ChatSession> chatsCreated = new HashMap<>();
 
+    @FXML
+    private Label announcementText;
     /*public JFXTabPane getChatTabPane() {
         return chatTabPane;
     }*/
@@ -227,5 +229,15 @@ public class ChatAreaController implements Initializable {
         ChatBoxController chatBoxController = chatBoxConrollers.get(tabId);
         chatBoxController.appendText(msg);
 
+    }
+    
+    public void addAnnouncementText(String msg){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                announcementText.setText(msg);
+                chatTabPane.getSelectionModel().select(0);
+            }
+        });
     }
 }

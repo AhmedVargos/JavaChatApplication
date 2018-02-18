@@ -67,6 +67,7 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
 
         if (title.equals(Constants.ANNOUNCEMENT)) {
             //TODO go to the fixed welcome tab and add the message to it.
+            MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().addAnnouncementText(message);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -8,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="402.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="402.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
     <children>
        <TabPane fx:id="chatTabPane" prefHeight="402.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="ALL_TABS">
          <tabs>
@@ -16,16 +22,29 @@
             <content>
               <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
                      <children>
-                        <Label layoutX="166.0" layoutY="64.0" prefHeight="55.0" prefWidth="243.0" text="  Welcome to">
+                        <Label layoutX="179.0" layoutY="84.0" prefHeight="55.0" prefWidth="217.0" text="Welcome to the home tap.">
                            <font>
-                              <Font name="Calibri" size="35.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="187.0" fitWidth="168.0" layoutX="192.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="259.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="/images/Logo.png" />
                            </image>
                         </ImageView>
+                        <Label contentDisplay="CENTER" layoutX="154.0" layoutY="132.0" prefHeight="55.0" prefWidth="267.0" style="-fx-alignment: center;" text="Announcement:" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="announcementText" layoutX="88.0" layoutY="187.0" maxHeight="146.0" prefHeight="146.0" prefWidth="400.0" style="-fx-border-radius: 2px; -fx-border-width: 2px; -fx-border-color: #CDD6CA; -fx-alignment: center;" text="Announcements is Displayed here" textFill="#5c3d46">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
