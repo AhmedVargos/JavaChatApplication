@@ -5,8 +5,10 @@ package com.chatcompany.chatclient.controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.chatcompany.chatclient.utilities.Chat;
 import com.chatcompany.chatclient.utilities.MessageHBoxStyle;
 import com.chatcompany.chatclient.views.MainApp;
+import com.chatcompany.chatclient.xmlHandler.XmlHandler;
 import com.chatcompany.commonfiles.commModels.ChatSession;
 import com.chatcompany.commonfiles.commModels.Constants;
 import com.chatcompany.commonfiles.commModels.Message;
@@ -40,7 +42,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.xml.datatype.XMLGregorianCalendar;
 import com.chatcompany.commonfiles.commModels.ChatSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import javafx.scene.paint.Paint;
+import javafx.stage.FileChooser;
+import javax.xml.bind.JAXBException;
 
 /**
  * FXML Controller class
@@ -72,6 +79,7 @@ public class ChatBoxController implements Initializable {
     @FXML
     ImageView sendButton;
     @FXML
+    ImageView saveChat;
     int size = 14;
     String fontf = "Arial";
     String hex2 = "#000000";
@@ -80,6 +88,8 @@ public class ChatBoxController implements Initializable {
     ChatSession chatSession;
     MessageHBoxStyle messageHBoxStyle;
     String lastSender;
+    ArrayList<Message> messagesHistory = new ArrayList<>();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         messageHBoxStyle = new MessageHBoxStyle();
@@ -163,12 +173,12 @@ public class ChatBoxController implements Initializable {
                     chatVBox.getChildren().add(outText);
                      */
                     String to = "";
-                    if(chatSession.getChatUsers().get(0).getUsername().equals(MainApp.getMainUser().getUsername())){
+                    if (chatSession.getChatUsers().get(0).getUsername().equals(MainApp.getMainUser().getUsername())) {
                         to = chatSession.getChatUsers().get(1).getUsername();
-                    }else{
+                    } else {
                         to = "Other";
                     }
-                    Message message = new Message(size, MainApp.getMainUser().getUsername(),to, null, hex2, fontf, style, text, weight, false);
+                    Message message = new Message(String.valueOf(size), MainApp.getMainUser().getUsername(), to, null, hex2, fontf, style, text, weight, "");
 
                     ChatInterface chatInterface;
                     try {
@@ -179,6 +189,20 @@ public class ChatBoxController implements Initializable {
                         Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
+                }
+            }
+        });
+        
+        //save btn
+        saveChat.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    saveChatHistory();
+                } catch (JAXBException ex) {
+                    Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -201,9 +225,40 @@ public class ChatBoxController implements Initializable {
                 outText.setStyle("-fx-font-size:" + msg.getFontsSize() + ";-fx-font-family:" + msg.getFontFamily() + ";-fx-text-inner-color:" + msg.getFontColor() + ";-fx-font-style:" + msg.getFontStyle() + ";-fx-font-weight:" + msg.getFontWeight() + ";");
                 myHBox.getChildren().add(outText);
                 chatVBox.getChildren().add(outText);*/
-                
+                messagesHistory.add(msg);
                 lastSender = messageHBoxStyle.addMyChatLine(msg, chatVBox, lastSender);
             }
         });
     }
+
+    public void saveChatHistory() throws JAXBException, IOException {
+
+        // for test list    
+//    List <String> test = new ArrayList<>();
+//    test.add("nanan");
+//    
+//   // messages for test
+//    Message m = new Message("shalaby", "hi mohamed ..", test, "12", "red","20-2-2012","d", "ARIAL", "bold","h");
+//    Message m2 = new Message("shalaby", "hi khaled ..", test, "12", "red","20-2-2012","k", "ARIAL", "bold","f");
+//    Message m3 = new Message("Ahmed",  "hi sayed ..",test, "12", "red","20-2-2012","1", "ARIAL", "bold","gf");
+//    
+        //chat object to contain messages
+        Chat myChat = new Chat();
+        myChat.getMessage().addAll(messagesHistory);
+
+        // create fileChooser save Dialoge
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("xml files (*.xml)", "xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(MainApp.getMainStage());
+        if (file != null) {
+            // calling saving method
+            XmlHandler xmlHandler = new XmlHandler();
+            xmlHandler.SaveXml(file, myChat.getMessage());
+
+        }
+
+    }
+
 }

@@ -382,7 +382,7 @@ public class MessageHBoxStyle {
                 //(int fontsSize, String from, String to, XMLGregorianCalendar date, String fontColor, String fontFamily, String fontStyle, String body, String fontWeight, Boolean underline) {
 
                 outText.setTextFill(Color.web(msg.getFontColor()));
-                outText.setStyle("-fx-font-size:" + msg.getFontsSize() + ";-fx-font-family:" + msg.getFontFamily() + ";-fx-text-inner-color:" + msg.getFontColor() + ";-fx-font-style:" + msg.getFontStyle() + ";-fx-font-weight:" + msg.getFontWeight() + ";");
+                outText.setStyle("-fx-font-size:" + msg.getFontSize() + ";-fx-font-family:" + msg.getFontFamily() + ";-fx-text-inner-color:" + msg.getFontColor() + ";-fx-font-style:" + msg.getFontStyle() + ";-fx-font-weight:" + msg.getFontWeight() + ";");
                 return outText;
     }
 

@@ -41,7 +41,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="annoucementTextArea" layoutX="150.0" layoutY="318.0" prefHeight="81.0" prefWidth="427.0" style="-fx-border-color: #5C3D46; -fx-border-width: 2; -fx-border-radius: 5;">
+                        <TextArea fx:id="annoucementTextArea" layoutX="150.0" layoutY="318.0" prefHeight="81.0" prefWidth="427.0" style="-fx-border-color: #99bfaa; -fx-border-width: 1; -fx-border-radius: 4;">
                            <font>
                               <Font size="18.0" />
                            </font>
