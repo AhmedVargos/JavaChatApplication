@@ -207,8 +207,8 @@ public class ServerMainViewController implements Initializable {
 
                 ObservableList<PieChart.Data> ONOFF
                         = FXCollections.observableArrayList(
-                                new PieChart.Data("OFFLINE", on/(on+off)),
-                                new PieChart.Data("ONLINE", off/(on+off))
+                                new PieChart.Data("OFFLINE", 1),
+                                new PieChart.Data("ONLINE", 2)
                         );
                 pc1.setData(ONOFF);
                 pc1.setTitle("Status");

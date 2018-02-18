@@ -44,12 +44,13 @@ public class ChatAreaController implements Initializable {
     @FXML
     private TabPane chatTabPane;
     private static HashMap<String, ChatBoxController> chatBoxConrollers = new HashMap<>();
-    private ArrayList<Integer> peopleInChatWith = new ArrayList<>();
+    private ArrayList<String> peopleInChatWith = new ArrayList<>();
     private HashMap<String, Tab> tabsOpened = new HashMap<>();
     private HashMap<String, ChatSession> chatsCreated = new HashMap<>();
 
     @FXML
     private Label announcementText;
+
     /*public JFXTabPane getChatTabPane() {
         return chatTabPane;
     }*/
@@ -88,6 +89,20 @@ public class ChatAreaController implements Initializable {
             tabHead.getChildren().add(imgView);
             tabs.get(0).setGraphic(tabHead);*/
             // chatTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+            tabs.get(0).setOnClosed(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    String tapTId = ((Tab) event.getSource()).getId();
+                    ChatSession testC = chatsCreated.get(tapTId);
+                    int tempId = testC.getChatUsers().get(1).getId();
+                    tabsOpened.remove(String.valueOf(tempId));
+                    if (ch.getChatUsers().size() <= 2) {
+                        peopleInChatWith.remove(String.valueOf(tempId));
+
+                    }
+                }
+            });
+
             ArrayList<User> arrayList = new ArrayList<>();
 
             ChatBoxController boxController = fXMLLoader.getController();
@@ -96,7 +111,11 @@ public class ChatAreaController implements Initializable {
             chatBoxConrollers.put(tabs.get(0).getId(), boxController);
             tabsOpened.put(String.valueOf(ch.getChatUsers().get(0).getId()), tabs.get(0));
             chatsCreated.put(tabs.get(0).getId(), ch);
-            peopleInChatWith.add(ch.getChatUsers().get(0).getId());
+            
+            if (ch.getChatUsers().size() <= 2) {
+                peopleInChatWith.add(String.valueOf(ch.getChatUsers().get(0).getId()));
+
+            }
         } catch (IOException ex) {
             //Logger.getLogger(ChatAreaController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -117,7 +136,7 @@ public class ChatAreaController implements Initializable {
         } else {
             boolean alreadyChating = false;
             for (int i = 0; i < peopleInChatWith.size(); i++) {
-                if (peopleInChatWith.get(i) == user.getId()) {
+                if (peopleInChatWith.get(i).equals(String.valueOf(user.getId()))) {
                     alreadyChating = true;
                 }
             }
@@ -125,7 +144,7 @@ public class ChatAreaController implements Initializable {
                 System.out.println("Already speaking with him");
                 chatTabPane.getSelectionModel().select(tabsOpened.get(String.valueOf(user.getId())));
             } else {
-                peopleInChatWith.add(user.getId());
+                //peopleInChatWith.add(String.valueOf(user.getId()));
                 openNewChatSession(user);
             }
         }
@@ -164,9 +183,11 @@ public class ChatAreaController implements Initializable {
             tab.setOnClosed(new EventHandler<Event>() {
                 @Override
                 public void handle(Event event) {
-                    int tempId = chatsCreated.get(chatTabPane.getSelectionModel().getSelectedItem().getId()).getChatUsers().get(0).getId();
+                    String tapTId = ((Tab) event.getSource()).getId();
+                    ChatSession testC = chatsCreated.get(tapTId);
+                    int tempId = testC.getChatUsers().get(1).getId();
                     tabsOpened.remove(String.valueOf(tempId));
-                    peopleInChatWith.remove(tempId);
+                    peopleInChatWith.remove(String.valueOf(tempId));
                 }
             });
             chatBoxConrollers.put(tab.getId(), boxController);
@@ -174,7 +195,7 @@ public class ChatAreaController implements Initializable {
             chatTabPane.getSelectionModel().select(tab);
             tabsOpened.put(String.valueOf(user.getId()), tab);
             chatsCreated.put(tab.getId(), chatSession);
-            peopleInChatWith.add(user.getId());
+            peopleInChatWith.add(String.valueOf(user.getId()));
         } catch (IOException ex) {
             //Logger.getLogger(ChatAreaController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -230,8 +251,8 @@ public class ChatAreaController implements Initializable {
         chatBoxController.appendText(msg);
 
     }
-    
-    public void addAnnouncementText(String msg){
+
+    public void addAnnouncementText(String msg) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
