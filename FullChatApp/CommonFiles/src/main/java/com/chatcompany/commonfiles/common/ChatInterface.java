@@ -4,6 +4,7 @@ import com.chatcompany.commonfiles.commModels.ChatSession;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import com.chatcompany.commonfiles.commModels.Message;
+import java.io.File;
 import java.rmi.Remote;
 
 public interface  ChatInterface extends Remote{
@@ -22,6 +23,6 @@ public interface  ChatInterface extends Remote{
      * @throws RemoteException if RMI failed
      */
     public abstract void sendMessageToGroup(ArrayList<Message> msg) throws RemoteException;
-
-
+    public void sendFile(String filename, byte[] data, int dataLength,ChatSession chatSession)throws RemoteException;
+    public int askClientReceiveFile(ChatSession chatSession)throws RemoteException;
 }
