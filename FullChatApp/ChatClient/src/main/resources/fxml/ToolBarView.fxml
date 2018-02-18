@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -17,40 +10,40 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="86.0" prefWidth="575.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ToolBarViewController">
+<AnchorPane id="AnchorPane" fx:id="mainBar" maxWidth="-Infinity" prefHeight="60.0" prefWidth="575.0" style="-fx-border-radius: (0,4,0,0);" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ToolBarViewController">
     <stylesheets>
         <URL value="@/styles/toolbarveiw.css" />
     </stylesheets>
    <children>
-      <Pane maxWidth="-Infinity" prefHeight="91.0" prefWidth="575.0" style="-fx-background-color: #5c868D;">
+      <Pane maxWidth="-Infinity" prefHeight="75.0" prefWidth="575.0" style="-fx-background-color: #5c868D;">
          <children>
-            <Circle fx:id="profileCircle" fill="#1f93ff00" layoutX="48.0" layoutY="40.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label fx:id="userName" layoutX="96.0" layoutY="18.0" prefHeight="40.0" prefWidth="146.0" text="UserName" textAlignment="CENTER" textFill="#c8d6ca">
+            <Circle fx:id="profileCircle" fill="#1f93ff00" layoutX="48.0" layoutY="36.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="userName" layoutX="90.0" layoutY="11.0" prefHeight="40.0" prefWidth="146.0" text="UserName" textAlignment="CENTER" textFill="#e7f5de">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="exit" layoutX="542.0" layoutY="-2.0" prefHeight="30.0" prefWidth="19.0" text="X" textAlignment="CENTER" textFill="#c8d6ca">
+            <Label fx:id="exit" layoutX="542.0" layoutY="-2.0" prefHeight="30.0" prefWidth="19.0" text="X" textAlignment="CENTER" textFill="#5c3d46">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <Label fx:id="min" layoutX="513.0" layoutY="2.0" prefHeight="32.0" prefWidth="19.0" text="-" textAlignment="CENTER" textFill="#c8d6ca">
+            <Label fx:id="min" layoutX="513.0" layoutY="2.0" prefHeight="32.0" prefWidth="19.0" text="-" textAlignment="CENTER" textFill="#5c3d46">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="imageView" fitHeight="46.0" fitWidth="90.0" layoutX="499.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView" fitHeight="32.0" fitWidth="27.0" layoutX="538.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="/images/close.png" />
+                  <Image url="@../images/exit%20(1).png" />
                </image></ImageView>
             <Label layoutX="242.0" prefHeight="61.0" prefWidth="215.0" text="SE Chat" textAlignment="CENTER" textFill="#5c3d46">
                <font>
                   <Font name="Algerian" size="32.0" />
                </font>
             </Label>
-            <Label layoutX="84.0" layoutY="56.0" prefHeight="23.0" prefWidth="61.0" text="Availability" textAlignment="CENTER" textFill="#9dc6a2" />
-            <JFXComboBox fx:id="statusComboBox" layoutX="149.0" layoutY="49.0" />
+            <Label layoutX="90.0" layoutY="40.0" prefHeight="23.0" prefWidth="61.0" text="Availability" textAlignment="CENTER" textFill="#9dc6a2" />
+            <JFXComboBox fx:id="statusComboBox" layoutX="151.0" layoutY="39.0" />
          </children>
       </Pane>
    </children>

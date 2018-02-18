@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="cellPane" maxHeight="70.0" maxWidth="219.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="219.0" style="-fx-background-color: #99BFAA; -fx-border-color: #8F8F8F; -fx-border-radius: 2 2 2 2;;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.FriendGroupItemViewController">
+   <children>
+      <Circle fx:id="userImage" fill="DODGERBLUE" layoutX="54.0" layoutY="32.0" radius="28.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="userConnState" fill="#1fff4e" layoutX="16.0" layoutY="35.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fx:id="userName" fill="#574747" layoutX="88.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User name">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="appearanceStatusText" fill="#37704f" layoutX="88.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <JFXCheckBox fx:id="isInGroupCheckBtn" layoutX="149.0" layoutY="36.0" text="Add" />
+   </children>
+   <padding>
+      <Insets left="8.0" right="8.0" />
+   </padding>
+</AnchorPane>
