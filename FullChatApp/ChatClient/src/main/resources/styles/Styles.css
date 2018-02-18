@@ -32,3 +32,81 @@ visibility: hidden;
 -fx-max-width: 0;
 -fx-padding: 0;
 }
+
+
+.tag{
+	-fx-font: 11px "sans-serif";
+	-fx-text-fill: #1B1924;
+	-fx-translate-x: 20;
+	-fx-font-family:  "helvetica-neue";
+        -fx-font-size: 11px;
+}
+
+.myLineAlone{
+    -fx-background-color:  #824CA7;
+    -fx-background-radius: 16;
+
+    -fx-background-color:  #824CA7;
+
+}
+
+.myLineTop{
+    -fx-background-radius: 16 16 2 16;
+
+    -fx-background-color:  #824CA7;
+
+}
+
+.myLineMiddle{
+    -fx-background-radius: 16 2 2 16;
+
+    -fx-background-color:  #824CA7;
+}
+
+.myLineLast{
+    -fx-background-radius: 16 2 16 16;
+
+
+    -fx-background-color:  #824CA7;
+}
+.moveLeft{
+    -fx-alignment:  center_left;
+    -fx-padding: 0 0 0 8 ;
+}
+
+.moveRight{
+    -fx-alignment:  center_right;
+    -fx-padding: 0 8 0 0 ;
+}
+
+
+
+.otherLineAlone{
+    -fx-background-radius: 16;
+
+
+    -fx-background-color:  #B9C406;
+
+}
+
+.otherLineTop{
+    -fx-background-radius: 16 16 16 2;
+
+
+    -fx-background-color:  #B9C406;
+}
+
+.otherLineMiddle{
+    -fx-background-radius: 2 16 16 2;
+
+
+    -fx-background-color:  #B9C406;
+}
+
+.otherLineLast{
+    -fx-background-radius: 2 16 16 16;
+
+
+    -fx-background-color:  #B9C406;
+}
+

@@ -5,6 +5,7 @@ package com.chatcompany.chatclient.controllers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.chatcompany.chatclient.utilities.MessageHBoxStyle;
 import com.chatcompany.chatclient.views.MainApp;
 import com.chatcompany.commonfiles.commModels.ChatSession;
 import com.chatcompany.commonfiles.commModels.Constants;
@@ -77,9 +78,11 @@ public class ChatBoxController implements Initializable {
     String style = "normal";
     String weight = "normal";
     ChatSession chatSession;
-
+    MessageHBoxStyle messageHBoxStyle;
+    String lastSender;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        messageHBoxStyle = new MessageHBoxStyle();
         // TODO 
         List<java.lang.String> font = Font.getFamilies();
         fontFamily.getItems().addAll(font);
@@ -159,7 +162,13 @@ public class ChatBoxController implements Initializable {
                     myHBox.getChildren().add(outText);
                     chatVBox.getChildren().add(outText);
                      */
-                    Message message = new Message(size, "String from", "String to", null, hex2, fontf, style, text, weight, false);
+                    String to = "";
+                    if(chatSession.getChatUsers().get(0).getUsername().equals(MainApp.getMainUser().getUsername())){
+                        to = chatSession.getChatUsers().get(1).getUsername();
+                    }else{
+                        to = "Other";
+                    }
+                    Message message = new Message(size, MainApp.getMainUser().getUsername(),to, null, hex2, fontf, style, text, weight, false);
 
                     ChatInterface chatInterface;
                     try {
@@ -184,15 +193,16 @@ public class ChatBoxController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                HBox myHBox = new HBox();
+                /*HBox myHBox = new HBox();
                 Label outText = new Label(msg.getBody());
                 //(int fontsSize, String from, String to, XMLGregorianCalendar date, String fontColor, String fontFamily, String fontStyle, String body, String fontWeight, Boolean underline) {
 
                 outText.setTextFill(Color.web(msg.getFontColor()));
                 outText.setStyle("-fx-font-size:" + msg.getFontsSize() + ";-fx-font-family:" + msg.getFontFamily() + ";-fx-text-inner-color:" + msg.getFontColor() + ";-fx-font-style:" + msg.getFontStyle() + ";-fx-font-weight:" + msg.getFontWeight() + ";");
                 myHBox.getChildren().add(outText);
-                chatVBox.getChildren().add(outText);
-
+                chatVBox.getChildren().add(outText);*/
+                
+                lastSender = messageHBoxStyle.addMyChatLine(msg, chatVBox, lastSender);
             }
         });
     }

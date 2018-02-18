@@ -68,6 +68,7 @@ public class MainApp extends Application {
         mainStage = stage;
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
+        //scene.getStylesheets().add("/styles/tagStyle.css");
         stage.initStyle(StageStyle.UNDECORATED);
         //stage.setWidth(850);
         //stage.setHeight(500);
