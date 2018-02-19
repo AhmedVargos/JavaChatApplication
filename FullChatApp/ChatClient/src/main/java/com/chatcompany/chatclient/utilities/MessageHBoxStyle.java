@@ -202,7 +202,7 @@ public class MessageHBoxStyle {
                         picCircle.setId(PIC_CIRLCE);
                         picCircle.setRadius(10.0);
                         picCircle.setStroke(Color.LIGHTCYAN);
-                        im = new Image("file:/E:/ITI%20files/JAVA%20FX/lab1%20chat/chatWIthFXML/images/1.jpg", false);
+                        im = new Image("/images/user.png", false);
                         picCircle.setFill(new ImagePattern(im));
 
                         displayedText = makeTextLabel(message);
@@ -246,7 +246,7 @@ public class MessageHBoxStyle {
                         picCircle.setId(PIC_CIRLCE);
                         picCircle.setRadius(10.0);
                         picCircle.setStroke(Color.LIGHTCYAN);
-                        im = new Image("file:/E:/ITI%20files/JAVA%20FX/lab1%20chat/chatWIthFXML/images/1.jpg", false);
+                        im = new Image("/images/user.png", false);
                         picCircle.setFill(new ImagePattern(im));
 
                         displayedText = makeTextLabel(message);
@@ -287,7 +287,7 @@ public class MessageHBoxStyle {
                         picCircle.setId(PIC_CIRLCE);
                         picCircle.setRadius(10.0);
                         picCircle.setStroke(Color.LIGHTCYAN);
-                        im = new Image("file:/E:/ITI%20files/JAVA%20FX/lab1%20chat/chatWIthFXML/images/1.jpg", false);
+                        im = new Image("/images/user.png", false);
                         picCircle.setFill(new ImagePattern(im));
 
                         displayedText = makeTextLabel(message);
@@ -332,7 +332,7 @@ public class MessageHBoxStyle {
                         picCircle.setId(PIC_CIRLCE);
                         picCircle.setRadius(10.0);
                         picCircle.setStroke(Color.LIGHTCYAN);
-                        im = new Image("file:/E:/ITI%20files/JAVA%20FX/lab1%20chat/chatWIthFXML/images/1.jpg", false);
+                        im = new Image("/images/user.png", false);
                         picCircle.setFill(new ImagePattern(im));
                         hBox = new HBox();
                         hBox.getChildren().addAll(picCircle, displayedText);
@@ -357,7 +357,7 @@ public class MessageHBoxStyle {
                 picCircle.setId(PIC_CIRLCE);
                 picCircle.setRadius(10.0);
                 picCircle.setStroke(Color.LIGHTCYAN);
-                Image im = new Image("file:/E:/ITI%20files/JAVA%20FX/lab1%20chat/chatWIthFXML/images/1.jpg", false);
+                Image im = new Image("/images/user.png", false);
                 picCircle.setFill(new ImagePattern(im));
 
                 HBox hBox = new HBox();
