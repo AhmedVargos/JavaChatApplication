@@ -10,14 +10,14 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainBar" maxWidth="-Infinity" prefHeight="60.0" prefWidth="575.0" style="-fx-border-radius: (0,4,0,0);" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ToolBarViewController">
+<AnchorPane id="AnchorPane" fx:id="mainBar" maxWidth="-Infinity" prefHeight="60.0" prefWidth="575.0" style="-fx-border-radius: 5;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ToolBarViewController">
     <stylesheets>
         <URL value="@/styles/toolbarveiw.css" />
     </stylesheets>
    <children>
       <Pane maxWidth="-Infinity" prefHeight="75.0" prefWidth="575.0" style="-fx-background-color: #5c868D;">
          <children>
-            <Circle fx:id="profileCircle" fill="#1f93ff00" layoutX="48.0" layoutY="36.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="profileCircle" fill="#1f93ff00" layoutX="44.0" layoutY="39.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
             <Label fx:id="userName" layoutX="90.0" layoutY="11.0" prefHeight="40.0" prefWidth="146.0" text="UserName" textAlignment="CENTER" textFill="#e7f5de">
                <font>
                   <Font size="18.0" />
@@ -35,7 +35,7 @@
             </Label>
             <ImageView fx:id="imageView" fitHeight="32.0" fitWidth="27.0" layoutX="538.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/exit%20(1).png" />
+                  <Image url="/images/exit.png" />
                </image></ImageView>
             <Label layoutX="242.0" prefHeight="61.0" prefWidth="215.0" text="SE Chat" textAlignment="CENTER" textFill="#5c3d46">
                <font>

@@ -5,21 +5,27 @@ package com.chatcompany.chatserver.views;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.chatcompany.chatserver.controllers.ServerMainViewController;
 import java.io.IOException;
 import java.util.HashMap;
 
 import com.chatcompany.commonfiles.commModels.User;
 import com.chatcompany.commonfiles.common.ClientInterface;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -79,11 +85,22 @@ public class ServerView extends Application {
             Scene scene = new Scene(root);
             stage.setWidth(750);
             stage.setHeight(500);
-            //ServerMainViewController = controller.setScene(scene);
+            ServerMainViewController controller = loader.getController();
             //PieChart PC = controller.getPc();
             stage.setResizable(false);
             //stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    System.exit(0);
+                    try {
+                        controller.stopServer();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ServerView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
             //scene.getStylesheets().add(getClass().getResource(pathCSS).toExternalForm());
             //scene.getStylesheets().add("/styles/tabPane.css");
         } catch (IOException ex) {

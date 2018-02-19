@@ -78,8 +78,7 @@ public class ChatBoxController implements Initializable {
     ToggleButton BoldToggleButton;
     @FXML
     ToggleButton ItalicToggleButton;
-    @FXML
-    ToggleButton UnderlineToggleButton;
+    
     Color messageColor;
     @FXML
     ImageView sendButton;
@@ -144,22 +143,6 @@ public class ChatBoxController implements Initializable {
             public void handle(MouseEvent e) {
                 style = (ItalicToggleButton.isSelected()) ? "italic" : "normal";
                 sendTextFiled.setStyle("-fx-font-size:" + size + ";-fx-font-family:" + fontf + ";-fx-text-inner-color:" + hex2 + ";-fx-font-style:" + style + ";-fx-font-weight:" + weight + ";");
-
-            }
-        });
-        UnderlineToggleButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                Boolean underline = UnderlineToggleButton.isSelected();
-                if (underline) {
-                    sendTextFiled.setStyle("-fx-underline:true;-fx-font-size:" + size + ";-fx-font-family:" + fontf + ";-fx-text-inner-color:" + hex2 + ";-fx-font-style:" + style + ";-fx-font-weight:" + weight + ";");
-
-                } else {
-
-                    sendTextFiled.setStyle("-fx-underline:false;-fx-font-size:" + size + ";-fx-font-family:" + fontf + ";-fx-text-inner-color:" + hex2 + ";-fx-font-style:" + style + ";-fx-font-weight:" + weight + ";");
-
-                }
-
             }
         });
 

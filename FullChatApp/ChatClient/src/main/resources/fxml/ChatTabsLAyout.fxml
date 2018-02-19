@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -14,13 +9,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="402.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="411.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatAreaController">
     <children>
-       <TabPane fx:id="chatTabPane" prefHeight="402.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="ALL_TABS">
+       <TabPane fx:id="chatTabPane" prefHeight="411.0" prefWidth="575.0" style="-fx-background-color: #5C868D;" stylesheets="@../styles/chatStylee.css" tabClosingPolicy="ALL_TABS">
          <tabs>
           <Tab fx:id="homeTab" closable="false" style="-fx-background-color: #5C868D;" text="Home">
             <content>
-              <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
+              <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
                      <children>
                         <Label layoutX="179.0" layoutY="84.0" prefHeight="55.0" prefWidth="217.0" text="Welcome to the home tab.">
                            <font>

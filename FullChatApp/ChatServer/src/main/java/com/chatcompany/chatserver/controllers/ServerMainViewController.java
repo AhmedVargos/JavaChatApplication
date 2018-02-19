@@ -50,6 +50,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseButton;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
 public class ServerMainViewController implements Initializable {
@@ -67,10 +68,8 @@ public class ServerMainViewController implements Initializable {
     @FXML
     private PieChart pc;
 
-
     @FXML
     private PieChart pc1;
-
 
     @FXML
     public ToggleButton serverStartBtn;
@@ -97,6 +96,7 @@ public class ServerMainViewController implements Initializable {
     private final String CHAT_TAG = "chat";
     boolean firstTable = true;
     boolean firstTimeRegistery = true;
+    private String SERVER_IP = "192.168.1.6";
 
     public void setScene(Scene scene) {
         this.s = scene;
@@ -112,7 +112,6 @@ public class ServerMainViewController implements Initializable {
     private ResultSet resultSet;
     private boolean isResourceClosed;
     private String query;
-
 
     private void connect() {
         // SQLite connection string
@@ -155,10 +154,13 @@ public class ServerMainViewController implements Initializable {
                     startServer();
                     serverStartBtn.setText("Stop");
                 } else {
-                    stopServer();
+                    try {
+                        stopServer();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     serverStartBtn.setText("Start");
                 }
-
             }
         });
 
@@ -177,11 +179,15 @@ public class ServerMainViewController implements Initializable {
                 connect();
                 String SQL = "SELECT * from user where gender = " + Constants.MALE;
                 String sql = "SELECT * from user where gender = " + Constants.FEMALE;
-                String SQL1 = "SELECT * from user where connecting_status = 1" ;
-                String sql1 = "SELECT * from user where connecting_status = 0" ;                                                       
+                String SQL1 = "SELECT * from user where connecting_status = 1";
+                String sql1 = "SELECT * from user where connecting_status = 0";
+                statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery(SQL);
+                statement = connection.createStatement();
                 ResultSet rs1 = statement.executeQuery(sql);
+                statement = connection.createStatement();
                 ResultSet rs2 = statement.executeQuery(SQL1);
+                statement = connection.createStatement();
                 ResultSet rs3 = statement.executeQuery(sql1);
                 while (rs.next()) {
                     m++;
@@ -195,22 +201,23 @@ public class ServerMainViewController implements Initializable {
                 while (rs3.next()) {
                     off++;
                 }
+                statement.close();
 //                int tm = (m * 100) / (m + f);
 //                int tf = 100 - tm;
 //                int ton = (on * 100) / (on + off);
 //                int toff = 100 - ton;
                 ObservableList<PieChart.Data> MFDATA
                         = FXCollections.observableArrayList(
-                                new PieChart.Data("MALE", m/(m+f)),
-                                new PieChart.Data("FEMALE", f/(m+f))
+                                new PieChart.Data("MALE", m / (m + f)),
+                                new PieChart.Data("FEMALE", f / (m + f))
                         );
                 pc.setData(MFDATA);
                 pc.setTitle("Gender");
 
                 ObservableList<PieChart.Data> ONOFF
                         = FXCollections.observableArrayList(
-                                new PieChart.Data("OFFLINE", 1),
-                                new PieChart.Data("ONLINE", 2)
+                                new PieChart.Data("OFFLINE", off / (off + on)),
+                                new PieChart.Data("ONLINE", on / (off + on))
                         );
                 pc1.setData(ONOFF);
                 pc1.setTitle("Status");
@@ -259,7 +266,7 @@ public class ServerMainViewController implements Initializable {
             ResultSet rs = statement.executeQuery(SQL);
 
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                if (i == 0 || i == 5 || i == 7 ||i == 9) {
+                if (i == 0 || i == 5 || i == 7 || i == 9) {
                     continue;
                 }
                 final int j = i;
@@ -295,10 +302,12 @@ public class ServerMainViewController implements Initializable {
     }
 
     //stops the server
-    private void stopServer() {
+    public void stopServer() throws SQLException {
         try {
             registry.unbind(CHAT_TAG);
+            serverClosing();
             ServerView.getClientsOnline().clear();
+
         } catch (RemoteException ex) {
             Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
@@ -307,13 +316,25 @@ public class ServerMainViewController implements Initializable {
 
     }
 
+    public void serverClosing() throws SQLException, RemoteException {
+        try {
+            connect();
+            query = "UPDATE USER SET connecting_status =" + Constants.OFFLINE;
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+            closeResourcesOpened();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     //starts the server
     private void startServer() {
         try {
 
             if (!firstTimeRegistery) {
                 registry = LocateRegistry.getRegistry(REGISTRY_PORT);
-                System.setProperty("java.rmi.server.hostname","192.168.1.6");
+                System.setProperty("java.rmi.server.hostname", SERVER_IP);
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
                 //Naming.rebind("//192.168.1.6/chat", new ServerMainIntImp());               
                 System.out.println("Server is Online");
@@ -322,7 +343,7 @@ public class ServerMainViewController implements Initializable {
             } else {
                 firstTimeRegistery = false;
                 registry = LocateRegistry.createRegistry(REGISTRY_PORT);
-                System.setProperty("java.rmi.server.hostname","192.168.1.6");
+                System.setProperty("java.rmi.server.hostname", SERVER_IP);
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
                 //Naming.rebind("//192.168.1.6/chat", new ServerMainIntImp());
                 System.out.println("Server is Online");
@@ -336,7 +357,6 @@ public class ServerMainViewController implements Initializable {
         }
     }
 
-    
     private void sendAnnouncement() {
         sendAnnouncementBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

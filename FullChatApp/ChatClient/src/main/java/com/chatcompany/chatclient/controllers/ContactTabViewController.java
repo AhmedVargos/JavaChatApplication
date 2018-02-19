@@ -39,8 +39,7 @@ public class ContactTabViewController implements Initializable {
     private Tab chatGroupTab;
     @FXML
     private Tab requestsTab;
-    @FXML
-    private Tab groupTab;
+    
     @FXML
     private JFXTabPane contactsTabPane;
     @FXML
@@ -86,22 +85,17 @@ public class ContactTabViewController implements Initializable {
 
         friendTab.setText(null);
         AnchorPane mPane = new AnchorPane(buildImage("/images/ic_person_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6, 6, 6, 6));
+        mPane.setPadding(new Insets(2, 6, 6, 6));
         friendTab.setGraphic(mPane);
 
         requestsTab.setText(null);
         mPane = new AnchorPane(buildImage("/images/ic_send_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6, 6, 6, 6));
+        mPane.setPadding(new Insets(2, 6, 6, 6));
         requestsTab.setGraphic(mPane);
-
-        groupTab.setText(null);
-        mPane = new AnchorPane(buildImage("/images/ic_group_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6, 6, 6, 6));
-        groupTab.setGraphic(mPane);
 
         chatGroupTab.setText(null);
         mPane = new AnchorPane(buildImage("/images/ic_group_add_white_24dp_2x.png"));
-        mPane.setPadding(new Insets(6, 6, 6, 6));
+        mPane.setPadding(new Insets(2, 6, 6, 6));
         chatGroupTab.setGraphic(mPane);
 
         initListViews();
@@ -139,7 +133,7 @@ public class ContactTabViewController implements Initializable {
 
     // Helper method to create image from image patch
     private static ImageView buildImage(String imgPatch) {
-        Image i = new Image(imgPatch, 32, 32, false, false);
+        Image i = new Image(imgPatch, 36, 36, false, false);
         ImageView imageView = new ImageView();
         //You can set width and height
         //imageView.setFitHeight(16);

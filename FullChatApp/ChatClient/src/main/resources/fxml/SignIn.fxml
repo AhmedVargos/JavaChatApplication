@@ -58,12 +58,12 @@
             </JFXButton>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="35.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/userLogin.png" />
+                  <Image url="/images/userLogin.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="35.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/padlock.png" />
+                  <Image url="/images/padlock.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="loginbtn" defaultButton="true" layoutX="66.0" layoutY="455.0" prefHeight="28.0" prefWidth="252.0" style="-fx-background-color: E7F5DE; -fx-border-color: #5c3d46; -fx-border-width: 2; -fx-background-radius: 3; -fx-border-radius: 3;" text="Login" textFill="#5c3d46">
@@ -73,10 +73,10 @@
             </JFXButton>
             <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="138.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/login%20(1).png" />
+                  <Image url="images/login.png" />
                </image>
             </ImageView>
-            <JFXPasswordField fx:id="passwordFieldPassword" focusColor="#5c3d46" layoutX="66.0" layoutY="385.0" maxWidth="287.0" minWidth="252.0" prefHeight="37.0" prefWidth="252.0" promptText="Password" unFocusColor="#c8d6ca">
+            <JFXPasswordField fx:id="passwordFieldPassword" focusColor="#5c3d46" labelFloat="true" layoutX="66.0" layoutY="385.0" maxWidth="287.0" minWidth="252.0" prefHeight="37.0" prefWidth="252.0" promptText="Password" unFocusColor="#c8d6ca">
                <font>
                   <Font size="18.0" />
                </font>

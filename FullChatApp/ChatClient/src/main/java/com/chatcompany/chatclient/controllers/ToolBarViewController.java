@@ -86,7 +86,7 @@ public class ToolBarViewController implements Initializable {
         profileCircle.setStroke(Color.SEAGREEN);
         Image im = new Image("/images/user.png", false);
         profileCircle.setFill(new ImagePattern(im));
-        profileCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+        profileCircle.setEffect(new DropShadow(+10d, 0d, +2d, Color.DARKSEAGREEN));
         profileCircle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
