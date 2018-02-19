@@ -222,11 +222,26 @@ public class ChatAreaController implements Initializable {
             // imgView.setOnMouseClicked
             tab.setGraphic(imgView);*/
             // chatTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.SELECTED_TAB);
+            
+
 
             ChatSession chatSession = new ChatSession(MainApp.getMainUser().getUsername() + new java.util.Date(), users, chatName);
             ChatBoxController boxController = fXMLLoader.getController();
             boxController.setChatSession(chatSession);
             tab.setId(chatSession.getId());
+            
+            tab.setOnClosed(new EventHandler<Event>() {
+                @Override
+                public void handle(Event event) {
+                    String tapTId = ((Tab) event.getSource()).getId();
+                    ChatSession testC = chatsCreated.get(tapTId);
+                    chatsCreated.remove(tapTId);
+                    int tempId = testC.getChatUsers().get(1).getId();
+                    tabsOpened.remove(String.valueOf(tempId));
+                    
+                }
+            });
+            
             chatBoxConrollers.put(tab.getId(), boxController);
             chatTabPane.getTabs().add(tab);
             chatTabPane.getSelectionModel().select(tab);

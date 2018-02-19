@@ -22,7 +22,7 @@
             <content>
               <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="380.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
                      <children>
-                        <Label layoutX="179.0" layoutY="84.0" prefHeight="55.0" prefWidth="217.0" text="Welcome to the home tap.">
+                        <Label layoutX="179.0" layoutY="84.0" prefHeight="55.0" prefWidth="217.0" text="Welcome to the home tab.">
                            <font>
                               <Font size="18.0" />
                            </font>
