@@ -97,7 +97,7 @@ public class ServerMainViewController implements Initializable {
     private final String CHAT_TAG = "chat";
     boolean firstTable = true;
     boolean firstTimeRegistery = true;
-    private String SERVER_IP = "10.145.1.255";
+    private String SERVER_IP = "192.168.1.6";
 
     public void setScene(Scene scene) {
         this.s = scene;
@@ -178,18 +178,18 @@ public class ServerMainViewController implements Initializable {
 
             try {
                 connect();
-                String SQL = "SELECT * from user where gender = " + Constants.MALE;
-                String sql = "SELECT * from user where gender = " + Constants.FEMALE;
-                String SQL1 = "SELECT * from user where connecting_status = 1";
-                String sql1 = "SELECT * from user where connecting_status = 0";
+                String q1 = "SELECT * from user where gender = " + Constants.MALE;
+                String q2 = "SELECT * from user where gender = " + Constants.FEMALE;
+                String q3 = "SELECT * from user where connecting_status = 1";
+                String q4 = "SELECT * from user where connecting_status = 0";
                 statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(SQL);
+                ResultSet rs = statement.executeQuery(q1);
                 statement = connection.createStatement();
-                ResultSet rs1 = statement.executeQuery(sql);
+                ResultSet rs1 = statement.executeQuery(q2);
                 statement = connection.createStatement();
-                ResultSet rs2 = statement.executeQuery(SQL1);
+                ResultSet rs2 = statement.executeQuery(q3);
                 statement = connection.createStatement();
-                ResultSet rs3 = statement.executeQuery(sql1);
+                ResultSet rs3 = statement.executeQuery(q4);
                 while (rs.next()) {
                     m++;
                 }

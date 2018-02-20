@@ -73,7 +73,7 @@
             </JFXButton>
             <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="138.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="images/login.png" />
+                  <Image url="/images/login.png" />
                </image>
             </ImageView>
             <JFXPasswordField fx:id="passwordFieldPassword" focusColor="#5c3d46" labelFloat="true" layoutX="66.0" layoutY="385.0" maxWidth="287.0" minWidth="252.0" prefHeight="37.0" prefWidth="252.0" promptText="Password" unFocusColor="#c8d6ca">
@@ -84,7 +84,7 @@
                   <Bloom />
                </effect>
             </JFXPasswordField>
-            <ImageView fitHeight="172.0" fitWidth="152.0" layoutX="122.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="111.0" fitWidth="216.0" layoutX="72.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/images/Logo.png" />
                </image>

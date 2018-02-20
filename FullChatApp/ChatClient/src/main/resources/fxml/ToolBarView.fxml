@@ -39,7 +39,7 @@
                </image></ImageView>
             <Label layoutX="90.0" layoutY="40.0" prefHeight="23.0" prefWidth="61.0" text="Availability" textAlignment="CENTER" textFill="#9dc6a2" />
             <JFXComboBox fx:id="statusComboBox" layoutX="151.0" layoutY="39.0" />
-            <ImageView fitHeight="79.0" fitWidth="71.0" layoutX="279.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="64.0" layoutX="279.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/images/Logo.png" />
                </image>

@@ -19,10 +19,10 @@ public class FriendGroupListViewFactory implements Callback<ListView<User>, List
 
     @Override
     public ListCell<User> call(ListView<User> param) {
-        return new FriendCellFormatter();
+        return new FriendGroupCellFormatter();
     }
 
-    public class FriendCellFormatter extends ListCell<User> {
+    public class FriendGroupCellFormatter extends ListCell<User> {
 
         @Override
         protected void updateItem(User item, boolean empty) {
@@ -30,6 +30,7 @@ public class FriendGroupListViewFactory implements Callback<ListView<User>, List
             if (item != null && !empty && item.getConnStatus() != Constants.OFFLINE) {
                 setGraphic(createCell(item));
             } else {
+                setText(null);
                 setGraphic(null);
             }
         }

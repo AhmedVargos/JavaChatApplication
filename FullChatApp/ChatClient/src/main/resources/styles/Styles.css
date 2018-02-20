@@ -93,15 +93,10 @@ visibility: hidden;
 
 .otherLineMiddle{
     -fx-background-radius: 2 16 16 2;
-
-
     -fx-background-color:  #98F2C4;
 }
 
 .otherLineLast{
     -fx-background-radius: 2 16 16 16;
-
-
     -fx-background-color:  #98F2C4;
 }
-

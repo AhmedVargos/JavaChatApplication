@@ -175,6 +175,7 @@ public class ChatBoxController implements Initializable {
                         chatInterface = (ChatInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.CHAT_SERVICE);
 
                         chatInterface.sendMessage(message, chatSession);
+                        sendTextFiled.clear();
                     } catch (RemoteException ex) {
                         Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -243,6 +244,10 @@ public class ChatBoxController implements Initializable {
 
     public void setChatSession(ChatSession chatSession) {
         this.chatSession = chatSession;
+        if (chatSession.getChatUsers().size() > 2) {
+            addFile.setVisible(false);
+            addFile.setDisable(true);
+        }
 
     }
 
