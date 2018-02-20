@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.MainChatParentController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.MainChatParentController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="140.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="88.0" />
@@ -32,14 +32,14 @@
            </children>
        </AnchorPane>
 
-       <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="240.0" GridPane.columnSpan="2" GridPane.rowSpan="5">
+       <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="240.0" GridPane.columnSpan="2" GridPane.rowSpan="5">
            <children>
                <!--our included FXML -->
                <fx:include fx:id="embeddedContactTabView" source="ContactTabsLayout.fxml" />
 
            </children>
        </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="407.0" prefWidth="575.0" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.rowSpan="4">
+      <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="433.0" prefWidth="575.0" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.rowSpan="4">
           <children>
               <!--our included FXML -->
               <fx:include fx:id="embeddedChatTabsView" source="ChatTabsLAyout.fxml" />

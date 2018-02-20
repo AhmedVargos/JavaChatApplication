@@ -44,5 +44,7 @@ public interface ClientInterface extends Remote {
      */
     public abstract void makeNotification(String title, String message) throws RemoteException;
     
+    public abstract void serverIsOff() throws RemoteException;
+    
     
 }

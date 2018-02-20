@@ -31,6 +31,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,7 +97,7 @@ public class ServerMainViewController implements Initializable {
     private final String CHAT_TAG = "chat";
     boolean firstTable = true;
     boolean firstTimeRegistery = true;
-    private String SERVER_IP = "192.168.1.6";
+    private String SERVER_IP = "10.118.49.184";
 
     public void setScene(Scene scene) {
         this.s = scene;
@@ -306,6 +307,15 @@ public class ServerMainViewController implements Initializable {
         try {
             registry.unbind(CHAT_TAG);
             serverClosing();
+
+            for (Map.Entry<Integer, ClientInterface> en : ServerView.getClientsOnline().entrySet()) {
+                if (en != null) {
+                    Object key = en.getKey();
+                    ClientInterface value = en.getValue();
+                    value.serverIsOff();
+                }
+            }
+
             ServerView.getClientsOnline().clear();
 
         } catch (RemoteException ex) {
