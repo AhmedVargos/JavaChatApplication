@@ -196,7 +196,7 @@ public class SignUpController implements Initializable {
                     gender = FEMALE;
                 }
                 if (isValidate()) {
-                    User user = new User(userNameField.getText(), emailField.getText(), firstNameField.getText(), lastNameField.getText(), passwordField.getText(), gender, countryField.getText(), ONLINE, AVAILABLE);
+                    User user = new User(userNameField.getText(), emailField.getText(), firstNameField.getText(), lastNameField.getText(), passwordField.getText(), gender, countryField.getText(), Constants.ONLINE, Constants.AVAILABLE);
 
                     System.out.println("data inserted succsefuly");
 
@@ -292,7 +292,7 @@ public class SignUpController implements Initializable {
         if (ConfirmPassword.getText().trim().isEmpty()) {
             confirmLabel.setText("empty!");
             valid = false;
-        } else if (ConfirmPassword.getText().equals(passwordField.getText())) {
+        } else if (!ConfirmPassword.getText().equals(passwordField.getText())) {
             confirmLabel.setText("not confirm");
             valid = false;
         }

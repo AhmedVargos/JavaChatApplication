@@ -78,7 +78,7 @@ public class ChatBoxController implements Initializable {
     ToggleButton BoldToggleButton;
     @FXML
     ToggleButton ItalicToggleButton;
-    
+
     Color messageColor;
     @FXML
     ImageView sendButton;
@@ -182,7 +182,7 @@ public class ChatBoxController implements Initializable {
                 }
             }
         });
-        
+
         //save btn
         saveChat.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -201,30 +201,36 @@ public class ChatBoxController implements Initializable {
         addFile.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                ChatInterface chatInterface = null;
-                File file = null;
 
-                FileChooser chooser = new FileChooser();
-                chooser.setTitle("Open File");
-                file = chooser.showOpenDialog(new Stage());
+                if (chatSession.getChatUsers().size() > 2) {
+                    return;
+                } else {
+                    ChatInterface chatInterface = null;
+                    File file = null;
 
-                if (file != null) {
+                    FileChooser chooser = new FileChooser();
+                    chooser.setTitle("Open File");
+                    file = chooser.showOpenDialog(new Stage());
 
-                    //you need functon on the server to check if the user accept to download in the client
-                    //askClientReceiveFile
-                    try {
-                        chatInterface = (ChatInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.CHAT_SERVICE);
-                        if (chatInterface.askClientReceiveFile(chatSession) == 1) {
-                            FileInputStream in = new FileInputStream(file);
-                            byte[] mydata = new byte[1024 * 1024];
-                            int mylen = in.read(mydata);
-                            while (mylen > 0) {
-                                chatInterface.sendFile(file.getName(), mydata, mylen, chatSession);
-                                mylen = in.read(mydata);
+                    if (file != null) {
+
+                        //you need functon on the server to check if the user accept to download in the client
+                        //askClientReceiveFile
+                        try {
+                            chatInterface = (ChatInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.CHAT_SERVICE);
+                            if (chatInterface.askClientReceiveFile(chatSession) == 1) {
+                                FileInputStream in = new FileInputStream(file);
+                                byte[] mydata = new byte[1024 * 1024];
+                                int mylen = in.read(mydata);
+                                while (mylen > 0) {
+                                    chatInterface.sendFile(file.getName(), mydata, mylen, chatSession);
+                                    mylen = in.read(mydata);
+                                }
                             }
+                        } catch (IOException ex) {
+                            Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } catch (IOException ex) {
-                        Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
+
                     }
 
                 }
@@ -244,14 +250,6 @@ public class ChatBoxController implements Initializable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                /*HBox myHBox = new HBox();
-                Label outText = new Label(msg.getBody());
-                //(int fontsSize, String from, String to, XMLGregorianCalendar date, String fontColor, String fontFamily, String fontStyle, String body, String fontWeight, Boolean underline) {
-
-                outText.setTextFill(Color.web(msg.getFontColor()));
-                outText.setStyle("-fx-font-size:" + msg.getFontsSize() + ";-fx-font-family:" + msg.getFontFamily() + ";-fx-text-inner-color:" + msg.getFontColor() + ";-fx-font-style:" + msg.getFontStyle() + ";-fx-font-weight:" + msg.getFontWeight() + ";");
-                myHBox.getChildren().add(outText);
-                chatVBox.getChildren().add(outText);*/
                 messagesHistory.add(msg);
                 lastSender = messageHBoxStyle.addMyChatLine(msg, chatVBox, lastSender);
             }
@@ -260,15 +258,6 @@ public class ChatBoxController implements Initializable {
 
     public void saveChatHistory() throws JAXBException, IOException {
 
-        // for test list    
-//    List <String> test = new ArrayList<>();
-//    test.add("nanan");
-//    
-//   // messages for test
-//    Message m = new Message("shalaby", "hi mohamed ..", test, "12", "red","20-2-2012","d", "ARIAL", "bold","h");
-//    Message m2 = new Message("shalaby", "hi khaled ..", test, "12", "red","20-2-2012","k", "ARIAL", "bold","f");
-//    Message m3 = new Message("Ahmed",  "hi sayed ..",test, "12", "red","20-2-2012","1", "ARIAL", "bold","gf");
-//    
         //chat object to contain messages
         Chat myChat = new Chat();
         myChat.getMessage().addAll(messagesHistory);

@@ -59,7 +59,7 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
     }
 
     @Override
-    public User login(String userName, String pass, ClientInterface clientInterface) throws RemoteException {
+    public synchronized User login(String userName, String pass, ClientInterface clientInterface) throws RemoteException {
         User user = null;
 
         try {
@@ -67,7 +67,7 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 
             connect();
             //+ "'and password='" + pass
-            query = "select * from USER where user_name = '" + userName + "'" + " and password='" + pass + "'";
+            query = "select * from USER where user_name = '" + userName + "'" + " and password='" + pass + "'" + " and connecting_status !='1'";
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
 
@@ -120,9 +120,9 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 
                 System.out.println("Is inserting row");
                 //,connecting_status,appearance_status
-                query = "insert into USER (fname,lname,user_name,mail,password,gender,country) values('" + user.getFname()
+                query = "insert into USER (fname,lname,user_name,mail,password,gender,country,connecting_status,appearance_status) values('" + user.getFname()
                         + "','" + user.getLname() + "','" + user.getUsername() + "','" + user.getEmail() + "','" + user.getPassword() + "','"
-                        + user.getGender() + "','" + user.getCountry() + "')";
+                        + user.getGender() + "','" + user.getCountry() + "',1,1)";
                 statement.executeUpdate(query);
                 //add in table
 

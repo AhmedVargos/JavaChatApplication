@@ -69,6 +69,9 @@ public class ToolBarViewController implements Initializable {
     @FXML
     private AnchorPane mainBar;
 
+    private double xOffset;
+    private double yOffset;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -242,13 +245,28 @@ public class ToolBarViewController implements Initializable {
     }
 
     private void dragChat() {
+        mainBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = mainBar.getScene().getWindow().getX() - event.getScreenX();
+                yOffset = mainBar.getScene().getWindow().getY() - event.getScreenY();
+            }
+        });
         mainBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mainBar.getScene().getWindow().setX(event.getScreenX() + xOffset);
+                mainBar.getScene().getWindow().setY(event.getScreenY() + yOffset);
+            }
+        });
+
+        /*mainBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 mainBar.getScene().getWindow().setX(event.getScreenX() - mainBar.getWidth() / 2);
                 mainBar.getScene().getWindow().setY(event.getScreenY() - mainBar.getHeight() / 2);
             }
-        });
+        });*/
 
     }
 

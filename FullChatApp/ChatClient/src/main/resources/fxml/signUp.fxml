@@ -56,20 +56,17 @@
                </font>
             </Label>
             <RadioButton fx:id="femaleRadioButton" focusTraversable="false" layoutX="258.0" layoutY="473.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Female" textFill="#e7f5de">
-               <toggleGroup>
-                  <ToggleGroup fx:id="gender" />
-               </toggleGroup>
                <font>
                   <Font size="17.0" />
                </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="genderGroup" />
+               </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="maleRadioButton" focusTraversable="false" layoutX="65.0" layoutY="473.0" mnemonicParsing="false" selected="true" text="Male" textFill="#e7f5de">
+            <RadioButton fx:id="maleRadioButton" focusTraversable="false" layoutX="65.0" layoutY="473.0" mnemonicParsing="false" selected="true" text="Male" textFill="#e7f5de" toggleGroup="$genderGroup">
                <font>
                   <Font size="17.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="gender" />
-               </toggleGroup>
             </RadioButton>
             <JFXTextField fx:id="firstNameField" focusColor="#5c3d46" labelFloat="true" layoutX="65.0" layoutY="100.0" maxWidth="125.0" minWidth="124.0" prefHeight="37.0" prefWidth="125.0" promptText="FristName" unFocusColor="#c8d6ca">
                <font>
@@ -116,12 +113,12 @@
                   <Font name="Bell MT Bold" size="18.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField fx:id="passwordField" focusColor="#5c3d46" layoutX="65.0" layoutY="280.0" maxWidth="287.0" minWidth="287.0" prefHeight="31.0" prefWidth="287.0" promptText="Password" unFocusColor="#c8d6ca">
+            <JFXPasswordField fx:id="passwordField" focusColor="#5c3d46" labelFloat="true" layoutX="65.0" layoutY="280.0" maxWidth="287.0" minWidth="287.0" prefHeight="31.0" prefWidth="287.0" promptText="Password" unFocusColor="#c8d6ca">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXPasswordField>
-            <JFXPasswordField fx:id="ConfirmPassword" focusColor="#5c3d46" layoutX="65.0" layoutY="340.0" maxWidth="287.0" minWidth="287.0" prefHeight="31.0" prefWidth="287.0" promptText="ConfirmPassword" unFocusColor="#c8d6ca">
+            <JFXPasswordField fx:id="ConfirmPassword" focusColor="#5c3d46" labelFloat="true" layoutX="65.0" layoutY="340.0" maxWidth="287.0" minWidth="287.0" prefHeight="31.0" prefWidth="287.0" promptText="ConfirmPassword" unFocusColor="#c8d6ca">
                <font>
                   <Font size="15.0" />
                </font>

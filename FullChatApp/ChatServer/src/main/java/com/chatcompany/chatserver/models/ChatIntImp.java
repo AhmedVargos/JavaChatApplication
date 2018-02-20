@@ -19,7 +19,7 @@ public class ChatIntImp extends UnicastRemoteObject implements ChatInterface {
 
     //////////////////////////////////////////
     @Override
-    public void sendMessage(Message msg, ChatSession chatSession) throws RemoteException {
+    public synchronized void sendMessage(Message msg, ChatSession chatSession) throws RemoteException {
         ArrayList<User> userList = chatSession.getChatUsers();
         for (int i = 0; i < userList.size(); i++) {
             User user = userList.get(i);
@@ -31,13 +31,13 @@ public class ChatIntImp extends UnicastRemoteObject implements ChatInterface {
     }
 
     @Override
-    public void sendMessageToGroup(ArrayList<Message> msg) throws RemoteException {
+    public synchronized void sendMessageToGroup(ArrayList<Message> msg) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     //Will send message to a single user
 
     @Override
-    public void sendFile(String filename, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
+    public synchronized void sendFile(String filename, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
         try {
             ArrayList<User> userList = chatSession.getChatUsers();
             for (int i = 0; i < userList.size(); i++) {
@@ -54,7 +54,7 @@ public class ChatIntImp extends UnicastRemoteObject implements ChatInterface {
     }
 
     @Override
-    public int askClientReceiveFile(ChatSession chatSession) throws RemoteException {
+    public synchronized int askClientReceiveFile(ChatSession chatSession) throws RemoteException {
      int r=0;
         try {
             ArrayList<User> userList = chatSession.getChatUsers();

@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="chatBox" prefHeight="385.0" prefWidth="531.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatBoxController">
+<VBox id="chatBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.ChatBoxController">
     <children>
                  
         <AnchorPane fx:id="homeAnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="600.0" style="-fx-background-color: #99BFAA;">
             
             <children>
-                <ScrollPane prefHeight="290.0" prefWidth="531.0">
+                <ScrollPane layoutY="-1.0" prefHeight="290.0" prefWidth="531.0">
                     <content>
-                        <VBox fx:id="chatVBox" prefHeight="288.0" prefWidth="529.0" style="-fx-background-color: #c8d6CA;" />
+                        <VBox fx:id="chatVBox" prefHeight="288.0" prefWidth="529.0" style="-fx-background-color: #FAFAFA;" />
                     </content>
                 </ScrollPane>
                 <AnchorPane fx:id="editHBox" layoutX="18.0" layoutY="295.0" prefHeight="38.0" prefWidth="455.0">
@@ -41,7 +41,7 @@
                     </children>
                 </AnchorPane>
                 <TextField fx:id="sendTextFiled" layoutX="16.0" layoutY="338.0" prefHeight="40.0" prefWidth="455.0" promptText="Type your message" style="-fx-background-color: #E7F5DE; -fx-background-radius: 10; -fx-border-color: #c8D6CA; -fx-border-radius: 10; -fx-border-width: 2;" />
-                <ImageView fx:id="sendButton" fitHeight="37.0" fitWidth="46.0" layoutX="486.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="sendButton" fitHeight="37.0" fitWidth="46.0" layoutX="478.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="/images/send.png" />
                     </image>

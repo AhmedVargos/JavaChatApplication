@@ -53,7 +53,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
     }
 
     @Override
-    public boolean updateInfo(User user) throws SQLException, RemoteException {
+    public synchronized boolean updateInfo(User user) throws SQLException, RemoteException {
         try {
             connect();
             query = "UPDATE USER SET connecting_status =" + user.getConnStatus() + ", appearance_status=" + user.getAppearanceStatus() + " WHERE id =" + user.getId();
@@ -93,7 +93,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
     }
 
     @Override
-    public boolean signOut(User user) throws SQLException, RemoteException {
+    public synchronized boolean signOut(User user) throws SQLException, RemoteException {
         try {
             connect();
             query = "select * from USER where id = '" + user.getId() + "'";
@@ -115,7 +115,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
     }
 
     @Override
-    public ArrayList<User> getContactsList(int id) throws SQLException, RemoteException {
+    public synchronized ArrayList<User> getContactsList(int id) throws SQLException, RemoteException {
         ArrayList<User> userFriendList = new ArrayList<>();
         try {
             connect();
@@ -153,7 +153,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
     }
 
     @Override
-    public ArrayList<User> getRequestsList(int id) throws SQLException, RemoteException {
+    public synchronized ArrayList<User> getRequestsList(int id) throws SQLException, RemoteException {
         ArrayList<User> userFriendList = new ArrayList<>();
         try {
             connect();
@@ -190,12 +190,12 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
     }
 
     @Override
-    public boolean createGroup(String groupName, ArrayList<User> users) throws SQLException, RemoteException {
+    public synchronized boolean createGroup(String groupName, ArrayList<User> users) throws SQLException, RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean notify(int id) throws SQLException, RemoteException {
+    public synchronized boolean notify(int id) throws SQLException, RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

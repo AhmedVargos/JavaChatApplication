@@ -97,7 +97,7 @@ public class ServerMainViewController implements Initializable {
     private final String CHAT_TAG = "chat";
     boolean firstTable = true;
     boolean firstTimeRegistery = true;
-    private String SERVER_IP = "10.118.49.184";
+    private String SERVER_IP = "10.145.1.255";
 
     public void setScene(Scene scene) {
         this.s = scene;
@@ -203,22 +203,21 @@ public class ServerMainViewController implements Initializable {
                     off++;
                 }
                 statement.close();
-//                int tm = (m * 100) / (m + f);
-//                int tf = 100 - tm;
-//                int ton = (on * 100) / (on + off);
-//                int toff = 100 - ton;
+                int maleVal = (m * 100) / (m + f);
+                int femaleVal = 100 - maleVal;
+                int onlineVal = (on * 100) / (on + off);
+                int offlineVal = 100 - onlineVal;
+                
                 ObservableList<PieChart.Data> MFDATA
-                        = FXCollections.observableArrayList(
-                                new PieChart.Data("MALE", m / (m + f)),
-                                new PieChart.Data("FEMALE", f / (m + f))
+                        = FXCollections.observableArrayList(new PieChart.Data("MALE", maleVal),
+                                new PieChart.Data("FEMALE", femaleVal)
                         );
                 pc.setData(MFDATA);
                 pc.setTitle("Gender");
 
                 ObservableList<PieChart.Data> ONOFF
-                        = FXCollections.observableArrayList(
-                                new PieChart.Data("OFFLINE", off / (off + on)),
-                                new PieChart.Data("ONLINE", on / (off + on))
+                        = FXCollections.observableArrayList(new PieChart.Data("OFFLINE", offlineVal),
+                                new PieChart.Data("ONLINE", onlineVal)
                         );
                 pc1.setData(ONOFF);
                 pc1.setTitle("Status");
@@ -267,7 +266,7 @@ public class ServerMainViewController implements Initializable {
             ResultSet rs = statement.executeQuery(SQL);
 
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-                if (i == 0 || i == 5 || i == 7 || i == 9) {
+                if (i == 0 || i == 5) {
                     continue;
                 }
                 final int j = i;

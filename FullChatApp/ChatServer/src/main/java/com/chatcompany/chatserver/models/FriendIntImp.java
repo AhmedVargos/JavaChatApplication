@@ -64,7 +64,7 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
     }
 
     @Override
-    public boolean sendFriendRequest(int idMe, String receiver) throws RemoteException {
+    public synchronized boolean sendFriendRequest(int idMe, String receiver) throws RemoteException {
 
         try {
             connect();
@@ -75,6 +75,11 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
 
                 return false; //el friend m4 mawgod
             }
+
+            if (idMe == resultSet.getInt("id")){
+                return false;
+            }
+
             //resultSet.first();
             int receiverId = resultSet.getInt("id");
             query = "select * from friend where (user_id='" + idMe + "' and friend_id='" + receiverId + "')";
@@ -112,24 +117,25 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
 
 /////////////
     @Override
-    public boolean acceptFriendRequest(int idMe, int idMyFriend) throws RemoteException {
+    public synchronized boolean acceptFriendRequest(int idMe, int idMyFriend) throws RemoteException {
         try {
+
             connect();
             query = "insert into FRIEND (user_id,friend_id)values ('" + idMe + "','" + idMyFriend + "')";
             statement = connection.createStatement();
             statement.executeUpdate(query);
-            
+
             query = "insert into FRIEND (user_id,friend_id)values ('" + idMyFriend + "','" + idMe + "')";
             statement = connection.createStatement();
             statement.executeUpdate(query);
-            
+
             query = "delete from FRIEND_REQUEST where sender_id='" + idMyFriend + "' and receiver_id='" + idMe + "'";
             statement.executeUpdate(query);
 
             ServerView.getClientsOnline().get(idMe).updateContactsList(new ServerMainIntImp().getContactsList(idMe));
             ServerView.getClientsOnline().get(idMyFriend).updateContactsList(new ServerMainIntImp().getContactsList(idMyFriend));
             ServerView.getClientsOnline().get(idMyFriend).makeNotification("Request accepted", "Friend request has been accepted.");
-                    
+
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -162,7 +168,7 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
     }
 
     @Override
-    public ArrayList<User> getFriendRequestList(int id) throws RemoteException {
+    public synchronized ArrayList<User> getFriendRequestList(int id) throws RemoteException {
 
         ArrayList<User> requestsUsers = new ArrayList<>();
         ArrayList<Integer> idsArrayList = new ArrayList<>();
@@ -218,20 +224,20 @@ public class FriendIntImp extends UnicastRemoteObject implements FriendInterface
 
     //Remove a friend from the contacts
     @Override
-    public boolean removeFriend(int idMy, int idFriend) throws RemoteException {
+    public synchronized boolean removeFriend(int idMy, int idFriend) throws RemoteException {
         try {
             connect();
             query = "delete from FRIEND where user_id='" + idMy + "' and friend_id='" + idFriend + "'";
             statement = connection.createStatement();
             statement.executeUpdate(query);
-            
+
             query = "delete from FRIEND where user_id='" + idFriend + "' and friend_id='" + idMy + "'";
             statement = connection.createStatement();
             statement.executeUpdate(query);
-           
+
             ServerView.getClientsOnline().get(idFriend).updateContactsList(new ServerMainIntImp().getContactsList(idFriend));
             ServerView.getClientsOnline().get(idFriend).makeNotification("Friend Removed", "A person has removed you from friends list.");
-                    
+
             return true;
         } catch (SQLException ex) {
             ex.printStackTrace();

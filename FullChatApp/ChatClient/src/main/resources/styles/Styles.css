@@ -43,31 +43,30 @@ visibility: hidden;
 }
 
 .myLineAlone{
-    -fx-background-color:  #824CA7;
+    -fx-background-color:  #ebeced;
     -fx-background-radius: 16;
-
-    -fx-background-color:  #824CA7;
+    
 
 }
 
 .myLineTop{
     -fx-background-radius: 16 16 2 16;
 
-    -fx-background-color:  #824CA7;
+    -fx-background-color:  #ebeced;
 
 }
 
 .myLineMiddle{
     -fx-background-radius: 16 2 2 16;
 
-    -fx-background-color:  #824CA7;
+    -fx-background-color:  #ebeced;
 }
 
 .myLineLast{
     -fx-background-radius: 16 2 16 16;
 
 
-    -fx-background-color:  #824CA7;
+    -fx-background-color:  #ebeced;
 }
 .moveLeft{
     -fx-alignment:  center_left;
@@ -83,30 +82,26 @@ visibility: hidden;
 
 .otherLineAlone{
     -fx-background-radius: 16;
-
-
-    -fx-background-color:  #B9C406;
+    -fx-background-color:  #98F2C4;
 
 }
 
 .otherLineTop{
     -fx-background-radius: 16 16 16 2;
-
-
-    -fx-background-color:  #B9C406;
+    -fx-background-color:  #98F2C4;
 }
 
 .otherLineMiddle{
     -fx-background-radius: 2 16 16 2;
 
 
-    -fx-background-color:  #B9C406;
+    -fx-background-color:  #98F2C4;
 }
 
 .otherLineLast{
     -fx-background-radius: 2 16 16 16;
 
 
-    -fx-background-color:  #B9C406;
+    -fx-background-color:  #98F2C4;
 }
 

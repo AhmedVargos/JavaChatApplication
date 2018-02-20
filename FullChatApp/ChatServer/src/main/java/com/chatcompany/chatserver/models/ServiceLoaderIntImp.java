@@ -12,7 +12,7 @@ public class ServiceLoaderIntImp extends UnicastRemoteObject implements ServiceL
     
     }
     @Override
-    public Object getServiceInstance(String name) throws RemoteException {
+    public synchronized Object getServiceInstance(String name) throws RemoteException {
 
         switch (name) {
             case Constants.LOGIN_SERVICE:
