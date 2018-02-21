@@ -343,7 +343,7 @@ public class ServerMainViewController implements Initializable {
 
             if (!firstTimeRegistery) {
                 registry = LocateRegistry.getRegistry(REGISTRY_PORT);
-                System.setProperty("java.rmi.server.hostname", SERVER_IP);
+                //System.setProperty("java.rmi.server.hostname", SERVER_IP);
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());            
                 System.out.println("Server is Online");
                 System.out.println("Already created");
@@ -351,7 +351,7 @@ public class ServerMainViewController implements Initializable {
             } else {
                 firstTimeRegistery = false;
                 registry = LocateRegistry.createRegistry(REGISTRY_PORT);
-                System.setProperty("java.rmi.server.hostname", SERVER_IP);
+                //System.setProperty("java.rmi.server.hostname", SERVER_IP);
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
                 System.out.println("Server is Online");
                 System.out.println("New created");
