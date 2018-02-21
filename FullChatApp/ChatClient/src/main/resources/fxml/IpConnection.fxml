@@ -3,16 +3,13 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="400.0" maxWidth="671.0" prefHeight="350.0" prefWidth="586.0" style="-fx-background-color: #5C868D;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.chatcompany.chatclient.controllers.IpConnectionController">
    <children>
-       <Label fx:id="ProjectName" layoutX="178.0" layoutY="27.0" prefHeight="40.0" prefWidth="220.0" text="   Project Name" textFill="#C8D6CA">
-                  <font>
-                     <Font size="28.0" />
-                  </font>
-               </Label>
                <Label fx:id="exit" layoutX="564.0" layoutY="7.0" prefHeight="30.0" prefWidth="19.0" text="X" textAlignment="CENTER" textFill="#5c3d46">
                   <font>
                      <Font size="28.0" />
@@ -23,7 +20,7 @@
                      <Font size="22.0" />
                   </font>
                </Label>
-      <JFXTextField fx:id="ipTextfield" focusColor="#5c3d46" labelFloat="true" layoutX="142.0" layoutY="136.0" maxWidth="464.0" minWidth="300.0" onKeyPressed="#handleConnectionAction" prefHeight="54.0" prefWidth="313.0" promptText="   Enter ip address 192.168.1.2 " style="-fx-alignment: center;" stylesheets="@../styles/textFeild.css" unFocusColor="#e7f5de">
+      <JFXTextField fx:id="ipTextfield" focusColor="#5c3d46" labelFloat="true" layoutX="142.0" layoutY="136.0" maxWidth="464.0" minWidth="300.0" onKeyPressed="#handleConnectionAction" prefHeight="54.0" prefWidth="313.0" promptText="   Enter ip address ex: 192.168.1.2 " style="-fx-alignment: center;" stylesheets="@../styles/textFeild.css" unFocusColor="#e7f5de">
          <font>
             <Font size="20.0" />
          </font></JFXTextField>
@@ -37,5 +34,10 @@
             <Font name="Bell MT Bold" size="18.0" />
          </font>
       </JFXButton>
+      <ImageView fitHeight="127.0" fitWidth="115.0" layoutX="232.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/Logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

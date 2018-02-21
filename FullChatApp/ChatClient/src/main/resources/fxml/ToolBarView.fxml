@@ -15,7 +15,7 @@
         <URL value="@/styles/toolbarveiw.css" />
     </stylesheets>
    <children>
-      <Pane maxWidth="-Infinity" prefHeight="90.0" prefWidth="530.0" style="-fx-background-color: #5C868D;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="90.0" prefWidth="530.0" style="-fx-background-color: #5C868D;">
          <children>
             <Circle fx:id="profileCircle" fill="#1f93ff00" layoutX="44.0" layoutY="39.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
             <Label fx:id="min" layoutX="470.0" layoutY="4.0" prefHeight="32.0" prefWidth="19.0" text="-" textAlignment="CENTER" textFill="#404546">
@@ -39,7 +39,7 @@
                </image></ImageView>
             <Label layoutX="90.0" layoutY="40.0" prefHeight="23.0" prefWidth="61.0" text="Availability" textAlignment="CENTER" textFill="#9dc6a2" />
             <JFXComboBox fx:id="statusComboBox" layoutX="151.0" layoutY="39.0" />
-            <ImageView fitHeight="60.0" fitWidth="64.0" layoutX="279.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="143.0" fitWidth="123.0" layoutX="268.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/images/Logo.png" />
                </image>

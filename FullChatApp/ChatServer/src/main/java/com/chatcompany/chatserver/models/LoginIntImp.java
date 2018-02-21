@@ -143,7 +143,7 @@ public class LoginIntImp extends UnicastRemoteObject implements LoginInterface {
 
                 newUser = new User(id, name, email, fname, lname, pass, gender, country, connStatus, appStatus);
                 ServerView.getClientsOnline().put(user.getId(), clientInterface);
-                clientInterface.makeNotification("Welcome", "Welcome to the RnChat Application!");
+                clientInterface.makeNotification("Welcome", "Welcome to the To Talk Chat Application!");
                 closeResourcesOpened();
                 return newUser;
             }

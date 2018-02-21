@@ -197,37 +197,38 @@ public class ChatBoxController implements Initializable {
                 if (chatSession.getChatUsers().size() > 2) {
                     return;
                 } else {
-                    ChatInterface chatInterface = null;
-                    File file = null;
+                   ChatInterface chatInterface = null;
+                File file = null;
 
-                    FileChooser chooser = new FileChooser();
-                    chooser.setTitle("Open File");
-                    file = chooser.showOpenDialog(new Stage());
+                FileChooser chooser = new FileChooser();
+                chooser.setTitle("Open File");
+                file = chooser.showOpenDialog(new Stage());
 
-                    if (file != null) {
+                if (file != null) {
 
-                        //you need functon on the server to check if the user accept to download in the client
-                        //askClientReceiveFile
-                        try {
-                            chatInterface = (ChatInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.CHAT_SERVICE);
-                            if (chatInterface.askClientReceiveFile(chatSession) == 1) {
-                                FileInputStream in = new FileInputStream(file);
-                                byte[] mydata = new byte[1024 * 1024];
-                                int mylen = in.read(mydata);
-                                while (mylen > 0) {
-                                    chatInterface.sendFile(file.getName(), mydata, mylen, chatSession);
-                                    mylen = in.read(mydata);
-                                }
+                    //you need functon on the server to check if the user accept to download in the client
+                    //askClientReceiveFile
+                    try {
+                        chatInterface = (ChatInterface) MainApp.getServiceLoaderInterface().getServiceInstance(Constants.CHAT_SERVICE);
+                        //  String path=chatInterface.askClientReceiveFile(chatSession) ;
+                        int sId = MainApp.getMainUser().getId();
+                            String isFirst="yes";
+                            FileInputStream in = new FileInputStream(file);
+                            byte[] mydata = new byte[1024 * 1024];
+                            int mylen = in.read(mydata);
+                            while (mylen > 0) {
+                                chatInterface.sendFile(sId,file.getName(),isFirst, mydata, mylen, chatSession);
+                                mylen = in.read(mydata);
+                                isFirst="no";
                             }
-                        } catch (IOException ex) {
-                            Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ChatBoxController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                 }
 
-            }
+                }}
 
         });
 

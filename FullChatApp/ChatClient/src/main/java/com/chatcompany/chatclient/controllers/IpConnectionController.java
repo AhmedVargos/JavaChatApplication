@@ -118,7 +118,6 @@ public class IpConnectionController implements Initializable {
                 MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
 
             } catch (Exception ex) {
-                ex.printStackTrace();
                 invalidIp.setText("Server is Offline");
             }
         } else {

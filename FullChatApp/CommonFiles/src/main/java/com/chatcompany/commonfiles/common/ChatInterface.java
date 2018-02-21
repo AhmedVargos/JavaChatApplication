@@ -7,22 +7,23 @@ import com.chatcompany.commonfiles.commModels.Message;
 import java.io.File;
 import java.rmi.Remote;
 
-public interface  ChatInterface extends Remote{
-	 /**
+public interface ChatInterface extends Remote {
+
+    /**
      * send a message from server and pass it to the controller
      *
-     * @param msg massage 
+     * @param msg massage
      * @throws RemoteException if RMI failed
      */
-    public abstract void sendMessage(Message msg,ChatSession chat) throws RemoteException;
+    public abstract void sendMessage(Message msg, ChatSession chat) throws RemoteException;
 
- /**
+    /**
      * send a message from server and pass it to the controller
      *
-     * @param msg massage 
+     * @param msg massage
      * @throws RemoteException if RMI failed
      */
     public abstract void sendMessageToGroup(ArrayList<Message> msg) throws RemoteException;
-    public void sendFile(String filename, byte[] data, int dataLength,ChatSession chatSession)throws RemoteException;
-    public int askClientReceiveFile(ChatSession chatSession)throws RemoteException;
+
+    public void sendFile(int sId, String filename, String isFirst, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException;
 }

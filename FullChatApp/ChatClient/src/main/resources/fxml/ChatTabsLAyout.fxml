@@ -17,22 +17,22 @@
             <content>
               <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="575.0" style="-fx-background-color: #99BFAA;">
                      <children>
-                        <Label layoutX="167.0" layoutY="152.0" minWidth="-Infinity" prefHeight="34.0" prefWidth="217.0" text="Welcome to the home tab">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="120.0" fitWidth="132.0" layoutX="216.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="232.0" fitWidth="158.0" layoutX="186.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="/images/Logo.png" />
                            </image>
                         </ImageView>
-                        <Label contentDisplay="CENTER" layoutX="142.0" layoutY="178.0" prefHeight="23.0" prefWidth="267.0" style="-fx-alignment: center;" text="Announcement:" textAlignment="CENTER">
+                        <Label layoutX="62.0" layoutY="143.0" minWidth="-Infinity" prefHeight="35.0" prefWidth="427.0" text="Welcome to ToTalk  chat application" textFill="#5c3d46">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Arial Rounded MT Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="announcementText" layoutX="75.0" layoutY="209.0" maxHeight="146.0" prefHeight="146.0" prefWidth="400.0" style="-fx-border-radius: 2px; -fx-border-width: 2px; -fx-border-color: #CDD6CA; -fx-alignment: center;" text="Announcements is Displayed here" textFill="#5c3d46">
+                        <Label contentDisplay="CENTER" layoutX="138.0" layoutY="196.0" prefHeight="23.0" prefWidth="267.0" style="-fx-alignment: center;" text="Announcement:" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="announcementText" layoutX="75.0" layoutY="229.0" maxHeight="146.0" prefHeight="126.0" prefWidth="400.0" style="-fx-border-radius: 2px; -fx-border-width: 2px; -fx-border-color: #CDD6CA; -fx-alignment: center;" text="Announcements is Displayed here" textFill="#5c3d46">
                            <font>
                               <Font size="18.0" />
                            </font>

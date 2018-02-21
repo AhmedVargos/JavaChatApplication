@@ -33,12 +33,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextInputDialog;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 public class ClientIntImp extends UnicastRemoteObject implements ClientInterface {
 
+    String receiverPath = null;
     private ContactTabViewController mContactTabViewController;
 
     public ClientIntImp() throws RemoteException {
@@ -119,29 +121,46 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
     //receive file from server 
 
     @Override
-    public int acceptReceiveFile(ChatSession chatSession) throws RemoteException {
+    public void reciveFile(String filename, String isFirst, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
 
-        int ret = 0;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
 
-        return 1;
-    }
+                if (isFirst.equals("yes")) {
+                    //check for user accept to receive file
 
-    @Override
-    public void reciveFile(String filename, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
-        //check for user accept   
-        try {
-            String pathDefault = "C:\\Users\\Public\\Downloads\\";
-            File f = new File(pathDefault + filename);
-            f.createNewFile();
-            FileOutputStream out = new FileOutputStream(f, true);
-            out.write(data, 0, dataLength);
-            out.flush();
-            out.close();
-            System.out.println("Done writing data...");
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation Dialog");
+                    alert.setHeaderText("Your Friend need to send you a file " + filename + "\n press ok if you accept or Exit to cancel");
+                    alert.setContentText(null);
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        FileChooser fileChooser = new FileChooser();
+                        File pfile = fileChooser.showSaveDialog(null);
+                        receiverPath = pfile.getAbsolutePath();
+                    } else {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                    }
+
+                }
+                if (receiverPath != null) {
+                    try {
+                        //  String pathDefault ="C:\\Users\\Public\\Downloads\\";
+                        File f = new File(receiverPath + filename);
+                        f.createNewFile();
+                        FileOutputStream out = new FileOutputStream(f, true);
+                        out.write(data, 0, dataLength);
+                        out.flush();
+                        out.close();
+                        System.out.println("Done writing data...");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @Override

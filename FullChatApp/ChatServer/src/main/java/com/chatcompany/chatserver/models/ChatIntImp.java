@@ -36,41 +36,25 @@ public class ChatIntImp extends UnicastRemoteObject implements ChatInterface {
     }
     //Will send message to a single user
 
+    
     @Override
-    public synchronized void sendFile(String filename, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
+    public synchronized void sendFile(int sId,String filename,String isFirst, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
         try {
             ArrayList<User> userList = chatSession.getChatUsers();
             for (int i = 0; i < userList.size(); i++) {
                 User user = userList.get(i);
+                if (user.getId()!=sId){
                 if (ServerView.getClientsOnline().get(user.getId()) != null) {
-
-                    ServerView.getClientsOnline().get(user.getId()).reciveFile(filename,data,dataLength, chatSession);
+  
+                    ServerView.getClientsOnline().get(user.getId()).reciveFile(filename,isFirst,data,dataLength, chatSession);
+                
                 }
-            }
+            }}
         } catch (Exception e) {
             e.printStackTrace();
 
         }
     }
 
-    @Override
-    public synchronized int askClientReceiveFile(ChatSession chatSession) throws RemoteException {
-     int r=0;
-        try {
-            ArrayList<User> userList = chatSession.getChatUsers();
-            for (int i = 0; i < userList.size(); i++) {
-                User user = userList.get(i);
-                if (ServerView.getClientsOnline().get(user.getId()) != null) {
-
-                 r= ServerView.getClientsOnline().get(user.getId()).acceptReceiveFile( chatSession);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-
-    
-    }
-    return r;
-    }
 
 }

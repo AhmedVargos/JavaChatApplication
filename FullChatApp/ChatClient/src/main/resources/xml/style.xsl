@@ -24,7 +24,6 @@
                         <th>From</th>
                         <th>To</th>
                         <th>Body</th>
-                        <th>Date</th>
                         
                     </tr>
                     <xsl:for-each select="chat/message">
@@ -37,9 +36,6 @@
                             </td>
                             <td>
                                 <xsl:value-of select="body" />
-                            </td>
-                            <td>
-                                <xsl:value-of select="date" />
                             </td>
                               
                         </tr>

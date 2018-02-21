@@ -31,6 +31,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -97,7 +100,7 @@ public class ServerMainViewController implements Initializable {
     private final String CHAT_TAG = "chat";
     boolean firstTable = true;
     boolean firstTimeRegistery = true;
-    private String SERVER_IP = "192.168.1.6";
+    private String SERVER_IP = "10.145.1.255";
 
     public void setScene(Scene scene) {
         this.s = scene;
@@ -207,7 +210,7 @@ public class ServerMainViewController implements Initializable {
                 int femaleVal = 100 - maleVal;
                 int onlineVal = (on * 100) / (on + off);
                 int offlineVal = 100 - onlineVal;
-                
+
                 ObservableList<PieChart.Data> MFDATA
                         = FXCollections.observableArrayList(new PieChart.Data("MALE", maleVal),
                                 new PieChart.Data("FEMALE", femaleVal)
@@ -226,7 +229,7 @@ public class ServerMainViewController implements Initializable {
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Error");
-                    alert.setHeaderText("se Chat ");
+                    alert.setHeaderText("To Talk Chat ");
                     alert.setContentText("Cannot access database at this moment");
                     alert.showAndWait();
                 });
@@ -293,7 +296,7 @@ public class ServerMainViewController implements Initializable {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
-                alert.setHeaderText("SE Chat ");
+                alert.setHeaderText("To Talk Chat ");
                 alert.setContentText("Cannot access database at this moment");
                 alert.showAndWait();
             });
@@ -303,25 +306,40 @@ public class ServerMainViewController implements Initializable {
 
     //stops the server
     public void stopServer() throws SQLException {
-        try {
-            registry.unbind(CHAT_TAG);
-            serverClosing();
 
-            for (Map.Entry<Integer, ClientInterface> en : ServerView.getClientsOnline().entrySet()) {
-                if (en != null) {
-                    Object key = en.getKey();
-                    ClientInterface value = en.getValue();
-                    value.serverIsOff();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                HashMap<Integer,ClientInterface> tempList = new HashMap<>(ServerView.getClientsOnline());
+                tempList.keySet().removeAll( ServerView.getClientsOnline().keySet());
+                tempList.putAll(ServerView.getClientsOnline());
+                for (ClientInterface en : tempList.values()) {
+                    try {
+                        //ClientInterface value = en.getValue();
+                        en.serverIsOff();
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                ServerView.getClientsOnline().clear();
+
+                try {
+                    registry.unbind(CHAT_TAG);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NotBoundException ex) {
+                    Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    serverClosing();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
-            ServerView.getClientsOnline().clear();
-
-        } catch (RemoteException ex) {
-            Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ServerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        });
 
     }
 
@@ -343,15 +361,15 @@ public class ServerMainViewController implements Initializable {
 
             if (!firstTimeRegistery) {
                 registry = LocateRegistry.getRegistry(REGISTRY_PORT);
-                //System.setProperty("java.rmi.server.hostname", SERVER_IP);
-                registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());            
+                System.setProperty("java.rmi.server.hostname", SERVER_IP);
+                registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
                 System.out.println("Server is Online");
                 System.out.println("Already created");
 
             } else {
                 firstTimeRegistery = false;
                 registry = LocateRegistry.createRegistry(REGISTRY_PORT);
-                //System.setProperty("java.rmi.server.hostname", SERVER_IP);
+                System.setProperty("java.rmi.server.hostname", SERVER_IP);
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
                 System.out.println("Server is Online");
                 System.out.println("New created");
