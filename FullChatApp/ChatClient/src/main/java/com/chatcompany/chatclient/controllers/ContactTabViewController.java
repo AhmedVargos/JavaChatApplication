@@ -39,7 +39,7 @@ public class ContactTabViewController implements Initializable {
     private Tab chatGroupTab;
     @FXML
     private Tab requestsTab;
-    
+
     @FXML
     private JFXTabPane contactsTabPane;
     @FXML
@@ -74,7 +74,6 @@ public class ContactTabViewController implements Initializable {
     private ArrayList<User> usersTemp;
     public ArrayList<User> listOfUsersInGroup = new ArrayList<>();
 
-
     public void setChatAreaController(ChatAreaController chatAreaController) {
         this.chatAreaController = chatAreaController;
     }
@@ -101,32 +100,24 @@ public class ContactTabViewController implements Initializable {
         initListViews();
         addFriends();
         createGoup();
-        
+
     }
 
     public ArrayList<User> getListOfUsersInGroup() {
         return listOfUsersInGroup;
     }
-    
-    private void initListViews() {
-//        usersTemp = new ArrayList<>();
-//        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-//        usersTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
 
+    private void initListViews() {
         userRequestsList = FXCollections.observableArrayList();
 
         requestsList.setItems(userRequestsList);
         requestsList.setCellFactory(new RequestListViewFactory());
 
-//        ArrayList<User> usersFriendTemp = new ArrayList<>();
-//        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-//        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
-//        usersFriendTemp.add(new User("ahmed", "asd@sda.com", "asd", "adsd", "qasd", 0, "qqasd", 0, 1));
         userFriendsList = FXCollections.observableArrayList();
 
         friendsList.setItems(userFriendsList);
         friendsList.setCellFactory(new FriendListViewFactory());
-        
+
         friendsInGroupList.setItems(userFriendsList);
         friendsInGroupList.setCellFactory(new FriendGroupListViewFactory());
     }
@@ -148,47 +139,7 @@ public class ContactTabViewController implements Initializable {
         addfriend.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //  User user = new User();
-                //  user.setUsername(addfirendtxtfield.getText());
-//                Label label = new Label(addfirendtxtfield.getText());
-//                label.setStyle(" -fx-padding: 10px; -fx-text-fill: #C8D6CA;");
-//                label.setFont(Font.font("Verdana", 20));
-//                label.setLayoutX(70);
-//                label.setLayoutY(5);
-//              
-//                AnchorPane ab = new AnchorPane();
-//
-//                 ab.setStyle("-fx-border-style: solid inside;"
-//                        + "-fx-border-width: 2;" + "-fx-border-insets:2;"
-//                        + "-fx-border-radius: 5;" + "-fx-border-color:#5c868D ;" + "-fx-background-color:  #5c868D;");
-//                 ab.setMaxWidth(260);
-//                 ab.setMinWidth(50);
-//             
-//                Circle circle = new Circle(45, 30, 20);
-//                circle.setStroke(Color.SEAGREEN);
-//                Image im = new Image("/images/user.png", false);
-//                circle.setFill(new ImagePattern(im));
-//                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
-//
-//                Circle circlestatus = new Circle(15, 30, 5);
-//                circlestatus.setFill(Color.LIGHTGREEN);
-//                 ab.getChildren().add(circle);
-//                 ab.getChildren().add(label);
-//                 ab.getChildren().add(circlestatus);
-//
-//               // hb.setAlignment(Pos.BASELINE_LEFT);
-//                //when you click open new tab.........
-//                 ab.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                    @Override
-//                    public void handle(MouseEvent e) {
-////                        System.out.println(addfirendtxtfield.getText());
-//                        //TODO will send an object of the user clicked
-//                        chatAreaController.openNewChatSession(label.getText());
-//                    }
-//                });
-//                
-//                vbox.getChildren().add(ab);
-
+          
                 FriendInterface friendInterface = null;
                 boolean isWorking = false;
                 try {
@@ -232,12 +183,7 @@ public class ContactTabViewController implements Initializable {
 
             }
         });
-        //userRequestsList.clear();
-        //userRequestsList.addAll(request);
-//        usersTemp.clear();
-//        usersTemp.addAll(request);
-        //requestsList.setItems(userRequestsList);
-    }
+      }
 
     public void addNewFriend(ArrayList<User> friends) {
         //userRequestsList = FXCollections.observableList(request);
@@ -250,8 +196,7 @@ public class ContactTabViewController implements Initializable {
             }
         });
 
-        //requestsList.setItems(userRequestsList);
-    }
+   }
 
     public void removeRequestFromList(User mUser) {
         Platform.runLater(new Runnable() {
@@ -277,8 +222,8 @@ public class ContactTabViewController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println(MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup().size());
-                if((!groupNameTextField.getText().trim().isEmpty()) 
-                        && MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup().size() > 0){
+                if ((!groupNameTextField.getText().trim().isEmpty())
+                        && MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup().size() > 0) {
                     ArrayList<User> listInGroup = new ArrayList<>();
                     listInGroup.add(MainApp.getMainUser());
                     listInGroup.addAll(MainApp.getMainChatParentController().getEmbeddedContactTabViewController().getListOfUsersInGroup());

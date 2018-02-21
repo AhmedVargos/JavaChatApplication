@@ -123,41 +123,11 @@ public class ClientIntImp extends UnicastRemoteObject implements ClientInterface
 
         int ret = 0;
 
-//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                alert.setTitle("Confirmation Dialog");
-//                alert.setHeaderText("Look, a Confirmation Dialog");
-//                alert.setContentText("Are you ok with this?");
-//
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if (result.get() == ButtonType.OK) {
-//                    ret = 1;
-//                } else {
-//                    ret = 0;
-//                }
         return 1;
     }
 
     @Override
     public void reciveFile(String filename, byte[] data, int dataLength, ChatSession chatSession) throws RemoteException {
-//        boolean isFound = false;
-//        String id;
-//
-//        ObservableList<Tab> tabs = (ObservableList<Tab>) MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().getChatTabPane().getTabs();
-//        Message msg = new Message();
-//        for (int i = 0; i < tabs.size(); i++) {
-//            id = tabs.get(i).getId();
-//            if (tabs.get(i).getId().equals(chatSession.getId())) {
-//                isFound = true;
-//
-//                ChatAreaController.append(new Message(), tabs.get(i).getId());
-//            }
-//        }
-//        if (!isFound) {
-//            //create tab session 
-//            MainApp.getMainChatParentController().getEmbeddedChatTabsViewController().openNewChatTabReciver(chatSession, msg);
-//            //ChatAreaController.append(msg, tabs.get(i).getId());
-//
-//        }
         //check for user accept   
         try {
             String pathDefault = "C:\\Users\\Public\\Downloads\\";

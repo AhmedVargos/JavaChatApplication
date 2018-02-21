@@ -149,12 +149,10 @@ public class SignUpController implements Initializable {
 
                     //Open new scene and position it in the middle
                     MainApp.getMainStage().setScene(scene);
-                    /*MainApp.getMainStage().setWidth(537);
-                    MainApp.getMainStage().setHeight(437);
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                     MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
-                     */
+                     
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -223,12 +221,10 @@ public class SignUpController implements Initializable {
 
                             //Open new scene and position it in the middle
                             MainApp.getMainStage().setScene(scene);
-                            /*MainApp.getMainStage().setWidth(850);
-                            MainApp.getMainStage().setHeight(500);
                             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                             MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                             MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);
-                             */
+                            
                         } catch (IOException ex) {
                             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);
                         }

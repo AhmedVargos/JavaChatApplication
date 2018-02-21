@@ -94,13 +94,10 @@ public class SignInController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signUp.fxml"));
                     Parent root = loader.load();
                     SignUpController controller = loader.getController();
-                    //controller.setText(nameTxtField.getText());
-
+                   
                     Scene scene = new Scene(root);
 
                     MainApp.getMainStage().setScene(scene);
-                    /*MainApp.getMainStage().setWidth(683);
-                    MainApp.getMainStage().setHeight(501);*/
                     Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
                     MainApp.getMainStage().setX((primScreenBounds.getWidth() - MainApp.getMainStage().getWidth()) / 2);
                     MainApp.getMainStage().setY((primScreenBounds.getHeight() - MainApp.getMainStage().getHeight()) / 2);

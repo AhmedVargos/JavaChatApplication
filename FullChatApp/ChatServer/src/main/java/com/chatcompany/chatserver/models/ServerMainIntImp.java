@@ -61,16 +61,7 @@ public class ServerMainIntImp extends UnicastRemoteObject implements ServerMainI
             statement = connection.createStatement();
             statement.executeUpdate(query);
 
-            /*resultSet.updateInt(1, user.getId());
-            resultSet.updateString(2, user.getFname());
-            resultSet.updateString(3, user.getLname());
-            resultSet.updateString(4, user.getUsername());
-            resultSet.updateString(5, user.getEmail());
-            resultSet.updateString(6, user.getPassword());
-            resultSet.updateInt(7, user.getGender());
-            resultSet.updateString(9, user.getCountry());
-
-            resultSet.rowUpdated();*/
+           
             if (user.getConnStatus() == Constants.OFFLINE) {
 
                 ServerView.getClientsOnline().remove(user.getId());

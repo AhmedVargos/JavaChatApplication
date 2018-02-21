@@ -344,8 +344,7 @@ public class ServerMainViewController implements Initializable {
             if (!firstTimeRegistery) {
                 registry = LocateRegistry.getRegistry(REGISTRY_PORT);
                 System.setProperty("java.rmi.server.hostname", SERVER_IP);
-                registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
-                //Naming.rebind("//192.168.1.6/chat", new ServerMainIntImp());               
+                registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());            
                 System.out.println("Server is Online");
                 System.out.println("Already created");
 
@@ -354,14 +353,12 @@ public class ServerMainViewController implements Initializable {
                 registry = LocateRegistry.createRegistry(REGISTRY_PORT);
                 System.setProperty("java.rmi.server.hostname", SERVER_IP);
                 registry.rebind(CHAT_TAG, new ServiceLoaderIntImp());
-                //Naming.rebind("//192.168.1.6/chat", new ServerMainIntImp());
                 System.out.println("Server is Online");
                 System.out.println("New created");
 
             }
 
         } catch (RemoteException ex) {
-            //Logger.getLogger(ServerChat.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
     }

@@ -152,17 +152,8 @@ public class ChatBoxController implements Initializable {
             public void handle(MouseEvent e) {
                 ///send message here 
                 String text = sendTextFiled.getText().toString();
-                if (!text.equals(null)) {
-                    /* Label outText = new Label(text);
-                    outText.setTextFill(messageColor);
-                    outText.setStyle("-fx-font-size:" + size + ";-fx-font-family:" + fontf + ";-fx-text-inner-color:" + hex2 + ";-fx-font-style:" + style + ";-fx-font-weight:" + weight + ";");
-                    Message message = new Message(size, "String from", "String to", null, hex2, fontf, style, text, weight, false);
-                    ///send message to reciever
-                    HBox myHBox = new HBox();
-                    myHBox.getChildren().add(outText);
-                    chatVBox.getChildren().add(outText);
-                     */
-                    String to = "";
+                if (!text.isEmpty()) {
+                         String to = "";
                     if (chatSession.getChatUsers().get(0).getUsername().equals(MainApp.getMainUser().getUsername())) {
                         to = chatSession.getChatUsers().get(1).getUsername();
                     } else {

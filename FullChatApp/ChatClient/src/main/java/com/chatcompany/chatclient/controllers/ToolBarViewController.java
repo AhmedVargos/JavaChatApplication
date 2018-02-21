@@ -260,13 +260,6 @@ public class ToolBarViewController implements Initializable {
             }
         });
 
-        /*mainBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                mainBar.getScene().getWindow().setX(event.getScreenX() - mainBar.getWidth() / 2);
-                mainBar.getScene().getWindow().setY(event.getScreenY() - mainBar.getHeight() / 2);
-            }
-        });*/
 
     }
 
